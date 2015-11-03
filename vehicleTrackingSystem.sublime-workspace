@@ -1,0 +1,662 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"c",
+				"crypto"
+			],
+			[
+				"re",
+				"require"
+			],
+			[
+				"us",
+				"username"
+			],
+			[
+				"use",
+				"username"
+			],
+			[
+				"err",
+				"error"
+			],
+			[
+				"pass",
+				"password"
+			],
+			[
+				"user",
+				"userinfo"
+			],
+			[
+				"sen",
+				"send"
+			],
+			[
+				"login_",
+				"login_success"
+			],
+			[
+				"no",
+				"notEmpty"
+			],
+			[
+				"l",
+				"label	Tag"
+			],
+			[
+				"h",
+				"h1	Tag"
+			],
+			[
+				"send",
+				"sendFile"
+			],
+			[
+				"sign",
+				"signup_success"
+			],
+			[
+				"ER",
+				"error_list"
+			],
+			[
+				"si",
+				"signup_error"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"in",
+				"innerHTML"
+			],
+			[
+				"er",
+				"error"
+			],
+			[
+				"bod",
+				"body"
+			],
+			[
+				"s",
+				"signup"
+			],
+			[
+				"urlencoded",
+				"urlencodedparser"
+			],
+			[
+				"body",
+				"bodyparser"
+			],
+			[
+				"ex",
+				"express_session"
+			],
+			[
+				"pas",
+				"password"
+			],
+			[
+				"for",
+				"form	Tag"
+			],
+			[
+				"lo",
+				"location"
+			],
+			[
+				"dat",
+				"data"
+			],
+			[
+				"da",
+				"data"
+			],
+			[
+				"rt",
+				"rtlocation"
+			],
+			[
+				"res",
+				"resolve"
+			],
+			[
+				"pro",
+				"promise"
+			],
+			[
+				"RT",
+				"rt_data_identity"
+			],
+			[
+				"exi",
+				"exists"
+			],
+			[
+				"e",
+				"exists"
+			],
+			[
+				"rt_data",
+				"rt_data_identity"
+			],
+			[
+				"vehi",
+				"vehicle_id_get"
+			],
+			[
+				"date",
+				"date_rtlocation"
+			],
+			[
+				"rt_",
+				"rt_data_key"
+			],
+			[
+				"dis",
+				"display"
+			],
+			[
+				"on",
+				"onclick	Attr"
+			],
+			[
+				"li",
+				"link	Tag"
+			],
+			[
+				"cl",
+				"client1"
+			],
+			[
+				"cli",
+				"client2"
+			],
+			[
+				"clie",
+				"client1"
+			],
+			[
+				"clien",
+				"client2"
+			],
+			[
+				"di",
+				"delivery_status"
+			],
+			[
+				"vehicle",
+				"vehicle_id"
+			],
+			[
+				"geo",
+				"geo_data"
+			],
+			[
+				"add",
+				"addLatLng"
+			],
+			[
+				"pol",
+				"polyline_realtime"
+			],
+			[
+				"my",
+				"my_icon"
+			],
+			[
+				"local",
+				"local_insert"
+			],
+			[
+				"client",
+				"client_remote"
+			],
+			[
+				"rem",
+				"remote_connection"
+			],
+			[
+				"remo",
+				"client_remote"
+			],
+			[
+				"cou",
+				"customer"
+			],
+			[
+				"rout",
+				"route"
+			],
+			[
+				"wa",
+				"waypoints"
+			],
+			[
+				"leafl",
+				"leaflet-routing-machine"
+			],
+			[
+				"dra",
+				"drawRoute"
+			],
+			[
+				"toda",
+				"today_data"
+			],
+			[
+				"to",
+				"today_data"
+			],
+			[
+				"r",
+				"rows"
+			],
+			[
+				"por",
+				"postgres"
+			],
+			[
+				"la",
+				"latt"
+			],
+			[
+				"ma",
+				"marker"
+			],
+			[
+				"jso",
+				"json_length"
+			],
+			[
+				"loca",
+				"location_list"
+			],
+			[
+				"I",
+				"INSERT"
+			],
+			[
+				"wri",
+				"writeOutput"
+			],
+			[
+				"d",
+				"div	Tag"
+			],
+			[
+				"GEO",
+				"geo_data"
+			],
+			[
+				"write",
+				"writeDateTime"
+			],
+			[
+				"out",
+				"output"
+			],
+			[
+				"time",
+				"timestamp"
+			],
+			[
+				"wr",
+				"writeOutput"
+			],
+			[
+				"latitude",
+				"latitude"
+			],
+			[
+				"writ",
+				"writeResponse"
+			],
+			[
+				"resp",
+				"response"
+			],
+			[
+				"get",
+				"getElementById"
+			],
+			[
+				"lon",
+				"longitude"
+			],
+			[
+				"su",
+				"Submission"
+			],
+			[
+				"paddin",
+				"padding-top"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"req",
+				"require"
+			],
+			[
+				"w",
+				"write"
+			],
+			[
+				"file",
+				"fileStream"
+			],
+			[
+				"mim",
+				"mimeType"
+			],
+			[
+				"mi",
+				"mimeTypes"
+			],
+			[
+				"fea",
+				"features"
+			],
+			[
+				"Featu",
+				"FeatureCollection"
+			],
+			[
+				"feature",
+				"featureCollection"
+			],
+			[
+				"conn",
+				"connString"
+			],
+			[
+				"do",
+				"doSecond"
+			],
+			[
+				"we",
+				"websiteAbout"
+			],
+			[
+				"webs",
+				"websiteAbout"
+			],
+			[
+				"websi",
+				"websiteHome"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"fa",
+				"favMovie"
+			],
+			[
+				"mo",
+				"movies"
+			],
+			[
+				"print",
+				"printChappie"
+			],
+			[
+				"u",
+				"uppercut"
+			],
+			[
+				"p",
+				"placeAnOrder"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/saurav/Documents/Taranga/deliveryVan/package.json",
+		"/home/saurav/Documents/Taranga/token_based_authentication_node/index.js",
+		"/home/saurav/Documents/Taranga/token_based_authentication_node/templates/index.html",
+		"/home/saurav/Documents/nodejs/pasportjs_authentication_tuts+/package.json",
+		"/home/saurav/Documents/Taranga/geolocation_with_nodejs&socket.io/index.html",
+		"/home/saurav/Documents/Taranga/geolocatin_node_redis/public/js/client.js",
+		"/home/saurav/Documents/Taranga/geolocatin_node_redis/public/index.html",
+		"/home/saurav/Documents/Taranga/geolocatin_node_redis/index.js",
+		"/home/saurav/Documents/Taranga/geolocation_with_nodejs&socket.io/index.js",
+		"/etc/redis/6379.conf",
+		"/home/saurav/Documents/Taranga/geolocatin_node_redis/data/geolocation_data.rdb",
+		"/home/saurav/Documents/Taranga/node_with_redis/test2/public/js/client.js",
+		"/home/saurav/Documents/Taranga/node_with_redis/test2/public/css/style.css",
+		"/home/saurav/Documents/Taranga/node_with_redis/test2/public/index.html",
+		"/home/saurav/Documents/Taranga/node_with_redis/test2/index.js",
+		"/home/saurav/Documents/Taranga/node_with_redis/test2/public/javascripts/client.js",
+		"/home/saurav/Documents/Taranga/node_with_redis/test2/public/stylesheets/style.css",
+		"/home/saurav/Documents/Taranga/node_with_redis/pbsb/pubsub.js",
+		"/home/saurav/Documents/Taranga/node_with_redis/index.js",
+		"/home/saurav/Documents/Taranga/node_with_redis/index.html",
+		"/home/saurav/database_sync/test.js",
+		"/etc/mapnik-osm-carto-data/osm.xml",
+		"/etc/apache2/httpd.conf",
+		"/home/saurav/mapnik/gis.py",
+		"/home/saurav/mapnik/world.py",
+		"/home/saurav/Documents/Taranga/geolocation_with_cherrypy&websocket/geolocation_use_random_&_redis.html",
+		"/var/www/osm/slippymap.html",
+		"/var/www/html/index.html",
+		"/home/saurav/Documents/Taranga/geolocation_with_nodejs&socket.io/static/css/leaflet-routing-machine.css",
+		"/home/saurav/Documents/Taranga/geolocation_with_nodejs&socket.io/about.html",
+		"/home/saurav/Documents/Taranga/geolocation_with_nodejs&socket.io/static/css/geo.css",
+		"/home/saurav/Downloads/7689228-b3a26c08b47b3d0be2d75b4c8592ec6fd3da3983/index.html",
+		"/home/saurav/Documents/Taranga/geolocation_with_nodejs&socket.io/static/javascripts/leaflet-routeboxer.js",
+		"/home/saurav/Documents/nodejs/work/simplechat/frontend.js",
+		"/home/saurav/Documents/nodejs/work/simplechat/index.html",
+		"/home/saurav/Documents/nodejs/work/socket_io_chat/index.html",
+		"/home/saurav/Documents/Taranga/geolocation_with_cherrypy&websocket/geolocation.html",
+		"/home/saurav/Documents/Taranga/geolocation_with_nodejs&socket.io/geolocation/index.js",
+		"/home/saurav/Documents/nodejs/work/webapp_socket_io/index.js",
+		"/home/saurav/osm/mapnik-style/inc/settings.xml.inc",
+		"/etc/mapnik-osm-data/inc/settings.xml.inc",
+		"/home/saurav/mapnik/mapnik.py",
+		"/home/saurav/Documents/nodejs/learn_nodejs_10projects/Project2/Basic_Express_Website/app.js",
+		"/home/saurav/Documents/nodejs/learn_nodejs_10projects/Project2/Basic_Express_Website/routes/contact.js",
+		"/home/saurav/Documents/nodejs/learn_nodejs_10projects/Project2/Basic_Express_Website/views/contact.jade",
+		"/home/saurav/Documents/nodejs/learn_nodejs_10projects/Project2/Basic_Express_Website/routes/about.js",
+		"/home/saurav/Documents/nodejs/learn_nodejs_10projects/Project2/Basic_Express_Website/public/stylesheets/style.css",
+		"/home/saurav/Documents/nodejs/learn_nodejs_10projects/Project2/Basic_Express_Website/views/layout.jade",
+		"/home/saurav/Documents/nodejs/learn_nodejs_10projects/Project2/Basic_Express_Website/views/about.jade",
+		"/home/saurav/Documents/nodejs/learn_nodejs_10projects/Project2/Basic_Express_Website/routes/index.js",
+		"/home/saurav/Documents/nodejs/learn_nodejs_10projects/Project2/Basic_Express_Website/views/index.jade",
+		"/home/saurav/geojsonexample/views/layout.jade",
+		"/home/saurav/geojsonexample/views/index.jade",
+		"/home/saurav/geojsonexample/routes/index.js",
+		"/home/saurav/geojsonexample/app.js",
+		"/home/saurav/Documents/Taranga/geolocation_with_cherrypy&websocket/css/geo.css",
+		"/home/saurav/Documents/Taranga/Smart Taxi/obd_test_db25.py",
+		"/home/saurav/Documents/nodejs/bucky's tuto/multiple_request.js",
+		"/home/saurav/Documents/nodejs/bucky's tuto/reference_to_object.js",
+		"/home/saurav/Documents/nodejs/bucky's tuto/this.js",
+		"/home/saurav/Documents/nodejs/bucky's tuto/prototype.js",
+		"/home/saurav/Documents/nodejs/bucky's tuto/modules.js",
+		"/home/saurav/Documents/nodejs/bucky's tuto/shared_state_module_emily.js",
+		"/home/saurav/Documents/nodejs/bucky's tuto/shared_state_module_bucky.js",
+		"/home/saurav/Documents/nodejs/bucky's tuto/core_modules.js",
+		"/home/saurav/Documents/nodejs/bucky's tuto/simple_http_server.js",
+		"/home/saurav/Documents/nodejs/bucky's tuto/simple_web_file_server.js",
+		"/home/saurav/Documents/nodejs/bucky's tuto/connect.js",
+		"/home/saurav/Documents/nodejs/bucky's tuto/express.js",
+		"/home/saurav/Documents/nodejs/bucky's tuto/videodata.json",
+		"/home/saurav/Documents/nodejs/bucky's tuto/index.html",
+		"/home/saurav/Documents/nodejs/bucky's tuto/module_import.js",
+		"/home/saurav/Documents/nodejs/work/socket_io_chat/index.js",
+		"/home/saurav/Documents/nodejs/bucky's tuto/shared_state_module.js",
+		"/home/saurav/Documents/Taranga/Smart Taxi/obd_test.py"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"console",
+			");\n",
+			"data"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "vehicleTrackingSystem.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -38,17 +38,23 @@ app.use(validator());
 
 				//////////////get request////////////////////
 
-app.get('/',function(req,res){
+app.get('/',function (req,res){
 	res.sendFile('/templates/userLogin/login.html', {root: __dirname});	
 });
-app.get('/signup', function(req, res){
+app.get('/logout', function (req, res){
+	req.session.user=null;
+	res.redirect('/');
+})
+app.get('/signup', function (req, res){
 	res.sendFile('/templates/userLogin/signup.html', {root: __dirname});
 });
-app.get('/signup-success', function (req, res){
-	res.sendFile('/templates/userLogin/signup_success.html', {root: __dirname});
-});
 app.get('/editprofile', function (req, res){
-	res.sendFile('/templates/userLogin/profile_edit.html', {root: __dirname});
+	if(req.session.user){
+		res.sendFile('/templates/userLogin/profile_edit.html', {root: __dirname});
+	}else{
+		res.redirect('/');
+	}
+	
 });
 app.get('/recover-account', function (req, res){
 	res.sendFile('/templates/userLogin/recover_account.html', {root: __dirname});
@@ -141,6 +147,91 @@ app.post('/signup', urlencodedparser, function (req, res){
 	}
 });
 app.post('/login', urlencodedparser, function (req, res){
+	req.assert('username', "Username can't be empty").notEmpty();
+	req.assert('password', "Password can't be empty").notEmpty();
+
+	var errors = req.validationErrors();
+	if(errors){
+		var error_list = [];
+		for(error in errors){
+			console.log(errors[error].msg);
+			error_list.push(errors[error].msg);
+		}
+		(function sendError(){
+			io.on('connection', function(socket){
+				socket.emit('login_error', error_list);
+				error_list = [];
+			});
+		}());
+		res.redirect('/');
+		
+	}else {
+		var username = req.body.username;
+		var password = crypto.createHmac("sha256", "verySuperSecretKey").update(req.body.password).digest('hex');
+
+		var login_client = new pg.Client(db_connection);
+		login_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on login', err);
+			}
+			console.log("login db connection successful");
+			login_client.query('SELECT * FROM company_detail WHERE username=$1',[username], function (err, result){
+				if(err){
+					console.log('error running SELECT user_check query', err);
+					signup_client.end();
+
+
+				}
+				else{
+					console.log('user_check SELECT query success');
+					//console.log(result.rows.length);
+					if(result.rows.length!=0){
+						console.log("Username exists");
+						login_client.query('SELECT password FROM company_detail where username=$1',[username], function (err, result){
+							if(err){
+								console.log('error running INSERT user_add query', err);
+							}
+							else{
+								// console.log(result.rows[0].password);
+								// console.log(password);
+								if(result.rows[0].password == password){
+									req.session.user=username;
+									res.send("Login Success");
+
+								}else{
+									(function sendError(){
+										error =  ["Password doesn't match."];
+										io.on('connection', function(socket){
+											socket.emit('login_error', error);
+											error = [];
+										});
+									}());
+									res.redirect('/');
+								}
+
+								
+							}
+							login_client.end();
+						});
+					}
+					else{
+						(function sendError(){
+							error =  ["Username doesn't exist. Enter username again."];
+							io.on('connection', function(socket){
+								socket.emit('login_error', error);
+								error = [];
+							});
+						}());
+						res.redirect('/');
+						login_client.end();
+					}
+				}
+				
+				
+			});
+		});
+
+	}
 
 });
 app.post('/editprofile',  multer({ dest: 'static/images/company_logo'}).single('logo'), function (req, res){

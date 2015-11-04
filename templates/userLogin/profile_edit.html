@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Edit Profile</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+<!-- <title>Log In</title> -->
+	<style type="text/css">
+	.input{
+
+    padding-top: 0px;
+    padding-bottom: 50px;
+    /*width: 450px;*/
+    /*height: 400px;*/
+    background-color: #F0F8FF;
+	}
+</style>
+
+
+</head>
+<body>
+<div class = "row">
+		<div class = "col-md-4 col-sm-3 col-xs-2"></div>
+		<div class = "col-md-4 col-sm-6 col-xs-8">
+		<h2 align = "center"><b>Edit Your Profile</b></h2><br>
+		
+		<div class = "input">
+
+		<h3 class = "bg bg-primary" style = "padding-top: 10px; padding-bottom: 10px; padding-left: 10px">Company Name</h3><br>
+
+		
+		<!-- <div class = "col-md-1 input"> </div> -->
+		<div style = "padding-left: 20px; padding-right: 20px;">
+	
+		<form action = "/editprofile" method = "POST" enctype="multipart/form-data">
+			
+			<input type = "text" class = "form-control" name = "name" placeholder = "Name" autofocus><br>
+			<input type = "text" class = "form-control" name = "username" placeholder = "Username" autofocus><br>
+			<input type = "text" class = "form-control" name = "email" placeholder = "Email" autofocus><br>
+			<input type = "file"  class = "form-control" name = "logo" placeholder = "Logo" autofocus><br/>
+			<input type="submit" class = "btn btn-success" value="Save" />&nbsp;
+			<button class = "btn btn-default">Cancel</button>
+		</form>
+		</div>
+		<!-- <div class = "col-md-1 input"> </div> -->
+
+
+		</div>	
+		<img src="images/company_logo/547f02f71abd977b9fab7d52621c00e7" height="100" width="150" />
+
+	
+
+
+	</div>
+	<div class = "col-md-4 col-sm-3 col-xs-2"></div>
+</div>
+
+
+
+</body>
+</html>

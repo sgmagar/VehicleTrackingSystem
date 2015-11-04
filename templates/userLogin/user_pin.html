@@ -1,1 +1,77 @@
-This is page for entering user pin
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+<title>User pin</title>
+	<style type="text/css">
+	.input{
+
+	    /*padding-top: 75px;*/
+	    /*padding-bottom: 300px;*/
+	    width: 480px;
+	    height: 450px;
+	}
+</style>
+
+
+<script type="text/javascript">
+	
+
+</script>
+
+</head>
+<body>
+
+
+<div class = "row">
+
+<div class = "col-md-1"></div>
+<div class = "col-md-4">
+<h1>Recover My Account</h1><br>
+	<div class = "input">
+	
+		<h4>We have sent an email containing a pin number<br>
+	to your authorized email account xxxxxxxx@gmail.com<br><br>
+	Please enter the pin received in the email, below. <br><br>
+	Should we <a href = "#">resend</a> the pin?</h4><br>
+
+		<form  class = "form-inline" action = "/submitPin" method = "POST">
+			
+			<input type = "text" class = "form-control" name = "user_name" placeholder = "Username" autofocus>
+			<input type = "text" class = "form-control input-md" id = "pin_number" name = "pin" placeholder = "PIN NUMBER" autofocus>
+
+			<input type = "submit" id = "submit" class = "btn btn-primary btn-md " value = "Proceed">
+			
+		</form>
+
+		<br><h4>Don't have access to your email account?<br>
+	Please call our support staff if you have lost access to <br>your account.</h4>
+
+	</div>
+
+
+</div>
+<div class = "col-md-2"></div>
+<div class = "col-md-4">
+		<img src="/images/mail.png" style="width:350px;height:350px;padding-top: 75px;">
+	
+</div>
+<div class = "col-md-1"></div>
+
+
+</div>
+
+</body>
+
+<div id = "footerDiv" class = "navbar-fixed-bottom" style = "background-color: #F0F8DD; margin-bottom:0px; height: 75px; padding-right: 100px;">
+		<br><p style = "float:right;"><b>Maulik Taranga Pvt. Ltd. </b> <br>copyright 2015</p>
+</div>
+
+</html>

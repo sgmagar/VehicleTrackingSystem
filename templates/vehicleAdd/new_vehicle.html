@@ -1,1 +1,124 @@
-This is new vehicle addition page.
+
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+<title>Add New Vehicle</title>
+	<style type="text/css">
+	.input{
+
+    /*padding-top: 75px;*/
+    /*padding-bottom: 300px;*/
+    width: 480px;
+    height: 450px;
+	}
+</style>
+
+
+</head>
+<body>
+
+
+<div class = "container">
+
+<h1>Add New Vehicle</h1><br>
+
+<div class = "row">
+<div class = "col-md-5">
+	
+
+
+	<div style = "width: 400px; height: 200px; text-align:center; color: #FFFFFF; background-color: #282828; padding-top: 70px;">
+
+		<i class="fa fa-cloud-upload fa-5x"></i>
+	</div>
+	
+
+
+
+	<div style = "width: 400px; height: 150px; background-color: #787878; padding-left: 35px; padding-right:35px;">
+		<!-- <form method = "POST"> -->
+			<br>
+			<!-- <input type = "text" class = "form-control" name = "user_name" placeholder = "Username" autofocus> -->
+			
+			<div class = "row">
+				<div class = "col-md-9">
+					<div>
+						<input type = "text" class = "form-control input-md" id = "pin_number" name = "pin" placeholder = "Vehicle Name" autofocus><br>
+
+					</div>
+				</div>
+			</div>
+			<div class = "row">
+				<div class = "col-md-9">
+					<select class = "form-control input-md">
+						<option value = "category">Category</option>
+						<option value = "truck">Truck</option>
+						<option value = "van">Van</option>
+						<option value = "car">Car</option>
+
+					</select>
+				</div>
+
+				<div class = "col-md-3">
+					<button class = "btn btn-success" onclick = "prompt()"><span class = "glyphicon glyphicon-plus"></span></button>
+				</div>
+			</div>
+			
+
+			
+		<!-- </form> -->
+	</div>
+
+</div>
+
+
+
+	<div class = "col-md-1"></div>
+		<div class = "col-md-5" style = "padding-top: 100px;">
+			<h4>Save and continue if all your details are correct.</h4>	
+			<div class = "row">
+				<div class = "col-md-6"></div>
+				<div class = "col-md-6">
+					<button class = "btn btn-success">Save</button>
+					<button class = "btn btn-default">Cancel</button>
+				</div>
+
+			</div>
+			
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<script type="text/javascript">
+	function prompt(){
+		var category = prompt("Add a New Category", "new category");
+	}
+	if (category != null) {
+        document.write("Hello " + category + "! How are you today?");
+    }
+
+</script>
+
+
+</body>
+
+<div id = "footerDiv" class = "navbar-fixed-bottom" style = "background-color: #F0F8DD; margin-bottom:0px; height: 75px; padding-right: 100px;">
+		<br><p style = "float:right;"><b>Maulik Taranga Pvt. Ltd. </b> <br>copyright 2015</p>
+</div>
+
+</html>

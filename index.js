@@ -20,6 +20,7 @@ var session = require('express-session');
 var crypto = require('crypto');
 var bodyparser = require('body-parser');
 var validator = require('express-validator');
+var multer = require('multer');
 var urlencodedparser = bodyparser.urlencoded({extended: false});
 
 var sessn = {
@@ -29,11 +30,13 @@ var sessn = {
 
 app.use(session(sessn));
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'static')));
 app.use(validator());
 
 
-//User login pages...and request
+//////////User login pages...and request ////////////////////////////////////////
+
+				//////////////get request////////////////////
 
 app.get('/',function(req,res){
 	res.sendFile('/templates/userLogin/login.html', {root: __dirname});	
@@ -44,8 +47,8 @@ app.get('/signup', function(req, res){
 app.get('/signup-success', function (req, res){
 	res.sendFile('/templates/userLogin/signup_success.html', {root: __dirname});
 });
-app.get('/addprofile', function (req, res){
-	res.sendFile('/templates/userLogin/profile_add.html', {root: __dirname});
+app.get('/editprofile', function (req, res){
+	res.sendFile('/templates/userLogin/profile_edit.html', {root: __dirname});
 });
 app.get('/recover-account', function (req, res){
 	res.sendFile('/templates/userLogin/recover_account.html', {root: __dirname});
@@ -57,7 +60,107 @@ app.get('/newpassword', function (req, res){
 	res.sendFile('/templates/userLogin/newpassword.html', {root: __dirname});
 });
 
-//vehicle addition pages and request
+			////////////////////// get end //////////////////////////
+
+			/////////////////////post request /////////////////////////
+
+app.post('/signup', urlencodedparser, function (req, res){
+	req.assert('username', "Username can't be empty").notEmpty();
+	req.assert('password1', "Password can't be empty").notEmpty();
+	req.assert('email', "Email can't be empty").notEmpty();
+	req.assert('email', "Enter a valid email").isEmail();
+	req.assert('password1', "Password length must be 8 to 20").len(8,20);
+	req.assert('password2', "Password don't match").equals(req.body.password1);
+
+	var errors = req.validationErrors();
+	if(errors){
+		var error_list = [];
+		for(error in errors){
+			console.log(errors[error].msg);
+			error_list.push(errors[error].msg);
+		}
+		(function sendError(){
+			io.on('connection', function(socket){
+				socket.emit('signup_error', error_list);
+				error_list = [];
+			});
+		}());
+		res.redirect('/signup');
+		
+	}else {
+		var username = req.body.username;
+		var email = req.body.email;
+		var password = crypto.createHmac("sha256", "verySuperSecretKey").update(req.body.password1).digest('hex');
+
+		var signup_client = new pg.Client(db_connection);
+		signup_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on signup', err);
+			}
+			console.log("signup db connection successful");
+			signup_client.query('SELECT * FROM company_detail WHERE username=$1',[username], function (err, result){
+				if(err){
+					console.log('error running SELECT user_check query', err);
+					signup_client.end();
+
+
+				}
+				else{
+					console.log('user_check SELECT query success');
+					//console.log(result.rows.length);
+					if(result.rows.length==0){
+						console.log("Inside insert block");
+						signup_client.query('INSERT INTO company_detail(username, email, password) VALUES ($1, $2, $3)',[username,email,password], function (err){
+							if(err){
+								console.log('error running INSERT user_add query', err);
+							}
+							else{
+								console.log("user_add INSERT query success");
+								res.redirect('/');
+							}
+							signup_client.end();
+						});
+					}
+					else{
+						(function sendError(){
+							error =  ['Username already exist. Choose different username.'];
+							io.on('connection', function(socket){
+								socket.emit('signup_error', error);
+								error = [];
+							});
+						}());
+						res.redirect('/signup');
+						signup_client.end();
+					}
+				}
+				
+				
+			});
+		});
+
+	}
+});
+app.post('/login', urlencodedparser, function (req, res){
+
+});
+app.post('/editprofile',  multer({ dest: 'static/images/company_logo'}).single('logo'), function (req, res){
+	//console.log(req.body);
+	name = req.body.name;
+	username = req.body.username;
+	email = req.body.email;
+	logo = req.file;//.destination.substring(7)+'/'+req.file.filename
+	//console.log(logo);
+	res.redirect('/editprofile');
+	
+});
+app.post('/newpassword', urlencodedparser, function (req, res){
+	
+});	
+			//////////////// post end ///////////////////////
+///////////////////////////// user login end //////////////////
+
+////////////////////vehicle addition pages and request/////////////////////////
+			/////////// get requests ////////////////////////
 
 app.get('/device', function (req, res){
 	res.sendFile('/templates/vehicleAdd/device_id.html', {root: __dirname});
@@ -68,13 +171,23 @@ app.get('/devicepin', function (req, res){
 app.get('/newvehicle', function (req, res){
 	res.sendFile('/templates/vehicleAdd/new_vehicle.html', {root: __dirname});
 });
+			/////////////////// get end ////////////////////
 
+/////////////////////////////// socket.io parts ///////////////////////////////
+
+io.on('connection', function (socket){
+
+});
+
+////////////////////////////// socket.io end ///////////////////////////////////
 
 http.listen(3030, function(){
 	console.log('listening on *: ' + 3030);
 });
 
-//Functions below this line
+
+
+//////////////////// Functions below this line //////////////////////////////////
 
 function sendMail(email, subjects, texts){
 	var mailOptions = {

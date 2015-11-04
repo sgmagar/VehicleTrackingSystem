@@ -1,1 +1,61 @@
-This is page for entering device id.
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+<!-- <title>Log In</title> -->
+	<style type="text/css">
+	.input{
+
+    /*padding-top: 75px;*/
+    /*padding-bottom: 0px;*/
+    /*width: 450px;*/
+    /*height: 450px;*/
+
+	}
+</style>
+
+
+</head>
+<body>
+
+<div class = "row">
+
+<div class = "col-md-1"></div>
+
+<div class = "col-md-5">
+<a href = '/dashboard'><h4><span class = "glyphicon glyphicon-home">Home</span></h4></a><br>
+
+
+<h1>Add New Vehicle</h1>
+	<div class = "input row">
+	
+		<h3><small>Please provide the device ID</small></h3>
+
+		<form class = "form-inline" action = "/new_vehicle" method = "POST">
+			
+			<input type = "text" class = "form-control" name = "device_id" placeholder = "DEVICE ID " autofocus>
+			<input type = "submit" class = "btn btn-primary btn-md " value = "Proceed">
+			<!-- <a href = "/vehicle_addition">Add Vehicle</a> -->
+			
+		</form>
+
+	</div>
+</div>
+
+
+</div>
+<footer class = "navbar-fixed-bottom">
+	<div id = "footerDiv" style = "background-color: #F0F8DD; margin-bottom:0px; height: 75px; padding-right: 100px;">
+		<br><p style = "float:right;"><b>Maulik Taranga Pvt. Ltd. </b> <br>copyright 2015</p>
+	</div>
+</footer>
+
+</body>
+</html>

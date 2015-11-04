@@ -4,12 +4,40 @@
 		"selected_items":
 		[
 			[
-				"c",
-				"crypto"
+				"add",
+				"addprofile"
+			],
+			[
+				"req",
+				"req"
 			],
 			[
 				"re",
-				"require"
+				"res"
+			],
+			[
+				"sign",
+				"signup"
+			],
+			[
+				"vehicle",
+				"vehicleAdd"
+			],
+			[
+				"send",
+				"sendMail"
+			],
+			[
+				"mail",
+				"mailOptions"
+			],
+			[
+				"to",
+				"to_email"
+			],
+			[
+				"c",
+				"crypto"
 			],
 			[
 				"us",
@@ -50,14 +78,6 @@
 			[
 				"h",
 				"h1	Tag"
-			],
-			[
-				"send",
-				"sendFile"
-			],
-			[
-				"sign",
-				"signup_success"
 			],
 			[
 				"ER",
@@ -192,16 +212,8 @@
 				"delivery_status"
 			],
 			[
-				"vehicle",
-				"vehicle_id"
-			],
-			[
 				"geo",
 				"geo_data"
-			],
-			[
-				"add",
-				"addLatLng"
 			],
 			[
 				"pol",
@@ -249,10 +261,6 @@
 			],
 			[
 				"toda",
-				"today_data"
-			],
-			[
-				"to",
 				"today_data"
 			],
 			[
@@ -348,10 +356,6 @@
 				"text-align"
 			],
 			[
-				"req",
-				"require"
-			],
-			[
 				"w",
 				"write"
 			],
@@ -427,6 +431,30 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "index.js",
+			"settings":
+			{
+				"buffer_size": 3620,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/userLogin/profile_add.html",
+			"settings":
+			{
+				"buffer_size": 29,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/userLogin/user_pin.html",
+			"settings":
+			{
+				"buffer_size": 34,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -458,8 +486,26 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates"
+	],
 	"file_history":
 	[
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/recover_account.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicleAdd/device_id.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicleAdd/device_pin.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicleAdd/new_vehicle.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/signup.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/newpassword.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/recover_account.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/profile_add.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/newpassword.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/profile_add.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/signup_success.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/signup.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/login.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/package.json",
 		"/home/saurav/Documents/Taranga/token_based_authentication_node/index.js",
 		"/home/saurav/Documents/Taranga/token_based_authentication_node/templates/index.html",
@@ -572,8 +618,93 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3620,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1163,
+								1163
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 15.0,
+						"translation.y": 612.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "templates/userLogin/profile_add.html",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 29,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								29,
+								29
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "templates/userLogin/user_pin.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 34,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								34,
+								34
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -583,7 +714,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 33.0
 	},
 	"layout":
 	{

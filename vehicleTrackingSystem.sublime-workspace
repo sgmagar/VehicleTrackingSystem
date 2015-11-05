@@ -4,16 +4,108 @@
 		"selected_items":
 		[
 			[
-				"add",
-				"addprofile"
+				"ue",
+				"userpin"
 			],
 			[
-				"req",
-				"req"
+				"po",
+				"post"
+			],
+			[
+				"us",
+				"userpin"
+			],
+			[
+				"com",
+				"company_id"
+			],
+			[
+				"Ins",
+				"INSERT"
 			],
 			[
 				"re",
+				"result"
+			],
+			[
+				"sub",
+				"substring"
+			],
+			[
+				"res",
 				"res"
+			],
+			[
+				"reco",
+				"recover-account"
+			],
+			[
+				"se",
+				"session"
+			],
+			[
+				"sess",
+				"session"
+			],
+			[
+				"send",
+				"sendFile"
+			],
+			[
+				"pass",
+				"password"
+			],
+			[
+				"req",
+				"require"
+			],
+			[
+				"file",
+				"fileupload"
+			],
+			[
+				"in",
+				"input"
+			],
+			[
+				"ec",
+				"enctype	Attr"
+			],
+			[
+				"le",
+				"length"
+			],
+			[
+				"clie",
+				"signup_client"
+			],
+			[
+				"pas",
+				"password"
+			],
+			[
+				"err",
+				"err"
+			],
+			[
+				"er",
+				"err"
+			],
+			[
+				"si",
+				"signup_client"
+			],
+			[
+				"user",
+				"username"
+			],
+			[
+				"error",
+				"error_list"
+			],
+			[
+				"add",
+				"addprofile"
 			],
 			[
 				"sign",
@@ -22,10 +114,6 @@
 			[
 				"vehicle",
 				"vehicleAdd"
-			],
-			[
-				"send",
-				"sendMail"
 			],
 			[
 				"mail",
@@ -40,24 +128,8 @@
 				"crypto"
 			],
 			[
-				"us",
-				"username"
-			],
-			[
 				"use",
 				"username"
-			],
-			[
-				"err",
-				"error"
-			],
-			[
-				"pass",
-				"password"
-			],
-			[
-				"user",
-				"userinfo"
 			],
 			[
 				"sen",
@@ -84,20 +156,8 @@
 				"error_list"
 			],
 			[
-				"si",
-				"signup_error"
-			],
-			[
 				"con",
 				"console"
-			],
-			[
-				"in",
-				"innerHTML"
-			],
-			[
-				"er",
-				"error"
 			],
 			[
 				"bod",
@@ -120,10 +180,6 @@
 				"express_session"
 			],
 			[
-				"pas",
-				"password"
-			],
-			[
 				"for",
 				"form	Tag"
 			],
@@ -142,10 +198,6 @@
 			[
 				"rt",
 				"rtlocation"
-			],
-			[
-				"res",
-				"resolve"
 			],
 			[
 				"pro",
@@ -198,10 +250,6 @@
 			[
 				"cli",
 				"client2"
-			],
-			[
-				"clie",
-				"client1"
 			],
 			[
 				"clien",
@@ -360,10 +408,6 @@
 				"write"
 			],
 			[
-				"file",
-				"fileStream"
-			],
-			[
 				"mim",
 				"mimeType"
 			],
@@ -435,15 +479,18 @@
 			"file": "index.js",
 			"settings":
 			{
-				"buffer_size": 3620,
+				"buffer_size": 11794,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "templates/userLogin/profile_add.html",
+			"contents": "var socket = io();\n\nvar user_pin_error = document.getElementById(\"user_pin_error\");\nrecover_error.style.color = \"red\";\nrecover_error.style.background = \"violet\";\n\nsocket.on('recover_account_error', function (datas){\n	clear_error();\n	for(err in datas){\n		show_error(datas[err]);\n	}\n})\n\nfunction show_error(err){\n	recover_error.innerHTML += err +\"<br/>\";\n	\n	// var newElement = document.createElement('div');\n	// newElement.innerHTML = err;\n	// signup_error.appendChild(newElement);\n}\n\nfunction clear_error(){\n	recover_error.innerHTML=\"\";\n	// while(signup_error.firstChild) {\n //    	signup_error.removeChild(signup_error.firstChild);\n	// }\n}\n",
+			"file": "static/js/userLogin/user_pin.js",
+			"file_size": 0,
+			"file_write_time": 130911746562596846,
 			"settings":
 			{
-				"buffer_size": 29,
+				"buffer_size": 641,
 				"line_ending": "Unix"
 			}
 		},
@@ -451,7 +498,47 @@
 			"file": "templates/userLogin/user_pin.html",
 			"settings":
 			{
-				"buffer_size": 34,
+				"buffer_size": 2191,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/userLogin/recover_account.html",
+			"settings":
+			{
+				"buffer_size": 1359,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "static/js/userLogin/recover_account.js",
+			"settings":
+			{
+				"buffer_size": 647,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/userLogin/signup.html",
+			"settings":
+			{
+				"buffer_size": 2553,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/userLogin/profile_edit.html",
+			"settings":
+			{
+				"buffer_size": 2013,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/userLogin/login.html",
+			"settings":
+			{
+				"buffer_size": 2254,
 				"line_ending": "Unix"
 			}
 		}
@@ -489,15 +576,22 @@
 	"expanded_folders":
 	[
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates"
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/userLogin",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin"
 	],
 	"file_history":
 	[
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/recover_account.html",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicleAdd/device_id.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/index.js",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/signup.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/user_pin.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicleAdd/device_pin.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicleAdd/new_vehicle.html",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/signup.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/login.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/recover_account.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicleAdd/device_id.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/newpassword.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/recover_account.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/profile_add.html",
@@ -618,7 +712,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -627,48 +721,137 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3620,
+						"buffer_size": 11794,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1163,
-								1163
+								9899,
+								9899
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 15.0,
-						"translation.y": 612.0,
+						"translation.x": 0.0,
+						"translation.y": 5568.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "static/js/userLogin/user_pin.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 641,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								283,
+								283
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "templates/userLogin/profile_add.html",
-					"semi_transient": true,
+					"buffer": 2,
+					"file": "templates/userLogin/user_pin.html",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 29,
+						"buffer_size": 2191,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								29,
-								29
+								1933,
+								1933
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 357.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "templates/userLogin/recover_account.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1359,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1343,
+								1343
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 459.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "static/js/userLogin/recover_account.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 647,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								647,
+								647
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -678,20 +861,50 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "templates/userLogin/user_pin.html",
+					"buffer": 5,
+					"file": "templates/userLogin/signup.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 34,
+						"buffer_size": 2553,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								34,
-								34
+								564,
+								564
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 306.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "templates/userLogin/profile_edit.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2013,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1153,
+								1153
 							]
 						],
 						"settings":
@@ -702,7 +915,35 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "templates/userLogin/login.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2254,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1236,
+								1236
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 561.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
 					"type": "text"
 				}
 			]
@@ -785,7 +1026,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 150.0,
+	"side_bar_width": 221.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

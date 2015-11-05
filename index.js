@@ -12,7 +12,7 @@ var smtpTransport = nodemailer.createTransport({
 	service: 'Gmail',
 	auth: {
 		user: 'elanor2050@gmail.com',
-		pass: ''
+		pass: 'thelongestride'
 	}
 });
 
@@ -32,7 +32,7 @@ app.use(session(sessn));
 
 app.use(express.static(path.join(__dirname, 'static')));
 app.use(validator());
-
+app.use(express.cookieParser('secretCookieKey'));
 
 //////////User login pages...and request ////////////////////////////////////////
 
@@ -63,7 +63,11 @@ app.get('/userpin', function (req, res){
 	res.sendFile('/templates/userLogin/user_pin.html', {root: __dirname});
 });
 app.get('/newpassword', function (req, res){
-	res.sendFile('/templates/userLogin/newpassword.html', {root: __dirname});
+	if(req.session.userpin){
+		res.sendFile('/templates/userLogin/newpassword.html', {root: __dirname});
+	}else{
+		res.redirect('/userpin');
+	}
 });
 
 			////////////////////// get end //////////////////////////
@@ -122,18 +126,21 @@ app.post('/signup', urlencodedparser, function (req, res){
 							}
 							else{
 								console.log("user_add INSERT query success");
-								res.redirect('/');
+								
 							}
+							res.redirect('/');
 							signup_client.end();
 						});
 					}
 					else{
+						var error =  ['Username already exist. Choose different username.'];
 						(function sendError(){
-							error =  ['Username already exist. Choose different username.'];
+							
 							io.on('connection', function(socket){
 								socket.emit('signup_error', error);
 								error = [];
 							});
+							
 						}());
 						res.redirect('/signup');
 						signup_client.end();
@@ -167,6 +174,11 @@ app.post('/login', urlencodedparser, function (req, res){
 		
 	}else {
 		var username = req.body.username;
+		var rememberme = req.body.rememberme;
+		var hour = 60 * 60 * 1000;
+  		if (rememberme) {
+  			res.cookie('rememberme', 1, { maxAge: hour });
+  		}
 		var password = crypto.createHmac("sha256", "verySuperSecretKey").update(req.body.password).digest('hex');
 
 		var login_client = new pg.Client(db_connection);
@@ -178,7 +190,7 @@ app.post('/login', urlencodedparser, function (req, res){
 			login_client.query('SELECT * FROM company_detail WHERE username=$1',[username], function (err, result){
 				if(err){
 					console.log('error running SELECT user_check query', err);
-					signup_client.end();
+					login_client.end();
 
 
 				}
@@ -196,11 +208,12 @@ app.post('/login', urlencodedparser, function (req, res){
 								// console.log(password);
 								if(result.rows[0].password == password){
 									req.session.user=username;
-									res.send("Login Success");
+									res.redirect('/editprofile');
 
 								}else{
+									var error =  ["Password doesn't match."];
 									(function sendError(){
-										error =  ["Password doesn't match."];
+										
 										io.on('connection', function(socket){
 											socket.emit('login_error', error);
 											error = [];
@@ -215,12 +228,13 @@ app.post('/login', urlencodedparser, function (req, res){
 						});
 					}
 					else{
+						var error =  ["Username doesn't exist. Enter username again."];
 						(function sendError(){
-							error =  ["Username doesn't exist. Enter username again."];
 							io.on('connection', function(socket){
 								socket.emit('login_error', error);
 								error = [];
 							});
+							
 						}());
 						res.redirect('/');
 						login_client.end();
@@ -235,18 +249,347 @@ app.post('/login', urlencodedparser, function (req, res){
 
 });
 app.post('/editprofile',  multer({ dest: 'static/images/company_logo'}).single('logo'), function (req, res){
-	//console.log(req.body);
-	name = req.body.name;
-	username = req.body.username;
-	email = req.body.email;
-	logo = req.file;//.destination.substring(7)+'/'+req.file.filename
-	//console.log(logo);
-	res.redirect('/editprofile');
+	req.assert('email', "Enter the valid email").isEmail();
+	var errors = req.validationErrors();
+	if(errors){
+		var error_list = [];
+		for(error in errors){
+			console.log(errors[error].msg);
+			error_list.push(errors[error].msg);
+		}
+		(function sendError(){
+			io.on('connection', function(socket){
+				socket.emit('edit_profile_error', error_list);
+				error_list = [];
+			});
+		}());
+		res.redirect('/editprofile');
+		
+	}else{
+		var name = req.body.name;
+		var username = req.body.username;
+		var email = req.body.email;
+		var logo = req.file;
+		if(logo!=undefined){
+			logo = logo.destination.substring(7)+'/'+req.file.filename;
+		}
+		var editprofile_client = new pg.Client(db_connection);
+		editprofile_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on editprofile', err);
+			}
+			console.log("editprofile db connection successful");
+			editprofile_client.query('SELECT name,username,email,logo FROM company_detail WHERE username=$1',[req.session.user], function (err, result){
+				if(err){
+					console.log('error running SELECT query on company_detail in editprofile', err);
+					editprofile_client.end();
+				}
+				else{
+					if(!name){
+						name = result.rows[0].name;
+					}
+					if(!username){
+						username = result.rows[0].username;
+					}
+					if(!email){
+						email = result.rows[0].email;
+					}
+					if(logo==undefined){
+						logo = result.rows[0].logo;
+					}
+					editprofile_client.query('SELECT username FROM company_detail WHERE username=$1',[username], function (err, result){
+						if(err){
+							console.log('error running SELECT query to check username on company_detail in editprofile', err);
+							editprofile_client.end();
+						}else{
+							if(result.rows.length==0){
+								editprofile_client.query('UPDATE company_detail SET name=$1, username=$2, email=$3, logo=$4 WHERE username=$5',[name,username,email,logo,req.session.user],function (err){
+									if(err){
+										console.log('error running update query when username not exist on company_detail in editprofile', err);
+										editprofile_client.end();
+									}else{
+										res.redirect('/');
+										req.session.user='';
+										editprofile_client.end();
+									}
+								});
+							}else{
+								if(result.rows[0].username==req.session.user){
+									editprofile_client.query('UPDATE company_detail SET name=$1, username=$2, email=$3, logo=$4 WHERE username=$5',[name,username,email,logo,req.session.user],function (err){
+									if(err){
+										console.log('error running update query when username not changed on company_detail in editprofile', err);
+										editprofile_client.end();
+									}else{
+										res.redirect('/');
+										req.session.user='';
+										editprofile_client.end();
+									}
+								});
+								}else{
+									var error =  ["Username already exists. Choose different username."];
+									(function sendError(){
+										
+										io.on('connection', function(socket){
+											socket.emit('edit_profile_error', error);
+											error = [];
+										});
+										
+									}());
+									res.redirect('/editprofile');
+									editprofile_client.end();
+								}
+							}
+						}
+					});
+					
+					
+					
+					
+				}
+				
+				
+			});
+		});
+	}
 	
 });
+app.post('/recover-account', urlencodedparser, function (req, res){
+	req.assert('username', "Please enter the username in the blank field.").notEmpty();
+
+	var errors = req.validationErrors();
+	if(errors){
+		var error_list = [];
+		for(error in errors){
+			console.log(errors[error].msg);
+			error_list.push(errors[error].msg);
+		}
+		(function sendError(){
+			io.on('connection', function(socket){
+				socket.emit('recover_account_error', error_list);
+				error_list = [];
+			});
+		}());
+		res.redirect('/recover-account');
+	}else{
+		var username = req.body.username;
+
+		var recover_account_client = new pg.Client(db_connection);
+		recover_account_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on account recovery', err);
+			}
+			console.log("recover account db connection successful");
+			recover_account_client.query('SELECT id,email FROM company_detail WHERE username=$1',[username], function (err, result){
+				if(err){
+					console.log('error running SELECT get user id email in recover account', err);
+					recover_account_client.end();
+
+
+				}
+				else{
+					console.log('get user id email in recover account SELECT query success');
+					//console.log(result.rows.length);
+					if(result.rows.length!=0){
+
+						var company_id = result.rows[0].id;
+						var company_email = result.rows[0].email
+						var pin = (Math.floor(Math.random()*1000000000)).toString().substring(0,6)
+						// console.log(company_id);
+						// console.log(company_email);
+						// console.log(pin);
+						var subject = "Account Recovery";
+						var message = "<h1>Pin Number</h1><br/><p>Dear Sir,<br/>You had requested for the \
+						account recovery.Here is the pin number, you should enter to recover account. \
+						</p><br/><b>Pin Number:</b>"+pin;
+						
+
+						
+						recover_account_client.query('INSERT INTO user_pin(company_id, pin) VALUES ($1, $2)',[company_id, pin], function (err){
+							if(err){
+						 		console.log('error running INSERT user_pin add query', err);
+						 	}
+						 	else{
+								sendMail(company_email, subject, message);
+							 	
+							 	res.redirect('/userpin');
+							}
+							recover_account_client.end();
+						
+						});
+					}
+					else{
+						console.log("user doesnot exists");
+						var error =  ["Username doesn't exist. Enter username again."];
+						(function sendError(){
+							
+							io.on('connection', function(socket){
+								socket.emit('recover_account_error', error);
+								error = [];
+							});
+							
+						}());
+						res.redirect('/recover-account');
+						recover_account_client.end();
+					}
+				}
+				
+				
+			});
+		});
+
+	}
+});
+
+app.post('/userpin', urlencodedparser, function (req, res) {
+	req.assert('username', "Username field can't be empty").notEmpty();
+	req.assert('pinnumber', "Pin Number field can't be empty").notEmpty();
+
+	var errors = req.validationErrors();
+	if(errors){
+		var error_list = [];
+		for(error in errors){
+			console.log(errors[error].msg);
+			error_list.push(errors[error].msg);
+		}
+		(function sendError(){
+			io.on('connection', function(socket){
+				socket.emit('user_pin_error', error_list);
+				error_list = [];
+			});
+		}());
+		res.redirect('/userpin');
+		
+	}else{
+		var username = req.body.username;
+		var pin = req.body.pinnumber;
+
+		var user_pin_client = new pg.Client(db_connection);
+		user_pin_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on user pin', err);
+			}
+			console.log("user pin db connection successful");
+			user_pin_client.query('SELECT id FROM company_detail WHERE username=$1',[username], function (err, result){
+				if(err){
+					console.log('error running SELECT get user id in user pin', err);
+					user_pin_client.end();
+
+
+				}
+				else{
+					console.log('get user id in user pin SELECT query success');
+					//console.log(result.rows.length);
+					if(result.rows.length!=0){
+
+						var company_id = result.rows[0].id;
+						
+						user_pin_client.query('SELECT pin FROM user_pin WHERE company_id=$1',[company_id], function (err, result){
+							if(err){
+						 		console.log('error running SELECT get pin in  user_pin query', err);
+						 	}
+						 	else{
+								//console.log(result);
+								var row=0;
+								(function loop(){
+									if (result.rows[row].pin!= pin){
+																				
+										if(row==result.rowCount-1){
+											console.log(row);
+											var error =  ["Pin Number doesn't exist."];
+											(function sendError(){
+												
+												io.on('connection', function(socket){
+													socket.emit('user_pin_error', error);
+													error = [];
+												});
+												
+											}());
+											 res.redirect('/userpin');
+										}
+										row++;
+										if(row < result.rowCount) loop();
+									}
+									else{
+										req.session.userpin = username;
+										res.redirect('/newpassword');
+									}
+								})();	
+							 	
+							}
+							user_pin_client.end();
+						
+						});
+					}
+					else{
+						console.log("user doesnot exists");
+						var error =  ["Username doesn't exist. Enter username again."];
+						(function sendError(){
+							
+							io.on('connection', function(socket){
+								socket.emit('user_pin_error', error);
+								error = [];
+							});
+							
+						}());
+						res.redirect('/userpin');
+						user_pin_client.end();
+					}
+				}
+				
+				
+			});
+		});
+
+	}
+});
 app.post('/newpassword', urlencodedparser, function (req, res){
-	
+	req.assert('password1', "Password field cannot be empty").notEmpty();
+	req.assert('password1', "Password length must be 8 to 20").len(8,20);
+	req.assert('password2', "Password don't match").equals(req.body.password1);
+
+	var errors = req.validationErrors();
+	if(errors){
+		var error_list = [];
+		for(error in errors){
+			console.log(errors[error].msg);
+			error_list.push(errors[error].msg);
+		}
+		(function sendError(){
+			io.on('connection', function(socket){
+				socket.emit('newpassword_error', error_list);
+				error_list = [];
+			});
+		}());
+		res.redirect('/newpassword');
+		
+	}else{
+		var password = crypto.createHmac("sha256", "verySuperSecretKey").update(req.body.password1).digest('hex');
+		var username = req.session.userpin;
+		var newpassword_client = new pg.Client(db_connection);
+		newpassword_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on newpassword', err);
+			}
+			console.log("newpassword db connection successful");
+			newpassword_client.query('UPDATE company_detail SET password=$1 WHERE username=$2',[password,username], function (err){
+				if(err){
+					console.log('error running UPDATE query on company_detail password', err);
+					newpassword_client.end();
+				}
+				else{
+					req.session.userpin=null;
+					res.redirect('/');
+					newpassword_client.end();
+					
+				}
+				
+				
+			});
+		});
+
+	}
 });	
+
 			//////////////// post end ///////////////////////
 ///////////////////////////// user login end //////////////////
 
@@ -280,12 +623,42 @@ http.listen(3030, function(){
 
 //////////////////// Functions below this line //////////////////////////////////
 
-function sendMail(email, subjects, texts){
+setInterval(pinExpiry, 120000);
+function pinExpiry(){
+	var pin_expiry_client = new pg.Client(db_connection);
+		pin_expiry_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on pin expiry', err);
+			}
+			console.log("pin expiry db connection successful");
+			pin_expiry_client.query("DELETE FROM user_pin WHERE timestamp<NOW()-INTERVAL '1 hour'", function (err){
+				if(err){
+					console.log('error running DELETE on user_pin expiry', err);
+					pin_expiry_client.end();
+				}
+				else{
+					pin_expiry_client.query("DELETE FROM device_pin WHERE timestamp<NOW()-INTERVAL '1 hour'", function (err){
+						if(err){
+							console.log('error running DELETE on device_pin expiry', err);
+							pin_expiry_client.end();
+						}else{
+							pin_expiry_client.end();
+						}
+					});
+					
+				}
+				
+				
+			});
+		});
+}
+
+function sendMail(email, subjects, htmls){
 	var mailOptions = {
 	    from: 'Maulik Taranga<sender@mail.com>',
 	    to: email,
 	    subject: subjects,
-	    text: texts
+	    html: htmls
 	};
 	smtpTransport.sendMail(mailOptions, function(err) {
   		console.log('Message sent!');

@@ -29,11 +29,8 @@ var sessn = {
 }
 
 app.use(session(sessn));
-
 app.use(express.static(path.join(__dirname, 'static')));
 app.use(validator());
-app.use(express.cookieParser('secretCookieKey'));
-
 //////////User login pages...and request ////////////////////////////////////////
 
 				//////////////get request////////////////////
@@ -175,10 +172,6 @@ app.post('/login', urlencodedparser, function (req, res){
 	}else {
 		var username = req.body.username;
 		var rememberme = req.body.rememberme;
-		var hour = 60 * 60 * 1000;
-  		if (rememberme) {
-  			res.cookie('rememberme', 1, { maxAge: hour });
-  		}
 		var password = crypto.createHmac("sha256", "verySuperSecretKey").update(req.body.password).digest('hex');
 
 		var login_client = new pg.Client(db_connection);
@@ -597,15 +590,211 @@ app.post('/newpassword', urlencodedparser, function (req, res){
 			/////////// get requests ////////////////////////
 
 app.get('/device', function (req, res){
-	res.sendFile('/templates/vehicleAdd/device_id.html', {root: __dirname});
+	if(req.session.user){
+		res.sendFile('/templates/vehicleAdd/device_id.html', {root: __dirname});
+	}else{
+		res.redirect('/');
+	}
+	
 });
 app.get('/devicepin', function (req, res){
-	res.sendFile('/templates/vehicleAdd/device_pin.html', {root: __dirname});
+	if(req.session.user){
+		res.sendFile('/templates/vehicleAdd/device_pin.html', {root: __dirname});
+	}else{
+		res.redirect('/');
+	}
+	
 });
 app.get('/newvehicle', function (req, res){
-	res.sendFile('/templates/vehicleAdd/new_vehicle.html', {root: __dirname});
+	if(req.session.user && req.session.devicepin){
+		res.sendFile('/templates/vehicleAdd/new_vehicle.html', {root: __dirname});
+	}else{
+		res.redirect('/devicepin');
+	}
+	
 });
 			/////////////////// get end ////////////////////
+
+			////////////////// post requests ///////////////////
+
+app.post('/device', urlencodedparser, function (req, res){
+	req.assert('deviceid', "Device Id can't be empty").notEmpty();
+
+	var errors = req.validationErrors();
+	if(errors){
+		var error_list = [];
+		for(error in errors){
+			console.log(errors[error].msg);
+			error_list.push(errors[error].msg);
+		}
+		(function sendError(){
+			io.on('connection', function(socket){
+				socket.emit('device_id_error', error_list);
+				error_list = [];
+			});
+		}());
+		res.redirect('/device');
+		
+	}else{
+		device_id = req.body.deviceid;
+
+		var device_id_client = new pg.Client(db_connection);
+		device_id_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on device id', err);
+			}
+			console.log("device id db connection successful");
+			device_id_client.query('SELECT id,status FROM device_id WHERE device_id=$1',[device_id], function (err, result){
+				if(err){
+					console.log('error running SELECT status  in device id', err);
+					device_id_client.end();
+				}
+				else{
+					console.log('get status in device id SELECT query success');
+					//console.log(result.rows.length);
+					if(result.rows.length!=0){
+
+						var device_id_status = result.rows[0].status;
+						var device_id_id = result.rows[0].id;
+						console.log(device_id_status);
+						console.log(device_id_id);
+					if(device_id_status==false){
+						device_id_client.query('SELECT id,email FROM company_detail WHERE username=$1',[req.session.user], function (err, result){
+								if(err){
+									console.log('error running SELECT get user id email in device id', err);
+									device_id_client.end();
+
+
+								}
+								else{
+									console.log('get user id email in recover account SELECT query success');
+									//console.log(result.rows.length);
+									var company_id = result.rows[0].id;
+									var company_email = result.rows[0].email
+									var pin = (Math.floor(Math.random()*1000000000)).toString().substring(0,6)
+									// console.log(company_id);
+									// console.log(company_email);
+									// console.log(pin);
+									var subject = "Add New Vehicle";
+									var message = "<h1>Pin Number</h1><br/><p>Dear Sir,<br/>You had requested for the \
+									addition of New Vehilce.Here is the pin number, you should enter to Add New Vehicle. \
+									</p><br/><b>Pin Number:</b>"+pin;
+									
+
+									
+									device_id_client.query('INSERT INTO device_pin(company_id, device_id, pin) VALUES ($1, $2, $3)',[company_id, device_id_id, pin], function (err){
+										if(err){
+									 		console.log('error running INSERT device_pin add query', err);
+									 		device_id_client.end();
+									 	}
+									 	else{
+									 		device_id_client.query('UPDATE device_id SET status=$1 WHERE id=$2',[true, device_id_id], function (err){
+												if(err){
+											 		console.log('error update status in  device_id query', err);
+											 		device_id_client.end();
+											 	}
+											 	else{
+											 		
+													sendMail(company_email, subject, message);
+												 	
+												 	res.redirect('/devicepin');
+												}
+												device_id_client.end();
+											
+											});
+										}
+									
+									});
+								}
+								
+								
+							});
+						}else{
+							var error =  ["Device id already taken."];
+							(function sendError(){
+								
+								io.on('connection', function(socket){
+									socket.emit('device_id_error', error);
+									error = [];
+								});
+								
+							}());
+							res.redirect('/device');
+							device_id_client.end();
+						}
+					}else{
+						console.log("vehicle id does not exists");
+						var error =  ["Device id doesnot exist. Enter a valid device id"];
+						(function sendError(){
+							
+							io.on('connection', function(socket){
+								socket.emit('device_id_error', error);
+								error = [];
+							});
+							
+						}());
+						res.redirect('/device');
+						device_id_client.end();
+					}
+				}
+				
+				
+			});
+		});
+	}
+});
+app.post('/devicepin', urlencodedparser, function (req, res){
+	req.assert('password1', "Password field cannot be empty").notEmpty();
+	req.assert('password1', "Password length must be 8 to 20").len(8,20);
+	req.assert('password2', "Password don't match").equals(req.body.password1);
+
+	var errors = req.validationErrors();
+	if(errors){
+		var error_list = [];
+		for(error in errors){
+			console.log(errors[error].msg);
+			error_list.push(errors[error].msg);
+		}
+		(function sendError(){
+			io.on('connection', function(socket){
+				socket.emit('device_pin_error', error_list);
+				error_list = [];
+			});
+		}());
+		res.redirect('/devicepin');
+		
+	}else{
+
+	}
+});
+app.post('/newvehicle', urlencodedparser, function (req, res){
+	req.assert('password1', "Password field cannot be empty").notEmpty();
+	req.assert('password1', "Password length must be 8 to 20").len(8,20);
+	req.assert('password2', "Password don't match").equals(req.body.password1);
+
+	var errors = req.validationErrors();
+	if(errors){
+		var error_list = [];
+		for(error in errors){
+			console.log(errors[error].msg);
+			error_list.push(errors[error].msg);
+		}
+		(function sendError(){
+			io.on('connection', function(socket){
+				socket.emit('new_vehicle_error', error_list);
+				error_list = [];
+			});
+		}());
+		res.redirect('/newvehicle');
+		
+	}else{
+
+	}
+});
+
+			///////////////// post ends //////////////////////
+
+///////////////////////////vehicle addition ends/////////////////////////////////////
 
 /////////////////////////////// socket.io parts ///////////////////////////////
 

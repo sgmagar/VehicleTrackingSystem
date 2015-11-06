@@ -34,13 +34,14 @@
 
 
 <h1>Add New Vehicle</h1>
+<div class="row" id="device_id_error"></div>
 	<div class = "input row">
 	
 		<h3><small>Please provide the device ID</small></h3>
 
-		<form class = "form-inline" action = "/new_vehicle" method = "POST">
+		<form class = "form-inline" action = "/device" method = "POST">
 			
-			<input type = "text" class = "form-control" name = "device_id" placeholder = "DEVICE ID " autofocus>
+			<input type = "text" class = "form-control" name = "deviceid" placeholder = "DEVICE ID " autofocus>
 			<input type = "submit" class = "btn btn-primary btn-md " value = "Proceed">
 			<!-- <a href = "/vehicle_addition">Add Vehicle</a> -->
 			
@@ -57,5 +58,7 @@
 	</div>
 </footer>
 
+<script src="socket.io/socket.io.js"></script>
+<script src="js/vehicleAdd/device_id.js" type="text/javascript"></script>
 </body>
 </html>

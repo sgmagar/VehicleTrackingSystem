@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  
+  
 
 
 <title>Add New Vehicle</title>
@@ -18,16 +20,57 @@
     width: 480px;
     height: 450px;
 	}
-</style>
+  </style>
 
 
 <script type="text/javascript">
-	
+$('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipient = button.data('whatever') // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+  modal.find('.modal-title').text('New message to ' + recipient)
+  modal.find('.modal-body input').val(recipient)
+})
 
+// function show(){
+//   var recipient = document.getElementById('recipient-name');
+//   alert(recipient.value);
+// }
 </script>
+
 
 </head>
 <body>
+<div class = "row">
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Resend Pin Number</h4>
+      </div>
+      <div class="modal-body">
+        <form action = "/resendpin" method = "POST">
+          <div class="form-group">
+            <label for="device_id2" class="control-label">Enter Device Id</label>
+           <input type = "text" class = "form-control input-md" id = "device_id2" name = "deviceid" placeholder = "DEVICE ID" autofocus>
+          </div>
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary" value = "Resend">
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
+</div>
+
 
 
 <div class = "row">
@@ -36,47 +79,47 @@
 <div class = "col-md-4">
 <h1>Add New Vehicle</h1><br>
 <div class="row" id="device_pin_error"></div>
-	<div class = "input">
-	
-		<h4>We have sent an email containing a pin number<br>
-	to your authorized email account xxxxxxxx@gmail.com<br><br>
-	Please enter the pin received in the email, below. <br><br>
-	Should we <a href = "#">resend</a> the pin?</h4><br>
+  <div class = "input">
+  
+    <h4>We have sent an email containing a pin number<br>
+  to your authorized email account xxxxxxxx@gmail.com<br><br>
+  Please enter the pin received in the email, below. <br><br>
+  Should we <span id="resend_pin" style="color: blue; font-size: medium; cursor: pointer;"><a href = "#" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">resend</a></span> the pin?</h4><br>
 
-		<form  class = "form-inline" action = "/devicepin" method = "POST">
-			
-			<!-- <input type = "text" class = "form-control" name = "user_name" placeholder = "Username" autofocus> -->
-			<input type = "text" class = "form-control input-md" id = "" name = "deviceid" placeholder = "DEVICE ID" autofocus>
-			<input type = "text" class = "form-control input-md" id = "" name = "pinnumber" placeholder = "PIN NUMBER" autofocus>
+    <form  class = "form-inline" action = "/devicepin" method = "POST">
+      
+      <!-- <input type = "text" class = "form-control" name = "user_name" placeholder = "Username" autofocus> -->
+      <input type = "text" class = "form-control input-md" id = "device_id1" name = "deviceid" placeholder = "DEVICE ID" autofocus>
 
-			<input type = "submit" id = "submit" class = "btn btn-primary btn-md " value = "Proceed">
-			
-		</form>
+      <input type = "text" class = "form-control input-md" id = "pin_number" name = "pinnumber" placeholder = "PIN NUMBER" autofocus>
 
-		<br><h4>Don't have access to your email account?<br>
-	Please call our support staff if you have lost access to <br>your account.</h4>
+      <input type = "submit" id = "submit" class = "btn btn-primary btn-md " value = "Proceed">
+      
+    </form>
 
-	</div>
+    <br><h4>Don't have access to your email account?<br>
+  Please call our support staff if you have lost access to <br>your account.</h4>
+
+  </div>
 
 
 </div>
 <div class = "col-md-2"></div>
 <div class = "col-md-4">
-		<img src="/images/mail.png" style="width:350px;height:350px;padding-top: 75px;">
-	
+    <img src="/images/mail.png" style="width:350px;height:350px;padding-top: 75px;">
+  
 </div>
 <div class = "col-md-1"></div>
 
 
 </div>
-
-<div id = "footerDiv" class = "navbar-fixed-bottom" style = "background-color: #F0F8DD; margin-bottom:0px; height: 75px; padding-right: 100px;">
-		<br><p style = "float:right;"><b>Maulik Taranga Pvt. Ltd. </b> <br>copyright 2015</p>
-</div>
-
 <script src="socket.io/socket.io.js"></script>
 <script src="js/vehicleAdd/device_pin.js" type="text/javascript"></script>
+
 </body>
 
+<div id = "footerDiv" class = "navbar-fixed-bottom" style = "background-color: #F0F8DD; margin-bottom:0px; height: 75px; padding-right: 100px;">
+    <br><p style = "float:right;"><b>Maulik Taranga Pvt. Ltd. </b> <br>copyright 2015</p>
+</div>
 
 </html>

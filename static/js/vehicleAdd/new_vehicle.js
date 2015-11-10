@@ -11,6 +11,17 @@ socket.on('new_vehicle_error', function (datas){
 	}
 })
 
+socket.on('category', function (datas){
+	var category_list = document.getElementById('dropdown_list');
+	for(data in datas){
+		console.log(datas[data]);
+		var opt = document.createElement('option');
+		opt.value = datas[data];
+		opt.textContent = datas[data];
+		category_list.appendChild(opt);
+	}
+	});
+
 function show_error(err){
 	new_vehicle_error.innerHTML += err +"<br/>";
 	

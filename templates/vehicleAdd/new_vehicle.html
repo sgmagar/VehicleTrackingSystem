@@ -23,16 +23,63 @@
     height: 450px;
 	}
 </style>
+<script type="text/javascript">
+	$('#exampleModal').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget) // Button that triggered the modal
+		var recipient = button.data('whatever') // Extract info from data-* attributes
+		// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+		// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+		var modal = $(this)
+		modal.find('.modal-title').text('New message to ' + recipient)
+		modal.find('.modal-body input').val(recipient)
+	});
 
+
+	// if (category != null) {
+ //        document.write("Hello " + category + "! How are you today?");
+ //    }
+
+//....
+</script>
 
 </head>
 <body>
+
+<div class = "row">
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Add a Category</h4>
+      </div>
+      <div class="modal-body">
+        <form action = "/addcategory" method = "POST">
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">Enter Category</label>
+            <input type="text" class="form-control" id="category_name" name = "category" placeholder="Category Name" autofocus>
+          </div>
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary" value = "Add Category">
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
+</div>
+
+
 
 
 <div class = "container">
 
 <h1>Add New Vehicle</h1><br>
-<div class="row" id="new_vehicle_error"></div>
+
 <div class = "row">
 <div class = "col-md-5">
 	
@@ -47,37 +94,37 @@
 
 
 	<div style = "width: 400px; height: 150px; background-color: #787878; padding-left: 35px; padding-right:35px;">
-		<!-- <form method = "POST"> -->
+		<!-- ERROR ERROR   -->
+		<div class="row" id="new_vehicle_error"></div>
+		  <form  class = "form-inline" action = "/newvehicle" method = "POST">
 			<br>
 			<!-- <input type = "text" class = "form-control" name = "user_name" placeholder = "Username" autofocus> -->
 			
 			<div class = "row">
 				<div class = "col-md-9">
 					<div>
-						<input type = "text" class = "form-control input-md" id = "pin_number" name = "pin" placeholder = "Vehicle Name" autofocus><br>
+						<input type = "text" class = "form-control input-md" id = "vehicle" name ="vehicle" placeholder = "Vehicle Name" autofocus><br>
 
 					</div>
 				</div>
 			</div>
 			<div class = "row">
 				<div class = "col-md-9">
-					<select class = "form-control input-md">
-						<option value = "category">Category</option>
-						<option value = "truck">Truck</option>
-						<option value = "van">Van</option>
-						<option value = "car">Car</option>
-
+					<select id ="dropdown_list" value = "Category" class = "form-control input-md" name="category">
+						<option>Select a category</option>
 					</select>
 				</div>
 
 				<div class = "col-md-3">
-					<button class = "btn btn-success" onclick = "prompt()"><span class = "glyphicon glyphicon-plus"></span></button>
+
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><span class = "glyphicon glyphicon-plus"></span></button>
+					<!-- <button class = "btn btn-success" onclick = "prompt_window()"><span class = "glyphicon glyphicon-plus"></span></button> -->
 				</div>
 			</div>
 			
 
 			
-		<!-- </form> -->
+		
 	</div>
 
 </div>
@@ -92,35 +139,28 @@
 				<div class = "col-md-6">
 					<button class = "btn btn-success">Save</button>
 					<button class = "btn btn-default">Cancel</button>
+					<p id = "demo"></p>
 				</div>
 
+</form>
 			</div>
 			
 
 
 		</div>
 	</div>
-</div>
-<div id = "footerDiv" class = "navbar-fixed-bottom" style = "background-color: #F0F8DD; margin-bottom:0px; height: 75px; padding-right: 100px;">
-		<br><p style = "float:right;"><b>Maulik Taranga Pvt. Ltd. </b> <br>copyright 2015</p>
-</div>
+	</div>
 
+
+
+	
 <script src="socket.io/socket.io.js"></script>
 <script src="js/vehicleAdd/new_vehicle.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-	function prompt(){
-		var category = prompt("Add a New Category", "new category");
-	}
-	if (category != null) {
-        document.write("Hello " + category + "! How are you today?");
-    }
-
-</script>
-
-
 </body>
 
-
+<div id = "footerDiv" class = "navbar-fixed-bottom" style = "background-color: #F0F8DD; margin-bottom:0px; height: 75px; padding-right: 100px;">
+		<br><p style = "float:right;"><b>Maulik Taranga Pvt. Ltd. </b> <br>copyright 2015</p>
+</div>
 
 </html>

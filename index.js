@@ -607,6 +607,7 @@ app.get('/devicepin', function (req, res){
 });
 app.get('/newvehicle', function (req, res){
 	if(req.session.user && req.session.device_id){
+		console.log(req.session.device_id);
 		var get_category_client = new pg.Client(db_connection);
 		get_category_client.connect(function (err){
 			if(err){
@@ -843,8 +844,8 @@ app.post('/devicepin', urlencodedparser, function (req, res){
 						 	else{
 								if(result.rows.length!=0){
 									pin = result.rows[0].pin;
-									console.log(pin);
-									console.log(pin_number);
+									// console.log(pin);
+									// console.log(pin_number);
 									if(pin==pin_number){
 										req.session.device_id=device_id;
 
@@ -919,7 +920,7 @@ app.post('/resendpin', urlencodedparser, function (req, res){
 				}else{
 
 					if(result.rows.length==0){
-						device_id_client.query('SELECT id FROM company_detail WHERE username=$1', [req.session.user], function (err, result){
+						device_id_client.query('SELECT id, email FROM company_detail WHERE username=$1', [req.session.user], function (err, result){
 							if(err){
 								console.log('device pin resend SELECT user id error', err);
 								res.redirect('/devicepin');
@@ -927,23 +928,45 @@ app.post('/resendpin', urlencodedparser, function (req, res){
 							}else{
 								if(result.rows.length!=0){
 									company_id = result.rows[0].id;
+									company_email = result.rows[0].email;
 
-									var pin = (Math.floor(Math.random()*1000000000)).toString().substring(0,6);
-									var subject = "Add New Vehicle";
-									var message = "<h1>Pin Number</h1><br/><p>Dear Sir,<br/>You had requested for the \
-									addition of New Vehilce.Here is the pin number, you must enter to Add New Vehicle. \
-									</p><br/><b>Pin Number: </b>"+pin+"<br/>You must enter this device id too.<br/><b>Device Id: </b>"+device_id_id;
-													
-			
-										device_id_client.query('INSERT INTO device_pin(company_id, device_id, pin) VALUES ($1, $2, $3)', [company_id, device_id, pin], function (err){
+									device_id_client.query('SELECT device_id FROM device_id WHERE id=$1 AND company_id=$2', [device_id, company_id], function (err, result){
 											if(err){
-												console.log('device pin resend INSERT error', err);
-												res.redirect('/devicepin');
+												console.log('SELECT device_id on resend pin error', err);
 												device_id_client.end();
 											}else{
-												sendMail(company_email, subject, message);
-												res.redirect('/devicepin');
-												device_id_client.end();
+												if(result.rows.length!=0){
+													var pin = (Math.floor(Math.random()*1000000000)).toString().substring(0,6);
+													var subject = "Add New Vehicle";
+													var message = "<h1>Pin Number</h1><br/><p>Dear Sir,<br/>You had requested for the \
+													addition of New Vehilce.Here is the pin number, you must enter to Add New Vehicle. \
+													</p><br/><b>Pin Number: </b>"+pin+"<br/>You must enter this device id too.<br/><b>Device Id: </b>"+device_id;
+																	
+							
+														device_id_client.query('INSERT INTO device_pin(company_id, device_id, pin) VALUES ($1, $2, $3)', [company_id, device_id, pin], function (err){
+															if(err){
+																console.log('device pin resend INSERT error', err);
+																res.redirect('/devicepin');
+																device_id_client.end();
+															}else{
+																sendMail(company_email, subject, message);
+																res.redirect('/devicepin');
+																device_id_client.end();
+															}
+														});
+												}else{
+													var error =  ["Invalid device id."];
+													(function sendError(){
+														
+														io.on('connection', function(socket){
+															socket.emit('device_pin_error', error);
+															error = [];
+														});
+														
+													}());
+													res.redirect('/devicepin');
+													device_id_client.end();
+												}
 											}
 										});
 
@@ -976,62 +999,70 @@ app.post('/resendpin', urlencodedparser, function (req, res){
 });
 
 app.post('/addcategory', urlencodedparser, function (req, res){
+	var error=0;
 	var category = req.body.category;
-
-	var add_category_client = new pg.Client(db_connection);
-	add_category_client.connect(function (err){
-			if(err){
-				console.log('Could not connect to postgres on add category', err);
-			}
-			console.log("Connection successful to add category");
-			add_category_client.query('SELECT id FROM company_detail WHERE username=$1'[req.session.user], function (err, result){
+	console.log(category);
+	if(!category){
+		error=1;
+	}
+	if(!error){
+		var add_category_client = new pg.Client(db_connection);
+		add_category_client.connect(function (err){
 				if(err){
-					console.log("add category SELECT user id error", err);
-					add_category_client.end();
-				}else{
-					if(result.rows.length!=0){
-						company_id = result.rows.id;
-						add_category_client.query('SELECT category FROM category WHERE category=$1 AND company_id=$2'[category, company_id], function (err, result){
-							if(err){
-								console.log("add category SELECT category error", err);
-								add_category_client.end();
-							}else{
-								if(result.rows.length==0) {
-									add_category_client.query('INSERT INTO category(company_id, category) VALUES ($1, $2)', [company_id, category], function (err){
-										if(err){
-											console.log('add category INSERT error', err);
-											add_category_client.end();
-										}else{
-											res.redirect('/newvehicle');
-											add_category_client.end();
-										}
-									});
-								}else{
-									var error =  ["category already exists."];
-									(function sendError(){
-										
-										io.on('connection', function(socket){
-											socket.emit('new_vehicle_error', error);
-											error = [];
-										});
-										
-									}());
-									res.redirect('/newvehicle');
-									add_category_client.end();
-								}
-							}
-						});
-
-					}else{
-						res.redirect('/newvehicle');
-						add_category_client.end();
-					}
+					console.log('Could not connect to postgres on add category', err);
 				}
-			});
-	});
+				console.log("Connection successful to add category");
+				add_category_client.query('SELECT id FROM company_detail WHERE username=$1',[req.session.user], function (err, result){
+					if(err){
+						console.log("add category SELECT user id error", err);
+						add_category_client.end();
+					}else{
+						if(result.rows.length!=0){
+							company_id = result.rows[0].id;
+							add_category_client.query('SELECT category FROM category WHERE category=$1 AND company_id=$2',[category, company_id], function (err, result){
+								if(err){
+									console.log("add category SELECT category error", err);
+									add_category_client.end();
+								}else{
+									if(result.rows.length==0) {
+										add_category_client.query('INSERT INTO category(company_id, category) VALUES ($1, $2)', [company_id, category], function (err){
+											if(err){
+												console.log('add category INSERT error', err);
+												add_category_client.end();
+											}else{
+												res.redirect('/newvehicle');
+												add_category_client.end();
+											}
+										});
+									}else{
+										var error =  ["category already exists."];
+										(function sendError(){
+											
+											io.on('connection', function(socket){
+												socket.emit('new_vehicle_error', error);
+												error = [];
+											});
+											
+										}());
+										res.redirect('/newvehicle');
+										add_category_client.end();
+									}
+								}
+							});
+
+						}else{
+							res.redirect('/newvehicle');
+							add_category_client.end();
+						}
+					}
+				});
+		});
+	}
+	
 });
 app.post('/newvehicle', urlencodedparser, function (req, res){
-	req.assert('vehicle', "Password field cannot be empty").notEmpty();
+	req.assert('vehicle', "Vehicle Name field cannot be empty").notEmpty();
+	req.assert('category', "Select at least one category").notEmpty();
 
 	var errors = req.validationErrors();
 	if(errors){
@@ -1049,8 +1080,8 @@ app.post('/newvehicle', urlencodedparser, function (req, res){
 		res.redirect('/newvehicle');
 		
 	}else{
-		vehicle = req.body.vehicle;
-		category = req.body.category;
+		var vehicle = req.body.vehicle;
+		var category = req.body.category;
 		var new_vehicle_client = new pg.Client(db_connection);
 		new_vehicle_client.connect(function (err){
 			if(err){
@@ -1063,15 +1094,15 @@ app.post('/newvehicle', urlencodedparser, function (req, res){
 					new_vehicle_client.end();
 				}else{
 					if (result.rows.length!=0){
-						company_id = result.rows[0].id;
+						var company_id = result.rows[0].id;
 						new_vehicle_client.query('SELECT id FROM category WHERE company_id=$1 AND category=$2', [company_id, category], function (err, result){
 							if(err){
 								console.log('error SELECT id from category in new vehicle', err);
 								new_vehicle_client.end();
 							}else{
 								if(result.rows.length!=0){
-									category_id = result.rows[0].id;
-									new_vehicle_client.query('INSERT INTO vehicle(device_id,company_id,category_id) VALUES ($1,$2,$3)', [req.session.device_id, company_id,category_id], function (err){
+									var category_id = result.rows[0].id;
+									new_vehicle_client.query('INSERT INTO vehicle(device_id,company_id,category_id,name) VALUES ($1,$2,$3,$4)', [req.session.device_id, company_id,category_id, vehicle], function (err){
 										if(err){
 											console.log('INSERT vehicle error in new vehicle', err);
 											(function sendError(){
@@ -1100,12 +1131,102 @@ app.post('/newvehicle', urlencodedparser, function (req, res){
 					}
 				}
 			});
+		});
 	}
 });
 
 			///////////////// post ends //////////////////////
 
 ///////////////////////////vehicle addition ends/////////////////////////////////////
+
+/////////////////////////////////vehicle data/////////////////////////////////////////
+			///////////////////vehicle data get///////////////////////
+
+			//////////////////vehcle data get ends////////////////////
+			//////////////////vehicle data post///////////////////////
+
+app.post('/vehicledata', urlencodedparser, function (req, res){
+	req.assert('deviceid', "deviceid field cannot be empty").notEmpty();
+	req.assert('latitude', "latitude field cannot be empty").notEmpty();
+	req.assert('longitude', "longitude field cannot be empty").notEmpty();
+	
+	var errors = req.validationErrors();
+	if(errors){
+		var error_list = [];
+		for(error in errors){
+			console.log(errors[error].msg);
+			error_list.push(errors[error].msg);
+		}
+		console.log(error_list);
+		
+	}else{
+		var d = new Date();
+		var sdd = d.toISOString();
+		var sdt = d.toString();
+		var date = sdd.substring(0,10).replace(/-/gi,'');
+		var time = sdt.substring(16,24).replace(/:/gi,'');
+		console.log(date);
+		console.log(time);
+		var deviceid = req.body.deviceid;
+		var latitude = req.body.latitude;
+		var longitude = req.body.longitude;
+		var fuel = req.body.fuel;
+		if(!fuel){
+			fuel=null;
+		}
+		var speed = req.body.speed;
+		if(!speed){
+			speed=null;
+		}
+		
+
+		var vehicle_data_client = new pg.Client(db_connection);
+		vehicle_data_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on vehicle data', err);
+			}
+			console.log("Connection successful to postgres on vehicle data");
+			vehicle_data_client.query('SELECT id FROM company_detail WHERE username=$1',[req.session.user], function (err, result){
+				if(err){
+					console.log('SELECT user id in vehicle data error', err);
+				}else{
+					if(result.rows.length!=0){
+						var company_id = result.rows[0].id;
+						vehicle_data_client.query('SELECT id from device_id WHERE device_id=$1 AND company_id=$2',[deviceid, company_id], function (err, result){
+							if(err){
+								console.log('error SELECT device_id on vehicle data', err);
+							}else{
+								if(result.rows.length!=0){
+									var device_id = result.rows.id;
+									vehicle_data_client.query('INSERT INTO vehicle_data(latitude,longitude,date,time,fuel,speed,device_id)\
+										 VALUES ($1,$2,$3,$4,$5,$6,$7)',[latitude,longitude,date,time,fuel,speed,device_id], function (err){
+										 	if(err){
+										 		console.log('error INSERT in vehicle data',err);
+										 	}else{
+										 		vehicle_data_client.end();
+										 	}
+										 });
+								}else{
+									
+									vehicle_data_client.end();
+								}
+							}
+						});
+					}else{
+						
+						vehicle_data_client.end();
+					}
+				}
+			});
+
+		});
+
+	}
+
+});
+
+			/////////////////vehicle data post ends///////////////////
+/////////////////////////////////vehicle data end/////////////////////////////////////
 
 /////////////////////////////// socket.io parts ///////////////////////////////
 

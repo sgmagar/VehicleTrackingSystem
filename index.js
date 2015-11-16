@@ -1305,9 +1305,89 @@ io.on('connection', function (socket){
 	/////////////////////vehicle and map//////////////////////////////
 	socket.on('category_detail', function (data){
 		var category = data.category;
-
+		var username = socket.request.session.user;
+		var category_detail_client = new pg.Client(db_connection);
+		category_detail_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on category detail in socket',err);
+			}else{
+				category_detail_client.query('SELECT id FROM company_detail WHERE username=$1', [username], function(err, result){
+					if(err){
+						console.log('SELECT user id error in category_detail',err);
+					}else{
+						var company_id = result.rows[0].id;
+						category_detail_client.query('SELECT id FROM category WHERE company_id=$1 AND category=$2', [company_id,category], function (err,result){
+							if(err){
+								console.log('SELECT category id error in category detail', err);
+							}else{
+								category_id=result.rows[0].id;
+								category_detail_client.query('SELECT name FROM vehicle WHERE company_id=$1 AND category_id=$2', [company_id, category_id], function (err, result){
+									if(err){
+										console.log('SELECT vehicle name in category detail error', err);
+									}else{
+										var vehicle = []
+										for(row in result.rows.length){
+											vehicle.push(result.rows[row]);
+										}
+										socket.emit('category_detail', {'category':vehicle});
+										category_detail_client.end();
+									}
+								});
+							}
+						});
+					}
+				});
+			}
+		});
 	});
+
+	socket.on('vehicle_detail', function (data){
+		var vehicle = data.vehicle;
+		var username = socket.request.session.user;
+		var vehicle_detail_client = new pg.Client(db_connection);
+		vehicle_detail_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on vehicle detail in socket',err);
+			}else{
+				vehicle_detail_client.query('SELECT id FROM company_detail WHERE username=$1', [username], function(err, result){
+					if(err){
+						console.log('SELECT user id error in vehicle detail',err);
+					}else{
+						var company_id = result.rows[0].id;
+						vehicle_detail_client.query('SELECT device_id FROM vehicle WHERE company_id=$1 AND name=$2', [company_id,vehicle], function (err,result){
+							if(err){
+								console.log('SELECT device id error in vehicle detail', err);
+							}else{
+								var device_id=result.rows[0].device_id;
+								var d = new Date();
+								var sdd = d.toISOString();
+								var sdt = d.toString();
+								var date = sdd.substring(0,10).replace(/-/gi,'');
+								var time = sdt.substring(16,24).replace(/:/gi,'');
+								vehicle_detail_client.query('SELECT latitude,longitude FROM vehicle_data WHERE device_id=$1 AND date=$2', [device_id,date], function (err, result){
+									if(err){
+										console.log('SELECT lat lon in category detail error', err);
+									}else{
+										var location = []
+										for(row in result.rows.length){
+											location.push(result.rows[row]);
+										}
+										socket.emit('vehicle_detail', {'vehicle':location});
+										vehicle_detail_client.end();
+									}
+								});
+							}
+						});
+					}
+				});
+			}
+		});
+	});
+
+	
 	////////////////////vehicle and map end///////////////////////////
+
+	
 });
 
 ////////////////////////////// socket.io end ///////////////////////////////////

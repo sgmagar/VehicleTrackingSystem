@@ -23,12 +23,14 @@ var validator = require('express-validator');
 var multer = require('multer');
 var urlencodedparser = bodyparser.urlencoded({extended: false});
 
-var sessn = {
+var sessionMiddleware = session({
 	secret: 'hello',
 	cookie: {}
-}
-
-app.use(session(sessn));
+});
+io.use(function(socket, next){
+	sessionMiddleware(socket.request, socket.request.res, next);
+});
+app.use(sessionMiddleware);
 app.use(express.static(path.join(__dirname, 'static')));
 app.use(validator());
 //////////User login pages...and request ////////////////////////////////////////
@@ -1142,6 +1144,73 @@ app.post('/newvehicle', urlencodedparser, function (req, res){
 /////////////////////////////////vehicle data/////////////////////////////////////////
 			///////////////////vehicle data get///////////////////////
 
+app.get('/vehicledata', function (req, res){
+	if(req.session.user){
+		res.sendFile('/templates/vehicle/vehicle_data.html', {root: __dirname});
+	}else{
+		res.redirect('/'); 
+	}
+})
+
+app.get('/vehiclemap', function (req, res){
+	if(req.session.user){
+		var get_vehicle_map = new pg.Client(db_connection);
+		get_vehicle_map.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on get vehicle map', err);
+				res.sendFile('/templates/vehicle/vehicle_map.html', {root: __dirname});
+			}else{
+				get_vehicle_map.query('SELECT id FROM company_detail WHERE username=$1', [req.session.user], function (err, result){
+					if(err){
+						console.log('SELECT user id on vehicle map error',err);
+						get_vehicle_map.end();
+					}else{
+						company_id = result.rows[0].id;
+						get_vehicle_map.query('SELECT category FROM category WHERE company_id=$1', [company_id], function (err, result){
+							if(err){
+								console.log('SELECT category on vehicle map error', err);
+								get_vehicle_map.end();
+							}else{
+								var category = []
+								for(row in result.rows.length){
+									category.push(result.rows[row].category);
+								}
+								get_vehicle_map.query('SELECT name FROM vehicle WHERE company_id=$1', [company_id], function (err, result){
+									if(err){
+										console.log('Select vehicle name error in vehicle map', err);
+										get_vehicle_map.end();
+									}else{
+										var vehicle = [];
+										 for(row in result.rows.length){
+										 	vehicle.push(result.rows[row].name);
+										 }
+										 (function sendVehicleInfo(){
+												io.on('connection', function(socket){
+													socket.emit('vehicle_info', {'category':category, 'vehicle':vehicle});
+													category = [];
+													vehicle = []
+												});
+												res.sendFile('/templates/vehicle/vehicle_map.html', {root: __dirname});
+										}());
+
+										
+										get_vehicle_map.end();
+
+									}
+								});
+							}
+						});
+					}
+				});
+
+			}
+		
+		});
+	}else{
+		res.redirect('/');
+	}
+});
+
 			//////////////////vehcle data get ends////////////////////
 			//////////////////vehicle data post///////////////////////
 
@@ -1197,17 +1266,19 @@ app.post('/vehicledata', urlencodedparser, function (req, res){
 								console.log('error SELECT device_id on vehicle data', err);
 							}else{
 								if(result.rows.length!=0){
-									var device_id = result.rows.id;
+									var device_id = result.rows[0].id;
 									vehicle_data_client.query('INSERT INTO vehicle_data(latitude,longitude,date,time,fuel,speed,device_id)\
 										 VALUES ($1,$2,$3,$4,$5,$6,$7)',[latitude,longitude,date,time,fuel,speed,device_id], function (err){
 										 	if(err){
 										 		console.log('error INSERT in vehicle data',err);
 										 	}else{
+										 		res.redirect('/vehicledata');
 										 		vehicle_data_client.end();
+
 										 	}
 										 });
 								}else{
-									
+									res.redirect('/vehicledata');
 									vehicle_data_client.end();
 								}
 							}
@@ -1231,7 +1302,12 @@ app.post('/vehicledata', urlencodedparser, function (req, res){
 /////////////////////////////// socket.io parts ///////////////////////////////
 
 io.on('connection', function (socket){
+	/////////////////////vehicle and map//////////////////////////////
+	socket.on('category_detail', function (data){
+		var category = data.category;
 
+	});
+	////////////////////vehicle and map end///////////////////////////
 });
 
 ////////////////////////////// socket.io end ///////////////////////////////////

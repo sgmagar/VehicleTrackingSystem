@@ -1186,7 +1186,7 @@ app.get('/vehiclemap', function (req, res){
 										 }
 										 (function sendVehicleInfo(){
 												io.on('connection', function(socket){
-													socket.emit('vehicle_info', {'category':category, 'vehicle':vehicle});
+													socket.emit('vehicle_map_info', {'category':category, 'vehicle':vehicle});
 													category = [];
 													vehicle = []
 												});
@@ -1211,6 +1211,9 @@ app.get('/vehiclemap', function (req, res){
 	}
 });
 
+app.get('/vehicleactivity', function (req, res){
+
+});
 			//////////////////vehcle data get ends////////////////////
 			//////////////////vehicle data post///////////////////////
 
@@ -1327,7 +1330,7 @@ io.on('connection', function (socket){
 									}else{
 										var vehicle = []
 										for(row in result.rows.length){
-											vehicle.push(result.rows[row]);
+											vehicle.push(result.rows[row].name);
 										}
 										socket.emit('category_detail', {'category':vehicle});
 										category_detail_client.end();
@@ -1354,10 +1357,11 @@ io.on('connection', function (socket){
 						console.log('SELECT user id error in vehicle detail',err);
 					}else{
 						var company_id = result.rows[0].id;
-						vehicle_detail_client.query('SELECT device_id FROM vehicle WHERE company_id=$1 AND name=$2', [company_id,vehicle], function (err,result){
+						vehicle_detail_client.query('SELECT id,device_id FROM vehicle WHERE company_id=$1 AND name=$2', [company_id,vehicle], function (err,result){
 							if(err){
 								console.log('SELECT device id error in vehicle detail', err);
 							}else{
+								var vehicle_id = result.rows[0].id;
 								var device_id=result.rows[0].device_id;
 								var d = new Date();
 								var sdd = d.toISOString();
@@ -1367,13 +1371,50 @@ io.on('connection', function (socket){
 								vehicle_detail_client.query('SELECT latitude,longitude FROM vehicle_data WHERE device_id=$1 AND date=$2', [device_id,date], function (err, result){
 									if(err){
 										console.log('SELECT lat lon in category detail error', err);
+										vehicle_detail_client.end();
 									}else{
 										var location = []
 										for(row in result.rows.length){
 											location.push(result.rows[row]);
 										}
-										socket.emit('vehicle_detail', {'vehicle':location});
-										vehicle_detail_client.end();
+										vehicle_detail_client.query('SELECT poi_id FROM task WHERE vehicle_id=$1 AND date=$2', [vehicle_id, date], function (err, result){
+											if(err){
+												console.log('SELECT poi_id error in vehicle detail', err);
+												vehicle_detail_client.end();
+											}else{
+												if(result.rows.length!=0){
+													var poi_id = [];
+													for(row in result.rows.length){
+														poi_id.push(result.rows[row].poi_id);
+													}
+													var poi_id_count = 0;
+													var poi = []
+													(function getPoi(){
+														
+														if(poi_id[poi_id_count]){
+															vehicle_detail_client.query('SELECT latitude, longitude FROM poi where id=$1', [poi[poi_id_count]], function(err, result){
+																if(err){
+																	console.log('SELECT poi lat lon in poi error', err);
+																	vehicle_detail_client.end();	
+																}else{
+																	poi.push(result.rows[0]);
+																	vehicle_detail_client.end();
+																}
+															});
+															poi_id_count++;
+															getPoi();
+
+														}else{
+															socket.emit('vehicle_detail',{'location':location, 'poi':poi});
+														}
+													})();
+
+												}else{
+													vehicle_detail_client.end()
+												}
+											}
+										});
+										
 									}
 								});
 							}
@@ -1383,10 +1424,12 @@ io.on('connection', function (socket){
 			}
 		});
 	});
-
 	
 	////////////////////vehicle and map end///////////////////////////
+	//////////////////////vehicle and activity////////////////////////
 
+
+	/////////////////////vehicle and activity end/////////////////////
 	
 });
 

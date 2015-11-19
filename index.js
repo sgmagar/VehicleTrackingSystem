@@ -43,7 +43,7 @@ app.get('/',function (req,res){
 app.get('/logout', function (req, res){
 	req.session.user=null;
 	res.redirect('/');
-})
+});
 app.get('/signup', function (req, res){
 	res.sendFile('/templates/userLogin/signup.html', {root: __dirname});
 });
@@ -1212,7 +1212,121 @@ app.get('/vehiclemap', function (req, res){
 });
 
 app.get('/vehicleactivity', function (req, res){
+	if(req.session.user){
+		var get_vehicle_activity = new pg.Client(db_connection);
+		get_vehicle_activity.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on get vehicle activity', err);
+				res.sendFile('/templates/vehicle/vehicle_activity.html', {root: __dirname});
+			}else{
+				get_vehicle_activity.query('SELECT id FROM company_detail WHERE username=$1', [req.session.user], function (err, result){
+					if(err){
+						console.log('SELECT user id on vehicle activity error',err);
+						get_vehicle_activity.end();
+					}else{
+						company_id = result.rows[0].id;
+						get_vehicle_activity.query('SELECT category FROM category WHERE company_id=$1', [company_id], function (err, result){
+							if(err){
+								console.log('SELECT category on vehicle activity error', err);
+								get_vehicle_activity.end();
+							}else{
+								var category = []
+								for(row in result.rows.length){
+									category.push(result.rows[row].category);
+								}
+								get_vehicle_activity.query('SELECT name FROM vehicle WHERE company_id=$1', [company_id], function (err, result){
+									if(err){
+										console.log('Select vehicle name error in vehicle activity', err);
+										get_vehicle_activity.end();
+									}else{
+										var vehicle = [];
+										 for(row in result.rows.length){
+										 	vehicle.push(result.rows[row].name);
+										 }
+										 (function sendVehicleInfo(){
+												io.on('connection', function(socket){
+													socket.emit('vehicle_activity_info', {'category':category, 'vehicle':vehicle});
+													category = [];
+													vehicle = []
+												});
+												res.sendFile('/templates/vehicle/vehicle_activity.html', {root: __dirname});
+										}());
 
+										
+										get_vehicle_activity.end();
+
+									}
+								});
+							}
+						});
+					}
+				});
+
+			}
+		
+		});
+	}else{
+		res.redirect('/');
+	}
+});
+
+app.get('/vehicledashboard', function (req, res){
+	if(req.session.user){
+		var get_vehicle_dashboard = new pg.Client(db_connection);
+		get_vehicle_dashboard.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on get vehicle dashboard', err);
+				res.sendFile('/templates/vehicle/vehicle_dashboard.html', {root: __dirname});
+			}else{
+				get_vehicle_dashboard.query('SELECT id FROM company_detail WHERE username=$1', [req.session.user], function (err, result){
+					if(err){
+						console.log('SELECT user id on vehicle dashboard error',err);
+						get_vehicle_dashboard.end();
+					}else{
+						company_id = result.rows[0].id;
+						get_vehicle_dashboard.query('SELECT category FROM category WHERE company_id=$1', [company_id], function (err, result){
+							if(err){
+								console.log('SELECT category on vehicle dashboard error', err);
+								get_vehicle_dashboard.end();
+							}else{
+								var category = []
+								for(row in result.rows.length){
+									category.push(result.rows[row].category);
+								}
+								get_vehicle_dashboard.query('SELECT name FROM vehicle WHERE company_id=$1', [company_id], function (err, result){
+									if(err){
+										console.log('Select vehicle name error in vehicle dashboard', err);
+										get_vehicle_dashboard.end();
+									}else{
+										var vehicle = [];
+										 for(row in result.rows.length){
+										 	vehicle.push(result.rows[row].name);
+										 }
+										 (function sendVehicleInfo(){
+												io.on('connection', function(socket){
+													socket.emit('vehicle_dashboard_info', {'category':category, 'vehicle':vehicle});
+													category = [];
+													vehicle = []
+												});
+												res.sendFile('/templates/vehicle/vehicle_dashboard.html', {root: __dirname});
+										}());
+
+										
+										get_vehicle_dashboard.end();
+
+									}
+								});
+							}
+						});
+					}
+				});
+
+			}
+		
+		});
+	}else{
+		res.redirect('/');
+	}
 });
 			//////////////////vehcle data get ends////////////////////
 			//////////////////vehicle data post///////////////////////
@@ -1302,38 +1416,147 @@ app.post('/vehicledata', urlencodedparser, function (req, res){
 			/////////////////vehicle data post ends///////////////////
 /////////////////////////////////vehicle data end/////////////////////////////////////
 
+/////////////////////////////////poi data///////////////////////////////////////////////
+
+		///////////////////////poi data get///////////////////////////
+app.get('/poimap', function (req, res){
+	if(req.session.user){
+		var get_poi_map_client = new pg.Client(db_connection);
+		get_poi_map_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on get poi map', err);
+				res.sendFile('/templates/poi/poi_map.html', {root: __dirname});
+			}
+			console.log("Connection successful to postgres on get poi map");
+			get_poi_map_client.query('SELECT id from company_detail WHERE username=$1', [req.session.user], function (err, result){
+				if(err){
+					console.log('Select user id error in get poi map');
+					res.sendFile('/templates/poi/poi_map.html', {root: __dirname});
+					get_poi_map_client.end();
+				}else{
+					var company_id = result.rows[0].id;
+					get_poi_map_client.query('SELECT name,detail FROM poi where company_id=$1 ORDER BY date DESC', [company_id], function (err, result){
+						if(err){
+							console.log('select name detail from poi error in poi map');
+							res.sendFile('/templates/poi/poi_map.html', {root: __dirname});
+							get_poi_map_client.end();
+						}else{
+							if(result.rows.length!=0){
+								var poi=[];
+								for(row in result.rows.length){
+									poi.push(result.rows[row]);
+								}
+								(function sendPoi(){
+									io.on('connection', function (socket){
+										socket.emit('poi_map', poi);
+									});
+									poi=[];
+								})();
+								res.sendFile('/templates/poi/poi_map.html', {root: __dirname});
+								get_poi_map_client.end();
+							}else{
+								res.sendFile('/templates/poi/poi_map.html', {root: __dirname});
+								get_poi_map_client.end();
+							}
+						}
+					});
+				}
+			});
+		});
+	}else{
+		res.redirect('/');
+	}
+});
+
+app.get('/poiactivity', function (req, res){
+	if(req.session.user){
+		var get_poi_activity_client = new pg.Client(db_connection);
+		get_poi_activity_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on get poi activity', err);
+				res.sendFile('/templates/poi/poi_activity.html', {root: __dirname});
+			}
+			console.log("Connection successful to postgres on get poi activity");
+			get_poi_activity_client.query('SELECT id from company_detail WHERE username=$1', [req.session.user], function (err, result){
+				if(err){
+					console.log('Select user id error in get poi activity');
+					res.sendFile('/templates/poi/poi_activity.html', {root: __dirname});
+					get_poi_activity_client.end();
+				}else{
+					var company_id = result.rows[0].id;
+					get_poi_activity_client.query('SELECT name,detail FROM poi where company_id=$1 ORDER BY date DESC', [company_id], function (err, result){
+						if(err){
+							console.log('select name detail from poi error in poi activity');
+							res.sendFile('/templates/poi/poi_activity.html', {root: __dirname});
+							get_poi_activity_client.end();
+						}else{
+							if(result.rows.length!=0){
+								var poi=[];
+								for(row in result.rows.length){
+									poi.push(result.rows[row]);
+								}
+								(function sendPoi(){
+									io.on('connection', function (socket){
+										socket.emit('poi_activity', poi);
+									});
+									poi=[];
+								})();
+								res.sendFile('/templates/poi/poi_activity.html', {root: __dirname});
+								get_poi_activity_client.end();
+							}else{
+								res.sendFile('/templates/poi/poi_activity.html', {root: __dirname});
+								get_poi_activity_client.end();
+							}
+						}
+					});
+				}
+			});
+		});
+	}else{
+		res.redirect('/');
+	}
+});
+		////////////////////poi data get ends////////////////////////
+
+		//////////////////////poi data post/////////////////////////
+
+		//////////////////poi data post ends//////////////////////////
+///////////////////////////////poi data end/////////////////////////////////////////////
+
 /////////////////////////////// socket.io parts ///////////////////////////////
 
 io.on('connection', function (socket){
+
+////////////////////////////////////vehjicle/////////////////////////////////////
 	/////////////////////vehicle and map//////////////////////////////
-	socket.on('category_detail', function (data){
+	socket.on('category_map_detail', function (data){
 		var category = data.category;
 		var username = socket.request.session.user;
-		var category_detail_client = new pg.Client(db_connection);
-		category_detail_client.connect(function (err){
+		var category_map_detail_client = new pg.Client(db_connection);
+		category_map_detail_client.connect(function (err){
 			if(err){
-				console.log('Could not connect to postgres on category detail in socket',err);
+				console.log('Could not connect to postgres on category map detail in socket',err);
 			}else{
-				category_detail_client.query('SELECT id FROM company_detail WHERE username=$1', [username], function(err, result){
+				category_map_detail_client.query('SELECT id FROM company_detail WHERE username=$1', [username], function(err, result){
 					if(err){
-						console.log('SELECT user id error in category_detail',err);
+						console.log('SELECT user id error in category map detail',err);
 					}else{
 						var company_id = result.rows[0].id;
-						category_detail_client.query('SELECT id FROM category WHERE company_id=$1 AND category=$2', [company_id,category], function (err,result){
+						category_map_detail_client.query('SELECT id FROM category WHERE company_id=$1 AND category=$2', [company_id,category], function (err,result){
 							if(err){
-								console.log('SELECT category id error in category detail', err);
+								console.log('SELECT category id error in category map detail', err);
 							}else{
 								category_id=result.rows[0].id;
-								category_detail_client.query('SELECT name FROM vehicle WHERE company_id=$1 AND category_id=$2', [company_id, category_id], function (err, result){
+								category_map_detail_client.query('SELECT name FROM vehicle WHERE company_id=$1 AND category_id=$2', [company_id, category_id], function (err, result){
 									if(err){
-										console.log('SELECT vehicle name in category detail error', err);
+										console.log('SELECT vehicle name in category map detail error', err);
 									}else{
 										var vehicle = []
 										for(row in result.rows.length){
 											vehicle.push(result.rows[row].name);
 										}
-										socket.emit('category_detail', {'category':vehicle});
-										category_detail_client.end();
+										socket.emit('category_map_detail', {'vehicle':vehicle});
+										category_map_detail_client.end();
 									}
 								});
 							}
@@ -1344,22 +1567,22 @@ io.on('connection', function (socket){
 		});
 	});
 
-	socket.on('vehicle_detail', function (data){
+	socket.on('vehicle_map_detail', function (data){
 		var vehicle = data.vehicle;
 		var username = socket.request.session.user;
-		var vehicle_detail_client = new pg.Client(db_connection);
-		vehicle_detail_client.connect(function (err){
+		var vehicle_map_detail_client = new pg.Client(db_connection);
+		vehicle_map_detail_client.connect(function (err){
 			if(err){
-				console.log('Could not connect to postgres on vehicle detail in socket',err);
+				console.log('Could not connect to postgres on vehicle map detail in socket',err);
 			}else{
-				vehicle_detail_client.query('SELECT id FROM company_detail WHERE username=$1', [username], function(err, result){
+				vehicle_map_detail_client.query('SELECT id FROM company_detail WHERE username=$1', [username], function(err, result){
 					if(err){
-						console.log('SELECT user id error in vehicle detail',err);
+						console.log('SELECT user id error in vehicle map detail',err);
 					}else{
 						var company_id = result.rows[0].id;
-						vehicle_detail_client.query('SELECT id,device_id FROM vehicle WHERE company_id=$1 AND name=$2', [company_id,vehicle], function (err,result){
+						vehicle_map_detail_client.query('SELECT id,device_id FROM vehicle WHERE company_id=$1 AND name=$2', [company_id,vehicle], function (err,result){
 							if(err){
-								console.log('SELECT device id error in vehicle detail', err);
+								console.log('SELECT device id error in vehicle map detail', err);
 							}else{
 								var vehicle_id = result.rows[0].id;
 								var device_id=result.rows[0].device_id;
@@ -1368,19 +1591,19 @@ io.on('connection', function (socket){
 								var sdt = d.toString();
 								var date = sdd.substring(0,10).replace(/-/gi,'');
 								var time = sdt.substring(16,24).replace(/:/gi,'');
-								vehicle_detail_client.query('SELECT latitude,longitude FROM vehicle_data WHERE device_id=$1 AND date=$2', [device_id,date], function (err, result){
+								vehicle_map_detail_client.query('SELECT latitude,longitude FROM vehicle_data WHERE device_id=$1 AND date=$2', [device_id,date], function (err, result){
 									if(err){
-										console.log('SELECT lat lon in category detail error', err);
-										vehicle_detail_client.end();
+										console.log('SELECT lat lon in vehicle map detaill error', err);
+										vehicle_map_detail_client.end();
 									}else{
 										var location = []
 										for(row in result.rows.length){
 											location.push(result.rows[row]);
 										}
-										vehicle_detail_client.query('SELECT poi_id FROM task WHERE vehicle_id=$1 AND date=$2', [vehicle_id, date], function (err, result){
+										vehicle_map_detail_client.query('SELECT poi_id FROM task WHERE vehicle_id=$1 AND date=$2', [vehicle_id, date], function (err, result){
 											if(err){
-												console.log('SELECT poi_id error in vehicle detail', err);
-												vehicle_detail_client.end();
+												console.log('SELECT poi_id error in vehicle map detail', err);
+												vehicle_map_detail_client.end();
 											}else{
 												if(result.rows.length!=0){
 													var poi_id = [];
@@ -1392,25 +1615,25 @@ io.on('connection', function (socket){
 													(function getPoi(){
 														
 														if(poi_id[poi_id_count]){
-															vehicle_detail_client.query('SELECT latitude, longitude FROM poi where id=$1', [poi[poi_id_count]], function(err, result){
+															vehicle_map_detail_client.query('SELECT latitude, longitude FROM poi where id=$1', [poi[poi_id_count]], function(err, result){
 																if(err){
-																	console.log('SELECT poi lat lon in poi error', err);
-																	vehicle_detail_client.end();	
+																	console.log('SELECT poi lat lon in vehicle map detail error', err);
+																	vehicle_map_detail_client.end();	
 																}else{
 																	poi.push(result.rows[0]);
-																	vehicle_detail_client.end();
+																	vehicle_map_detail_client.end();
 																}
 															});
 															poi_id_count++;
 															getPoi();
 
 														}else{
-															socket.emit('vehicle_detail',{'location':location, 'poi':poi});
+															socket.emit('vehicle_map_detail',{'location':location, 'poi':poi});
 														}
 													})();
 
 												}else{
-													vehicle_detail_client.end()
+													vehicle_map_detail_client.end()
 												}
 											}
 										});
@@ -1427,10 +1650,969 @@ io.on('connection', function (socket){
 	
 	////////////////////vehicle and map end///////////////////////////
 	//////////////////////vehicle and activity////////////////////////
-
-
-	/////////////////////vehicle and activity end/////////////////////
+	socket.on('category_activity_detail', function (data){
+		var category = data.category;
+		var username = socket.request.session.user;
+		var category_activity_detail_client = new pg.Client(db_connection);
+		category_activity_detail_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on category activity detail in socket',err);
+			}else{
+				category_activity_detail_client.query('SELECT id FROM company_detail WHERE username=$1', [username], function(err, result){
+					if(err){
+						console.log('SELECT user id error in category activity detail',err);
+					}else{
+						var company_id = result.rows[0].id;
+						category_activity_detail_client.query('SELECT id FROM category WHERE company_id=$1 AND category=$2', [company_id,category], function (err,result){
+							if(err){
+								console.log('SELECT category id error in category activity detail', err);
+							}else{
+								category_id=result.rows[0].id;
+								category_activity_detail_client.query('SELECT name FROM vehicle WHERE company_id=$1 AND category_id=$2', [company_id, category_id], function (err, result){
+									if(err){
+										console.log('SELECT vehicle name in category activity detail error', err);
+									}else{
+										var vehicle = []
+										for(row in result.rows.length){
+											vehicle.push(result.rows[row].name);
+										}
+										socket.emit('category_activity_detail', {'vehicle':vehicle});
+										category_activity_detail_client.end();
+									}
+								});
+							}
+						});
+					}
+				});
+			}
+		});
+	});
 	
+	socket.on('vehicle_activity_detail', function (data){
+		socket.request.session.vehicle_id_activity='';
+		var vehicle = data.vehicle;
+		var username = socket.request.session.user;
+		var vehicle_activity_detail_client = new pg.Client(db_connection);
+		vehicle_activity_detail_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on vehicle activity detail in socket',err);
+			}else{
+				vehicle_activity_detail_client.query('SELECT id FROM company_detail WHERE username=$1', [username], function(err, result){
+					if(err){
+						console.log('SELECT user id error in vehicle activity detail',err);
+					}else{
+						var company_id = result.rows[0].id;
+						vehicle_activity_detail_client.query('SELECT id,device_id FROM vehicle WHERE company_id=$1 AND name=$2', [company_id,vehicle], function (err,result){
+							if(err){
+								console.log('SELECT device id error in vehicle activity detail', err);
+							}else{
+								var vehicle_id = result.rows[0].id;							
+								vehicle_activity_detail_client.query('SELECT poi_id,date,status FROM task WHERE vehicle_id=$1', [vehicle_id], function (err, result){
+									if(err){
+										console.log('SELECT poi_id date status in vehicle activity detail error', err);
+										vehicle_activity_detail_client.end();
+									}else{
+										if(result.rows.length!=0){
+											var task=[];
+											for(row in result.rows.length){
+												task.push(result.rows[row]);
+											}
+											var task_poi_id_count = 0;
+											(function getPoiTask(){
+												if(task[task_poi_id_count]){
+													vehicle_activity_detail_client.query('SELECT name FROM poi WHERE id=$1', [task[task_poi_id_count].poi_id], function (err, result){
+														if(err){
+															console.log('select poi name from poi error in vehicle activity detail');
+															vehicle_activity_detail_client.end();
+														}
+														else{
+															delete task[task_poi_id_count].poi_id;
+															task[task_poi_id_count].poi=result.rows[0].name;
+															task_poi_id_count++;
+															getPoiTask();
+														}
+													});
+												}else{
+													socket.emit('vehicle_activity_detail',task);
+													socket.request.session.vehicle_id_activity=vehicle_id;
+													vehicle_activity_detail_client.end();
+												}
+											})();
+										}else{
+											vehicle_activity_detail_client.end();
+										}
+
+									}
+								});
+							}
+						});
+					}
+				});
+			}
+		});
+	});
+
+	socket.on('vehicle_poi_activity_detail', function (data){
+		var vehicle_id = socket.request.session.vehicle_id_activity;
+		var poi = data.poi;
+		var username = socket.request.session.user;
+		var vehicle_poi_activity_detail_client = new pg.Client(db_connection);
+		vehicle_poi_activity_detail_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on vehicle poi activity detail');
+			}else{
+				vehicle_poi_activity_detail_client.query('SELECT id FROM company_detail WHERE username=$1', [username], function (err, result){
+					if(err){
+						console.log('SELECT user id error vehicle poi activity detail', err);
+						vehicle_poi_activity_detail_client.end();
+					}else{
+						var company_id = result.rows[0].id;
+						vehicle_poi_activity_detail_client.query('Select id FROM poi WHERE name=$1 AND company_id=$2', [poi,company_id], function (err,result){
+							if(err){
+								console.log('SELECT poi id error in vehicle poi activity detail');
+								vehicle_poi_activity_detail_client.end();
+							}else{
+								var poi_id = result.rows[0].id;
+								vehicle_poi_activity_detail_client.query('SELECT activity,status FROM activity WHERE company_id=$1 AND vehicle_id=$2 AND poi_id=$3', [company_id,vehicle_id,poi_id], function (err,result){
+									if (err) {
+										console.log('Select activity and status error in vehicle poi activity detail');
+										vehicle_poi_activity_detail_client.end();
+									}else{
+										if (result.rows.length!=0) {
+											activity=[];
+											for(row in result.rows.length){
+												activity.push(result.rows[row]);
+											}
+											vehicle_poi_activity_detail_client.query('SELECT substring(date from 1 for 6) AS date, count() as count FROM task WHERE vehicle_id=$1 AND poi_id=$2 GROUP BY substring(date from 1 for 6)', [vehicle_id, poi_id], function (err, result){
+												if(err){
+													console.log('SELECT date(group by) and count error in vehicle poi activity detail client', err);
+													vehicle_poi_activity_detail_client.end();
+												}else{
+													if(result.rows.length!=0){
+														var visit_per_month = [];
+														for(row in result.rows.length){
+															visit_per_month.push(result.rows[row]);
+														}
+														socket.emit('vehicle_poi_activity_detail', {'activity':activity, 'count':visit_per_month});
+
+													}else{
+														vehicle_poi_activity_detail_client.end();
+													}
+												}
+											});
+
+										}else{
+											vehicle_poi_activity_detail_client.end();
+										}
+										
+									}
+								});
+							}
+						});
+
+					}
+				});
+			}
+		});
+	});
+	/////////////////////vehicle and activity end/////////////////////
+
+	////////////////////vehicle and dashboard/////////////////////////
+	socket.on('category_dashboard_detail', function (data){
+		var category = data.category;
+		var username = socket.request.session.user;
+		var category_dashboard_detail_client = new pg.Client(db_connection);
+		category_dashboard_detail_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on category dashboard detail in socket',err);
+			}else{
+				category_dashboard_detail_client.query('SELECT id FROM company_detail WHERE username=$1', [username], function(err, result){
+					if(err){
+						console.log('SELECT user id error in category dashboard detail',err);
+					}else{
+						var company_id = result.rows[0].id;
+						category_dashboard_detail_client.query('SELECT id FROM category WHERE company_id=$1 AND category=$2', [company_id,category], function (err,result){
+							if(err){
+								console.log('SELECT category id error in category dashboard detail', err);
+							}else{
+								category_id=result.rows[0].id;
+								category_dashboard_detail_client.query('SELECT name FROM vehicle WHERE company_id=$1 AND category_id=$2', [company_id, category_id], function (err, result){
+									if(err){
+										console.log('SELECT vehicle name in category dashboard detail error', err);
+									}else{
+										var vehicle = []
+										for(row in result.rows.length){
+											vehicle.push(result.rows[row].name);
+										}
+										socket.emit('category_dashboard_detail', {'vehicle':vehicle});
+										category_dashboard_detail_client.end();
+									}
+								});
+							}
+						});
+					}
+				});
+			}
+		});
+	});
+	
+	socket.on('vehicle_dashboard_detail', function (data){
+		socket.request.session.device_id_dashboard='';
+		var vehicle = data.vehicle;
+		var username = socket.request.session.user;
+		var vehicle_dashboard_detail_client = new pg.Client(db_connection);
+		vehicle_dashboard_detail_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on vehicle dashboard detail in socket',err);
+			}else{
+				vehicle_dashboard_detail_client.query('SELECT id FROM company_detail WHERE username=$1', [username], function(err, result){
+					if(err){
+						console.log('SELECT user id error in vehicle dashboard detail',err);
+					}else{
+						var company_id = result.rows[0].id;
+						vehicle_dashboard_detail_client.query('SELECT id,device_id FROM vehicle WHERE company_id=$1 AND name=$2', [company_id,vehicle], function (err,result){
+							if(err){
+								console.log('SELECT device id error in vehicle dashboard detail', err);
+							}else{
+								var vehicle_id = result.rows[0].id;		
+								var device_id = result.rows[0].device_id;	
+								socket.request.session.device_id_dashboard=device_id;				
+								
+							}
+						});
+					}
+				});
+			}
+		});
+	});
+	socket.on('fuel_detail', function (data){
+		var from_date = data.from_date;
+		var to_date = data.to_date;
+		var device_id = socket.request.session.device_id_dashboard;
+
+		var fuel_detail_client = new pg.Client(db_connection);
+		fuel_detail_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on fuel_detail');
+			}else{
+				fuel_detail_client.query('SELECT DISTINCT date FROM vehicle_data WHERE device_id=$1 AND date BETWEEN $2 AND $3 ORDER BY date DESC', [device_id,from_date,to_date], function (err, result){
+					if(err){
+						console.log('Select distinct date from vehicle data error in fuel_detail',err);
+						fuel_detail_client.end();
+					}else{
+						if(result.rows.length!=0){
+							var date = [];
+							for(row in result.rows.length){
+								date.push(result.rows[row].date);
+							}
+							var date_count=0;
+							var fuel_data = [];
+							(function getTime(){
+								if(date[date_count]){
+									fuel_detail_client.query('SELECT time, fuel,latitude,longitude FROM vehicle_data WHERE device_id=$1 AND date=$2', [device_id, date[date_count]], function (err, result){
+										if(err){
+											console.log('Select time fuel error in fuel detail', err);
+										}else{
+											if(result.rows.length!=0){
+												var time_fuel_data = [];
+												for(row in result.rows.length){
+													time_fuel_data.push(result.rows[row]);
+												}
+												var date_time_fuel_data = {'date':date[date_count], 'time_fuel': time_fuel_data};
+												fuel_data.push(date_time_fuel_data);
+												date_count++;
+												getTime();
+
+											}else{
+												fuel_detail_client.end();
+											}
+										}
+									});
+								}else{
+									socket.emit('fuel_detail', fuel_data);
+									fuel_detail_client.end();
+								}
+							})();
+						}else{	
+							fuel_detail_client.end();
+						}
+					}
+				});
+			}
+		});
+
+	});
+	
+	socket.on('speed_detail', function (data){
+		var from_date = data.from_date;
+		var to_date = data.to_date;
+		var device_id = socket.request.session.device_id_dashboard;
+
+		var speed_detail_client = new pg.Client(db_connection);
+		speed_detail_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on speed_detail');
+			}else{
+				speed_detail_client.query('SELECT DISTINCT date FROM vehicle_data WHERE device_id=$1 AND date BETWEEN $2 AND $3 ORDER BY date DESC', [device_id,from_date,to_date], function (err, result){
+					if(err){
+						console.log('Select distinct date from vehicle data error in speed detail',err);
+						speed_detail_client.end();
+					}else{
+						if(result.rows.length!=0){
+							var date = [];
+							for(row in result.rows.length){
+								date.push(result.rows[row].date);
+							}
+							var date_count=0;
+							var speed_data = [];
+							(function getTime(){
+								if(date[date_count]){
+									speed_detail_client.query('SELECT time, speed,latitude,longitude FROM vehicle_data WHERE device_id=$1 AND date=$2', [device_id, date[date_count]], function (err, result){
+										if(err){
+											console.log('Select time speed error in speed detail', err);
+										}else{
+											if(result.rows.length!=0){
+												var time_speed_data = [];
+												for(row in result.rows.length){
+													time_speed_data.push(result.rows[row]);
+												}
+												var date_time_speed_data = {'date':date[date_count], 'time_fuel': time_speed_data};
+												speed_data.push(date_time_speed_data);
+												date_count++;
+												getTime();
+
+											}else{
+												speed_detail_client.end();
+											}
+										}
+									});
+								}else{
+									socket.emit('speed_detail', speed_data);
+									speed_detail_client.end();
+								}
+							})();
+						}else{	
+							speed_detail_client.end();
+						}
+					}
+				});
+			}
+		});
+
+	});
+	///////////////////vehicle and dashboard/////////////////////////
+
+////////////////////////////////vehicle ends/////////////////////////////////////	
+	
+///////////////////////////////poi///////////////////////////////////////////////
+	/////////////////////////poi and map//////////////////////////////
+	socket.on('poi_map_filter',function(data){
+		var filter = data.filter;
+		var username = socket.request.session.user;
+		var poi_map_filter_client = new pg.Client(db_connection);
+		poi_map_filter_client.connect(function(err){
+			if(err){
+				console.log('Could connect to postgres on poi map filter');
+			}else{
+				poi_map_filter_client.query('SELECT id FROM company_detail WHERE username=$1', [username], function (err, result){
+					if(err){
+						console.log('SELECT user id error in poi map filter', err);
+						poi_map_filter_client.end();
+					}else{
+						var company_id = result.rows[0].id;
+						if(!filter){
+							poi_map_filter_client.end();
+						}
+						else if(filter=='A-Z'){
+							poi_map_filter_client.query('SELECT name,detail FROM poi WHERE company_id=$1 ORDER BY name', [company_id], function (err, result){
+								if(err){
+									console.log('Select name detail error in poi map filter A-Z', err);
+								}else{
+									if(result.rows.length!=0){
+										var poi = [];
+										for(row in result.rows.length){
+											poi.push(result.rows[row]);
+										}
+										socket.emit('poi_map_filter',poi);
+									}else{
+										poi_map_filter_client.end();
+									}
+								}
+							});
+						}else if(filter=='Z-A'){
+							poi_map_filter_client.query('SELECT name,detail FROM poi WHERE company_id=$1 ORDER BY name DESC', [company_id], function (err, result){
+								if(err){
+									console.log('Select name detail error in poi map filter Z-A', err);
+								}else{
+									if(result.rows.length!=0){
+										var poi = [];
+										for(row in result.rows.length){
+											poi.push(result.rows[row]);
+										}
+										socket.emit('poi_map_filter',poi);
+									}else{
+										poi_map_filter_client.end();
+									}
+								}
+							});
+						}else if(filter=='Most Visited'){
+							poi_map_filter_client.query('SELECT name,detail FROM poi WHERE company_id=$1 ORDER BY count DESC', [company_id], function (err, result){
+								if(err){
+									console.log('Select name detail error in poi map filter Most Visited', err);
+								}else{
+									if(result.rows.length!=0){
+										var poi = [];
+										for(row in result.rows.length){
+											poi.push(result.rows[row]);
+										}
+										socket.emit('poi_map_filter',poi);
+									}else{
+										poi_map_filter_client.end();
+									}
+								}
+							});
+						}else{
+							poi_map_filter_client.query('SELECT name,detail FROM poi WHERE company_id=$1 ORDER BY date DESC', [company_id], function (err, result){
+								if(err){
+									console.log('Select name detail error in poi map filter Recently Added', err);
+								}else{
+									if(result.rows.length!=0){
+										var poi = [];
+										for(row in result.rows.length){
+											poi.push(result.rows[row]);
+										}
+										socket.emit('poi_map_filter',poi);
+									}else{
+										poi_map_filter_client.end();
+									}
+								}
+							});
+						}
+					}
+				});
+			}
+		});
+	});
+
+	socket.on('poi_map_detail', function (data){
+		var poi = data.poi;
+		var username = socket.request.session.user;
+		var poi_map_detail_client = new pg.Client(db_connection);
+		poi_map_detail_client.connect(function(err){
+			if(err){
+				console.log('Could connect to postgres on poi map detail');
+			}else{
+				poi_map_detail_client.query('SELECT id FROM company_detail WHERE username=$1', [username], function (err, result){
+					if(err){
+						console.log('SELECT user id error in poi map detail', err);
+						poi_map_detail_client.end();
+					}else{
+						var company_id = result.rows[0].id;
+						poi_map_detail_client.query('SELECT latitude,longitude FROM poi WHERE company_id=$1 AND name=$2', [company_id, poi], function (err, result){
+							if(err){
+								console.log('Select lat lon error in poi map detail');
+								poi_map_detail_client.end()
+							}else{
+								if(result.rows.length!=0){
+									var location = result.rows[0];
+									socket.emit('poi_map_detail', location);
+									poi_map_detail_client.end();
+								}else{	
+									poi_map_detail_client.end();
+								}
+							}
+						});
+					}
+				});
+			}
+		});
+	});
+
+	socket.on('poi_map_add', function (data){
+		var poi_name = data.poi_name;
+		var poi_detail = data.poi_detail;
+		var latitude = data.latitude;
+		var longitude = data.longitude;
+		var username = socket.request.session.user;
+		var d = new Date();
+		var sdd = d.toISOString();
+		var date = sdd.substring(0,10).replace(/-/gi,'');
+
+		var poi_map_add_client = new pg.Client(db_connection);
+		poi_map_add_client.connect(function(err){
+			if(err){
+				console.log('Could not connect to postgres on poi map add', err);
+			}else{
+				poi_map_add_client.query('SELECT id FROM company_detail WHERE username=$1', [usernmae], function (err, result){
+					if(err){
+						console.log('Select user id error in poi map add');
+						poi_map_add_client.end();
+					}else{
+						var company_id = result.rows[0].id;
+						poi_map_add_client.query('INSERT INTO poi(name,detail,latitude,longitude,company_id,date) VALUES ($1,$2,$3,$4,$5,$6)'[poi_name,poi_detail,latitude,longitude,company_id,date], function (err){
+							if(err){
+								console.log('Insert into poi error in poi map add', err);
+								poi_map_add_client.end();
+							}else{
+								poi_map_add_client.end();
+							}
+						});
+					}
+				});
+			}
+		});
+
+	});
+	///////////////////////poi and map ends////////////////////////////
+
+	/////////////////////poi and activity///////////////////////////
+	socket.on('poi_activity_filter',function(data){
+		var filter = data.filter;
+		var username = socket.request.session.user;
+		var poi_activity_filter_client = new pg.Client(db_connection);
+		poi_activity_filter_client.connect(function(err){
+			if(err){
+				console.log('Could connect to postgres on poi activity filter');
+			}else{
+				poi_activity_filter_client.query('SELECT id FROM company_detail WHERE username=$1', [username], function (err, result){
+					if(err){
+						console.log('SELECT user id error in poi activity filter', err);
+						poi_activity_filter_client.end();
+					}else{
+						var company_id = result.rows[0].id;
+						if(!filter){
+							poi_activity_filter_client.end();
+						}
+						else if(filter=='A-Z'){
+							poi_activity_filter_client.query('SELECT name,detail FROM poi WHERE company_id=$1 ORDER BY name', [company_id], function (err, result){
+								if(err){
+									console.log('Select name detail error in poi activity filter A-Z', err);
+								}else{
+									if(result.rows.length!=0){
+										var poi = [];
+										for(row in result.rows.length){
+											poi.push(result.rows[row]);
+										}
+										socket.emit('poi_activity_filter',poi);
+									}else{
+										poi_activity_filter_client.end();
+									}
+								}
+							});
+						}else if(filter=='Z-A'){
+							poi_activity_filter_client.query('SELECT name,detail FROM poi WHERE company_id=$1 ORDER BY name DESC', [company_id], function (err, result){
+								if(err){
+									console.log('Select name detail error in poi activity filter Z-A', err);
+								}else{
+									if(result.rows.length!=0){
+										var poi = [];
+										for(row in result.rows.length){
+											poi.push(result.rows[row]);
+										}
+										socket.emit('poi_activity_filter',poi);
+									}else{
+										poi_activity_filter_client.end();
+									}
+								}
+							});
+						}else if(filter=='Most Visited'){
+							poi_activity_filter_client.query('SELECT name,detail FROM poi WHERE company_id=$1 ORDER BY count DESC', [company_id], function (err, result){
+								if(err){
+									console.log('Select name detail error in poi activity filter Most Visited', err);
+								}else{
+									if(result.rows.length!=0){
+										var poi = [];
+										for(row in result.rows.length){
+											poi.push(result.rows[row]);
+										}
+										socket.emit('poi_activity_filter',poi);
+									}else{
+										poi_activity_filter_client.end();
+									}
+								}
+							});
+						}else{
+							poi_activity_filter_client.query('SELECT name,detail FROM poi WHERE company_id=$1 ORDER BY date DESC', [company_id], function (err, result){
+								if(err){
+									console.log('Select name detail error in poi activity filter Recently Added', err);
+								}else{
+									if(result.rows.length!=0){
+										var poi = [];
+										for(row in result.rows.length){
+											poi.push(result.rows[row]);
+										}
+										socket.emit('poi_activity_filter',poi);
+									}else{
+										poi_activity_filter_client.end();
+									}
+								}
+							});
+						}
+					}
+				});
+			}
+		});
+	});
+	
+	socket.on('poi_activity_detail', function (data){
+		socket.request.session.poi_id = '';
+		var poi = data.poi;
+		var username = socket.request.session.user;
+		var poi_activity_detail_client = new pg.Client(db_connection);
+		poi_activity_detail_client.connect(function(err){
+			if(err){
+				console.log('Could connect to postgres on poi activity detail');
+			}else{
+				poi_activity_detail_client.query('SELECT id FROM company_detail WHERE username=$1', [username], function (err, result){
+					if(err){
+						console.log('SELECT user id error in poi activity detail', err);
+						poi_activity_detail_client.end();
+					}else{
+						var company_id = result.rows[0].id;
+						poi_activity_detail_client.query('SELECT id FROM poi WHERE company_id=$1 AND name=$2', [company_id, poi], function (err, result){
+							if(err){
+								console.log('Select poi id error in poi activity detail');
+								poi_activity_detail_client.end()
+							}else{
+								if(result.rows.length!=0){
+									var poi_id = result.rows[0].id;
+									socket.request.session.poi_id=poi_id;
+									poi_activity_detail_client.query('SELECT date,count(*) FROM activity WHERE company_id=$1 AND poi_id=$2 GROUP BY date', [company_id,poi_id], function (err, result){
+										if(err){
+											console.log('SELECT date and count group by date error in poi activity detail');
+											poi_activity_detail_client.end();
+										}else{
+											if(result.rows.length!=0){
+												var date_activity_count = [];
+												for(row in result.rows.length){
+													date_activity_count.push(result.rows[row]);
+												}
+												socket.emit('poi_activity_detail', date_activity_count);
+												poi_activity_detail_client.end();
+											}else{
+												poi_activity_detail_client.end();
+											}
+										}
+									});
+								}else{	
+									poi_activity_detail_client.end();
+								}
+							}
+						});
+					}
+				});
+			}
+		});
+	});
+	
+	socket.on('poi_activity_detail_activity', function (data){
+		socket.request.session.poi_activity_date='';
+		var date = data.date;
+		var username = socket.request.session.user;
+		var poi_id = socket.request.session.poi_id;
+
+		var poi_activity_detail_activity_client = new pg.Client(db_connection);
+		poi_activity_detail_activity_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on poi_activity_detail_activity ', err);
+			}else{
+				poi_activity_detail_activity_client.query('SELECT id FROM company_detail WHERE username=$1', [username], function (err,result){
+					if(err){
+						console.log('Select user id error in poi_activity_detail_activity',err);
+						poi_activity_detail_activity_client.end();
+					}else{
+						var company_id = result.rows[0].id;
+						poi_activity_detail_activity_client.query('SELECT activity,status,vehicle_id FROM activity WHERE company_id=$1 AND date=$2 AND poi_id=$3', [company_id,date,poi_id], function (err, result){
+							if(err){
+								console.log('Select activity status vehicle_id error in poi_activity_detail_activity', err);
+								poi_activity_detail_activity_client.end();
+							}else{
+								if(result.rows.length!=0){
+									var activity_date_list = [];
+									for(row in result.rows.length){
+										activity_date_list.push(result.rows[row]);
+									}
+									var activity_date_list_count=0;	
+									(function getVehicle(){
+										if(activity_date_list[activity_date_list_count]){
+											poi_activity_detail_activity_client.query('SELECT name FROM vehicle WHERE id=$1', [activity_date_list[activity_date_list_count].vehicle_id], function (err, result){
+												if(err){
+													console.log('Select vehicle name error in poi_activity_detail_activity', err);
+													poi_activity_detail_activity_client.end();
+												}else{
+													var vehicle = result.rows[0].name;
+													delete activity_date_list[activity_date_list_count].vehicle_id;
+													activity_date_list[activity_date_list_count].vehicle = vehicle;
+													activity_date_list_count++;
+													getVehicle();
+												}
+											});
+										}else{
+											socket.emit('poi_activity_detail_activity', activity_date_list);
+											socket.request.session.poi_activity_date=date;
+											poi_activity_detail_activity_client.end();
+										}
+									})();
+									
+								}else{
+									poi_activity_detail_activity_client.end();
+								}
+							}
+						});		
+					}
+				});
+			}
+		})
+	});
+
+	socket.on('poi_activity_detail_filter', function (data){
+		var filter = data.filter;
+		var username = socket.request.session.user;
+		var poi_id = socket.request.session.poi_id;
+		var date = socket.request.session.poi_activity_date;
+
+		var poi_activity_detail_filter_client = new pg.Client(db_connection);
+		poi_activity_detail_filter_client.connect(function(err){
+			if(err){
+				console.log('Could not connect to postgres on poi_activity_detail_filter', err);
+			}else{
+				poi_activity_detail_filter_client.query('SELECT id FROM company_detail where username=$1', [username], function (err, result){
+					if(err){
+						console.log('Select user id error in poi_activity_detail_filter', err);
+						poi_activity_detail_filter_client.end();
+					}else{
+						var company_id = result.rows[0].id;
+						if(!filter){
+							poi_activity_detail_filter_client.end();
+						}else if(filter=='Not Assigned'){
+							poi_activity_detail_filter_client.query('SELECT activity,status FROM activity WHERE company_id=$1 AND poi_id=$2 and date=$3 AND vehicle=$4', [company_id,poi_id,date,null], function (err,result){
+								if(err){
+									console.log('Select activity, staus eror in poi_activity_detail_filter filter=not assigned', err);
+									poi_activity_detail_filter_client.end();
+								}else{
+									if(result.rows.length!=0){
+										var poi_activity_list=[];
+										for(row in result.rows.length){
+											poi_activity_list.push()result.rows[row];
+										}
+										socket.emit('poi_activity_detail_filter',poi_activity_list);
+										poi_activity_detail_filter_client.end();
+									}else{
+										poi_activity_detail_filter_client.end();
+									}
+								}
+							});
+						}else if(filter=='All'){
+							poi_activity_detail_filter_client.query('SELECT activity,status,vehicle_id FROM activity WHERE company_id=$1 AND poi_id=$2 and date=$3', [company_id,poi_id,date], function (err,result){
+								if(err){
+									console.log('Select activity, status, vehicle_id error in poi_activity_detail_filter filter=not assigned', err);
+									poi_activity_detail_filter_client.end();
+								}else{
+									if(result.rows.length!=0){
+										var poi_activity_list = [];
+										for(row in result.rows.length){
+											poi_activity_list.push(result.rows[row]);
+										}
+										var poi_activity_list_count=0;	
+										(function getVehicle(){
+											if(poi_activity_list[poi_activity_list_count]){
+												poi_activity_detail_filter_client.query('SELECT name FROM vehicle WHERE id=$1', [activity_date_list[activity_date_list_count].vehicle_id], function (err, result){
+													if(err){
+														console.log('Select vehicle name error in poi_activity_detail_activity', err);
+														poi_activity_detail_filter_client.end();
+													}else{
+														var vehicle = result.rows[0].name;
+														delete poi_activity_list[poi_activity_list_count].vehicle_id;
+														poi_activity_list[poi_activity_list_count].vehicle = vehicle;
+														poi_activity_list_count++;
+														getVehicle();
+													}
+												});
+											}else{
+												socket.emit('poi_activity_detail_filter', poi_activity_list);
+												poi_activity_detail_filter_client.end();
+											}
+										})();
+										
+									}else{
+										poi_activity_detail_filter_client.end();
+									}
+								}
+							});
+						}else{
+							poi_activity_detail_filter_client.query('SELECT id FROM vehicle WHERE company_id=$1 AND name=$2', [company_id,filter], function (err, result){
+								if(err){
+									console.log('Select vehicle id error in poi_activity_detail_filter', err);
+									poi_activity_detail_filter_client.end();
+								}else{
+									var vehicle_id = result.rows[0].id;
+									poi_activity_detail_filter_client.query('SELECT activity, status FROM activity WHERE company_id=$1 AND date=$1 AND poi_id=$3 AND vehicle_id=$4', [company_id,date,poi_id,vehicle_id], function (err, result){
+										if(err){
+											console.log('Select activity status error in poi_activity_detail_filter', err);
+											poi_activity_detail_filter_client.end();
+										}else{
+											if(result.rows.length!=0){
+												var poi_activity_list=[];
+												for(row in result.rows.length){
+													poi_activity_list.push(result.rows[row]);
+													poi_activity_list[row].vehicle=filter;
+												}
+												socket.emit('poi_activity_detail_filter', poi_activity_list);
+												poi_activity_detail_filter_client.end();
+											}else{
+												poi_activity_detail_filter_client.end();
+											}
+										}
+									});
+								}
+							});
+						}
+					}
+				});
+			}
+		});
+	});
+
+	socket.on('assign_activity', function (data){
+		var activity = data.activity;
+		var username = socket.request.session.user;
+		// var poi_id = socket.request.session.poi_id;
+		// var date = socket.request.session.poi_activity_date;
+		var assign_activity_client = new pg.Client(db_connection);
+		assign_activity_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on assign_activity', err);
+			}else{
+				assign_activity_client.query('SELECT id FROM company_detail WHERE username=$1', [username], function (err, result){
+					if(err){
+						console.log('Select user id error in assign_activity', err);
+						assign_activity_client.end();
+					}else{
+						var company_id = result.rows[0].id;
+						assign_activity_client.query('SELECT name FROM vehicle WHERE company_id=$1', [company_id], function (err,result){
+							if(err){
+								console.log('Select vehicle name error in assign_activity', err);
+								assign_activity_client.end();
+							}else{
+								var vehicle=[];
+								for(row in result.rows.length){
+									vehicle.push(result.rows[0].name);
+								}
+								socket.emit('assign_activity',vehicle);
+							}
+						});
+					}
+				});
+			}
+		});
+	});
+
+	socket.on('assign_activity_vehicle', function (data){
+		var activity = data.activity;
+		var vehicle = data.vehicle;
+		var username = socket.request.session.user;
+		var poi_id = socket.request.session.poi_id;
+		var date = socket.request.session.poi_activity_date;
+
+		var assign_activity_vehicle_client = new pg.Client(db_connection);
+		assign_activity_vehicle_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres on assign_activity_vehicle', err);
+			}else{
+				assign_activity_vehicle_client.query('SELECT id FROM company_detail WHERE username=$1', [username], function (err, result){
+					if(err){
+						console.log('Select user id error in assign_activity_vehicle', err);
+						assign_activity_vehicle_client.end();
+					}else{
+						var company_id=result.rows[0].id;
+						assign_activity_client.query('SELECT id FROM vehicle WHERE company_id=$1 AND name=$2', [company_id,vehicle], function (err, result){
+							if(err){
+								console.log('Select vehicle id error in assign_activity_vehicle', err);
+								assign_activity_vehicle_client.end();
+							}else{
+								var vehicle_id = result.rows[0].id;
+								assign_activity_client.query('UPDATE activity SET vehicle_id=$1 WHERE company_id=$2 AND poi_id=$3 AND  date=$4 AND activity=$5', [vehicle_id,company_id,poi_id,date,activity], function (err){
+									if(err){
+										console.log('Update vehicle_id activity on assign_activity_vehicle',err);
+										assign_activity_vehicle_client.end();
+									}else{
+										assign_activity_vehicle_client.query('SELECT poi_id FROM task WHERE poi_id=$1 AND date=$2 AND vehicle_id=$3', [poi_id,date,vehicle_id], function (err, result){
+											if(err){
+												console.log('Select poi id error in assign_activity_vehicle', err);
+												assign_activity_vehicle_client.end();
+											}else{
+												if(result.rows.length==0){
+													assign_activity_vehicle_client.query('INSERT INTO task(vehicle_id,poi_id,date) VALUES ($1,$2,$3)', [vehicle_id,poi_id,date], function(err){
+														if(err){
+															console.log('Insert into task error in assign_activity_vehicle',err);
+															assign_activity_vehicle_client.end();
+														}else{
+															assign_activity_vehicle_client.end('SELECT count FROM poi WHERE id=$1', [poi_id]{
+																if(err){
+																	console.log('Select count of poi error in assign_activity_vehicle', err);
+																	assign_activity_vehicle_client.end();
+																}else{
+																	var count=result.rows[0].count;
+																	count++;
+																	assign_activity_vehicle_client.query('UPDATE poi SET count=$1 WHERE id=$2',[count,poi_id], function (err){
+																		if(err){
+																			console.log('Update count of poi error in assign_activity_vehicle', err);
+																			assign_activity_vehicle_client.end();
+																		}else{
+																			assign_activity_vehicle_client.end();
+																		}
+																	});
+																}
+															});
+														}
+													});
+												}else{	
+													assign_activity_vehicle_client.end();
+												}
+											}
+										});
+									}
+								});
+							}
+						})
+					}
+				});
+			}
+		});
+	});
+	
+	socket.on('add_activity', function (data){
+		var activity = data.activity;
+		var username = socket.request.session.user;
+		var poi_id = socket.request.session.poi_id;
+		var date = socket.request.session.poi_activity_date;
+
+		var add_activity_client = new pg.Client(db_connection);
+		add_activity_client.connect(function (err){
+			if(err){
+				console.log('Could not connect to postgres in add_activity', err);
+			}else{
+				add_activity_client.query('SELECT id FROM company_detail WHERE username=$1', [usernamme], function (err, result){
+					if(err){
+						console.log('Select user id error in add_activity', err);
+						add_activity_client.end();
+					}else{
+						var company_id = result.rows[0].id;
+						add_activity_client.query('INSERT INTO activity(company_id,poi_id,date,activity) VALUES($1,$2,$3,$4)',[company_email,poi_id,date,activity], function (err){
+							if(err){
+								console.log('Insert into activity error in add_activity',err);
+								add_activity_client.end();
+							}else{
+								add_activity_client.end();
+							}
+						});
+					}
+				});
+			}
+		});
+	});
+	/////////////////////poi and activity ends///////////////////////
+///////////////////////////poi ends///////////////////////////////////////////////
 });
 
 ////////////////////////////// socket.io end ///////////////////////////////////

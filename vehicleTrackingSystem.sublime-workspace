@@ -4,68 +4,452 @@
 		"selected_items":
 		[
 			[
-				"ue",
-				"userpin"
+				"acti",
+				"activity_date_list_count"
 			],
 			[
-				"po",
-				"post"
+				"ac",
+				"activity_date_list_count"
 			],
 			[
-				"us",
-				"userpin"
+				"activi",
+				"activity_date_list"
 			],
 			[
-				"com",
-				"company_id"
+				"poi_ac",
+				"poi_activity_detail_activity_client"
 			],
 			[
-				"Ins",
-				"INSERT"
+				"poi",
+				"poi_activity_detail_activity"
+			],
+			[
+				"poi_aa",
+				"poi_activity_detail_activity_client"
+			],
+			[
+				"poi_acti",
+				"poi_activity_detail_activity"
+			],
+			[
+				"compan",
+				"company_detail"
 			],
 			[
 				"re",
-				"result"
+				"request"
 			],
 			[
-				"sub",
-				"substring"
+				"date",
+				"date_activity_count"
 			],
 			[
-				"res",
-				"res"
+				"da",
+				"date"
 			],
 			[
-				"reco",
-				"recover-account"
+				"by",
+				"BY"
+			],
+			[
+				"grou",
+				"GROUP"
+			],
+			[
+				"in",
+				"INTO"
+			],
+			[
+				"Inse",
+				"INSERT"
+			],
+			[
+				"poi_map",
+				"poi_map_add_client"
+			],
+			[
+				"cou",
+				"Could"
+			],
+			[
+				"compa",
+				"company_id"
+			],
+			[
+				"lat",
+				"latitude"
+			],
+			[
+				"us",
+				"username"
+			],
+			[
+				"ro",
+				"row"
+			],
+			[
+				"comap",
+				"company_detail"
+			],
+			[
+				"poi_ma",
+				"poi_map_filter_client"
+			],
+			[
+				"get",
+				"getPoi"
+			],
+			[
+				"conn",
+				"connection"
 			],
 			[
 				"se",
-				"session"
+				"select"
+			],
+			[
+				"COM",
+				"company_id"
+			],
+			[
+				"db",
+				"db_connection"
+			],
+			[
+				"poi_",
+				"poi_activity_detail_client"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"po",
+				"poi_activity_detail_client"
+			],
+			[
+				"comp",
+				"company_id"
+			],
+			[
+				"vehicle_id",
+				"vehicle_id_activity"
+			],
+			[
+				"user",
+				"username"
+			],
+			[
+				"getP",
+				"getPoiTask"
+			],
+			[
+				"task",
+				"task_poi_id_count"
+			],
+			[
+				"Select",
+				"SELECT"
+			],
+			[
+				"tak",
+				"task_poi_id_count"
+			],
+			[
+				"vehicle",
+				"vehicle_activity_detail"
+			],
+			[
+				"poi_id",
+				"poi_id_count"
+			],
+			[
+				"vehicle_de",
+				"vehicle_detail_client"
+			],
+			[
+				"dat",
+				"date"
+			],
+			[
+				"lon",
+				"longitude"
+			],
+			[
+				"cate",
+				"category_detail"
+			],
+			[
+				"err",
+				"login_error"
+			],
+			[
+				"cat",
+				"category_id"
+			],
+			[
+				"rs",
+				"result"
+			],
+			[
+				"category",
+				"category_detail"
+			],
+			[
+				"select",
+				"SELECT"
+			],
+			[
+				"category_de",
+				"category_detail_client"
 			],
 			[
 				"sess",
 				"session"
 			],
 			[
-				"send",
-				"sendFile"
+				"req",
+				"request"
+			],
+			[
+				"ca",
+				"category"
+			],
+			[
+				"Sel",
+				"SELECT"
+			],
+			[
+				"from",
+				"FROM"
+			],
+			[
+				"sele",
+				"SELECT"
+			],
+			[
+				"CA",
+				"category"
+			],
+			[
+				"ge",
+				"get_vehicle_map"
+			],
+			[
+				"d",
+				"data"
+			],
+			[
+				"data",
+				"datas"
+			],
+			[
+				"vehicle_data",
+				"vehicle_data_client"
+			],
+			[
+				"sp",
+				"speed"
+			],
+			[
+				"int",
+				"INTO"
+			],
+			[
+				"vehi",
+				"vehicle_data_client"
+			],
+			[
+				"com",
+				"company_id"
+			],
+			[
+				"devic",
+				"device_id"
+			],
+			[
+				"fu",
+				"fuel"
+			],
+			[
+				"ID",
+				"id"
+			],
+			[
+				"vehci",
+				"vehicle_data_client"
+			],
+			[
+				"post",
+				"postgres"
+			],
+			[
+				"ed",
+				"editprofile"
+			],
+			[
+				"device",
+				"device_id"
+			],
+			[
+				"val",
+				"VALUES"
+			],
+			[
+				"new",
+				"new_vehicle_client"
+			],
+			[
+				"and",
+				"AND"
+			],
+			[
+				"Se",
+				"SELECT"
+			],
+			[
+				"de",
+				"device_id"
+			],
+			[
+				"ad",
+				"addcategory"
+			],
+			[
+				"IN",
+				"INTO"
+			],
+			[
+				"an",
+				"AND"
+			],
+			[
+				"fro",
+				"FROM"
+			],
+			[
+				"add",
+				"add_category_client"
+			],
+			[
+				"res",
+				"result"
+			],
+			[
+				"DEVI",
+				"device_pin"
+			],
+			[
+				"len",
+				"length"
+			],
+			[
+				"pin",
+				"pin"
+			],
+			[
+				"par",
+				"parseInt"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"devi",
+				"device_id"
+			],
+			[
+				"device_",
+				"device_pin_client"
+			],
+			[
+				"DEV",
+				"device"
+			],
+			[
+				"dec",
+				"device_id_id"
+			],
+			[
+				"lo",
+				"log"
+			],
+			[
+				"devc",
+				"deviceid"
+			],
+			[
+				"FUNCTION",
+				"function"
+			],
+			[
+				"USER",
+				"username"
+			],
+			[
+				"US",
+				"username"
+			],
+			[
+				"row",
+				"rows"
+			],
+			[
+				"error",
+				"errors"
+			],
+			[
+				"er",
+				"error_list"
+			],
+			[
+				"ima",
+				"image2"
+			],
+			[
+				"is",
+				"isEmail"
+			],
+			[
+				"file",
+				"filename"
+			],
+			[
+				"Up",
+				"UPDATE"
 			],
 			[
 				"pass",
 				"password"
 			],
 			[
-				"req",
-				"require"
+				"use",
+				"username"
 			],
 			[
-				"file",
-				"fileupload"
+				"where",
+				"WHERE"
 			],
 			[
-				"in",
-				"input"
+				"ue",
+				"userpin"
+			],
+			[
+				"Ins",
+				"INSERT"
+			],
+			[
+				"sub",
+				"substring"
+			],
+			[
+				"reco",
+				"recover-account"
+			],
+			[
+				"send",
+				"sendFile"
 			],
 			[
 				"ec",
@@ -84,36 +468,12 @@
 				"password"
 			],
 			[
-				"err",
-				"err"
-			],
-			[
-				"er",
-				"err"
-			],
-			[
 				"si",
 				"signup_client"
 			],
 			[
-				"user",
-				"username"
-			],
-			[
-				"error",
-				"error_list"
-			],
-			[
-				"add",
-				"addprofile"
-			],
-			[
 				"sign",
 				"signup"
-			],
-			[
-				"vehicle",
-				"vehicleAdd"
 			],
 			[
 				"mail",
@@ -126,10 +486,6 @@
 			[
 				"c",
 				"crypto"
-			],
-			[
-				"use",
-				"username"
 			],
 			[
 				"sen",
@@ -158,387 +514,40 @@
 			[
 				"con",
 				"console"
-			],
-			[
-				"bod",
-				"body"
-			],
-			[
-				"s",
-				"signup"
-			],
-			[
-				"urlencoded",
-				"urlencodedparser"
-			],
-			[
-				"body",
-				"bodyparser"
-			],
-			[
-				"ex",
-				"express_session"
-			],
-			[
-				"for",
-				"form	Tag"
-			],
-			[
-				"lo",
-				"location"
-			],
-			[
-				"dat",
-				"data"
-			],
-			[
-				"da",
-				"data"
-			],
-			[
-				"rt",
-				"rtlocation"
-			],
-			[
-				"pro",
-				"promise"
-			],
-			[
-				"RT",
-				"rt_data_identity"
-			],
-			[
-				"exi",
-				"exists"
-			],
-			[
-				"e",
-				"exists"
-			],
-			[
-				"rt_data",
-				"rt_data_identity"
-			],
-			[
-				"vehi",
-				"vehicle_id_get"
-			],
-			[
-				"date",
-				"date_rtlocation"
-			],
-			[
-				"rt_",
-				"rt_data_key"
-			],
-			[
-				"dis",
-				"display"
-			],
-			[
-				"on",
-				"onclick	Attr"
-			],
-			[
-				"li",
-				"link	Tag"
-			],
-			[
-				"cl",
-				"client1"
-			],
-			[
-				"cli",
-				"client2"
-			],
-			[
-				"clien",
-				"client2"
-			],
-			[
-				"di",
-				"delivery_status"
-			],
-			[
-				"geo",
-				"geo_data"
-			],
-			[
-				"pol",
-				"polyline_realtime"
-			],
-			[
-				"my",
-				"my_icon"
-			],
-			[
-				"local",
-				"local_insert"
-			],
-			[
-				"client",
-				"client_remote"
-			],
-			[
-				"rem",
-				"remote_connection"
-			],
-			[
-				"remo",
-				"client_remote"
-			],
-			[
-				"cou",
-				"customer"
-			],
-			[
-				"rout",
-				"route"
-			],
-			[
-				"wa",
-				"waypoints"
-			],
-			[
-				"leafl",
-				"leaflet-routing-machine"
-			],
-			[
-				"dra",
-				"drawRoute"
-			],
-			[
-				"toda",
-				"today_data"
-			],
-			[
-				"r",
-				"rows"
-			],
-			[
-				"por",
-				"postgres"
-			],
-			[
-				"la",
-				"latt"
-			],
-			[
-				"ma",
-				"marker"
-			],
-			[
-				"jso",
-				"json_length"
-			],
-			[
-				"loca",
-				"location_list"
-			],
-			[
-				"I",
-				"INSERT"
-			],
-			[
-				"wri",
-				"writeOutput"
-			],
-			[
-				"d",
-				"div	Tag"
-			],
-			[
-				"GEO",
-				"geo_data"
-			],
-			[
-				"write",
-				"writeDateTime"
-			],
-			[
-				"out",
-				"output"
-			],
-			[
-				"time",
-				"timestamp"
-			],
-			[
-				"wr",
-				"writeOutput"
-			],
-			[
-				"latitude",
-				"latitude"
-			],
-			[
-				"writ",
-				"writeResponse"
-			],
-			[
-				"resp",
-				"response"
-			],
-			[
-				"get",
-				"getElementById"
-			],
-			[
-				"lon",
-				"longitude"
-			],
-			[
-				"su",
-				"Submission"
-			],
-			[
-				"paddin",
-				"padding-top"
-			],
-			[
-				"margin",
-				"margin-top"
-			],
-			[
-				"text",
-				"text-align"
-			],
-			[
-				"w",
-				"write"
-			],
-			[
-				"mim",
-				"mimeType"
-			],
-			[
-				"mi",
-				"mimeTypes"
-			],
-			[
-				"fea",
-				"features"
-			],
-			[
-				"Featu",
-				"FeatureCollection"
-			],
-			[
-				"feature",
-				"featureCollection"
-			],
-			[
-				"conn",
-				"connString"
-			],
-			[
-				"do",
-				"doSecond"
-			],
-			[
-				"we",
-				"websiteAbout"
-			],
-			[
-				"webs",
-				"websiteAbout"
-			],
-			[
-				"websi",
-				"websiteHome"
-			],
-			[
-				"fun",
-				"function"
-			],
-			[
-				"fa",
-				"favMovie"
-			],
-			[
-				"mo",
-				"movies"
-			],
-			[
-				"print",
-				"printChappie"
-			],
-			[
-				"u",
-				"uppercut"
-			],
-			[
-				"p",
-				"placeAnOrder"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
+			"file": "templates/vehicle/vehicle_data.html",
+			"settings":
+			{
+				"buffer_size": 1447,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "index.js",
 			"settings":
 			{
-				"buffer_size": 11794,
+				"buffer_size": 78495,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "var socket = io();\n\nvar user_pin_error = document.getElementById(\"user_pin_error\");\nrecover_error.style.color = \"red\";\nrecover_error.style.background = \"violet\";\n\nsocket.on('recover_account_error', function (datas){\n	clear_error();\n	for(err in datas){\n		show_error(datas[err]);\n	}\n})\n\nfunction show_error(err){\n	recover_error.innerHTML += err +\"<br/>\";\n	\n	// var newElement = document.createElement('div');\n	// newElement.innerHTML = err;\n	// signup_error.appendChild(newElement);\n}\n\nfunction clear_error(){\n	recover_error.innerHTML=\"\";\n	// while(signup_error.firstChild) {\n //    	signup_error.removeChild(signup_error.firstChild);\n	// }\n}\n",
-			"file": "static/js/userLogin/user_pin.js",
-			"file_size": 0,
-			"file_write_time": 130911746562596846,
+			"file": "templates/vehicle/vehicle_map.html",
 			"settings":
 			{
-				"buffer_size": 641,
+				"buffer_size": 210,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "templates/userLogin/user_pin.html",
+			"file": "static/js/vehicle/vehicle_map.js",
 			"settings":
 			{
-				"buffer_size": 2191,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "templates/userLogin/recover_account.html",
-			"settings":
-			{
-				"buffer_size": 1359,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "static/js/userLogin/recover_account.js",
-			"settings":
-			{
-				"buffer_size": 647,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "templates/userLogin/signup.html",
-			"settings":
-			{
-				"buffer_size": 2553,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "templates/userLogin/profile_edit.html",
-			"settings":
-			{
-				"buffer_size": 2013,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "templates/userLogin/login.html",
-			"settings":
-			{
-				"buffer_size": 2254,
+				"buffer_size": 0,
 				"line_ending": "Unix"
 			}
 		}
@@ -578,24 +587,38 @@
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/userLogin",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin"
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/poi",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicle",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicleAdd"
 	],
 	"file_history":
 	[
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/index.js",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/signup.html",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/user_pin.html",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicleAdd/device_pin.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/poi/poi_map.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/poi/poi_activity.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicle/vehicle_dashboard.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicle/vehicle_activity.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicleAdd/new_vehicle.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/login.html",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/recover_account.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/vehicleAdd/device_pin.js",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/vehicleAdd/device_id.js",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/vehicleAdd/new_vehicle.js",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicleAdd/device_id.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicleAdd/device_pin.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/user_pin.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/signup.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/userLogin/recover_account.js",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/recover_account.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/userLogin/user_pin.js",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/userLogin/edit_profile.js",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/profile_edit.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/userLogin/newpassword.js",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/newpassword.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/node_modules/pg/node_modules/generic-pool/test/generic-pool.test.js",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/newpassword.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/recover_account.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/profile_add.html",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/newpassword.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/profile_add.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/signup_success.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/signup.html",
@@ -678,7 +701,7 @@
 	],
 	"find":
 	{
-		"height": 25.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -692,6 +715,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"vehicle_activity",
+			"device_id_error",
+			"edit_profile",
+			"recover_error",
 			"console",
 			");\n",
 			"data"
@@ -702,6 +729,10 @@
 		"regex": false,
 		"replace_history":
 		[
+			"new_vehicle_error",
+			"device_pin_error",
+			"device_id",
+			"edit_profile_error"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -717,107 +748,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "index.js",
+					"file": "templates/vehicle/vehicle_data.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11794,
+						"buffer_size": 1447,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								9899,
-								9899
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 5568.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "static/js/userLogin/user_pin.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 641,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								283,
-								283
-							]
-						],
-						"settings":
-						{
-							"auto_name": "",
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "templates/userLogin/user_pin.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2191,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1933,
-								1933
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 357.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "templates/userLogin/recover_account.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1359,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1343,
-								1343
+								1439,
+								1439
 							]
 						],
 						"settings":
@@ -825,33 +768,61 @@
 							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 459.0,
+						"translation.y": 153.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "static/js/userLogin/recover_account.js",
+					"buffer": 1,
+					"file": "index.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 647,
+						"buffer_size": 78495,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								647,
-								647
+								76844,
+								76844
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 38378.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "templates/vehicle/vehicle_map.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 210,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								46,
+								46
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -861,89 +832,31 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "templates/userLogin/signup.html",
+					"buffer": 3,
+					"file": "static/js/vehicle/vehicle_map.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2553,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								564,
-								564
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 306.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "templates/userLogin/profile_edit.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2013,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1153,
-								1153
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "templates/userLogin/login.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2254,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1236,
-								1236
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 561.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -984,11 +897,15 @@
 	{
 		"height": 0.0
 	},
+	"output.unsaved_changes":
+	{
+		"height": 27.0
+	},
 	"pinned_build_system": "",
 	"project": "vehicleTrackingSystem.sublime-project",
 	"replace":
 	{
-		"height": 46.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1011,12 +928,16 @@
 	},
 	"select_symbol":
 	{
-		"height": 0.0,
-		"last_filter": "",
+		"height": 54.0,
+		"last_filter": "recover",
 		"selected_items":
 		[
+			[
+				"recover",
+				"removes from available objects on validation failure"
+			]
 		],
-		"width": 0.0
+		"width": 656.0
 	},
 	"selected_group": 0,
 	"settings":

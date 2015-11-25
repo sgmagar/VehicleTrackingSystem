@@ -4,6 +4,126 @@
 		"selected_items":
 		[
 			[
+				"s",
+				"speed"
+			],
+			[
+				"fuel",
+				"fuel_detail_client"
+			],
+			[
+				"date",
+				"date_count"
+			],
+			[
+				"dat",
+				"date_count"
+			],
+			[
+				"time",
+				"time_fuel_data"
+			],
+			[
+				"da",
+				"date_count"
+			],
+			[
+				"ro",
+				"rows"
+			],
+			[
+				"from",
+				"from_date"
+			],
+			[
+				"compa",
+				"company_id"
+			],
+			[
+				"Int",
+				"INTO"
+			],
+			[
+				"inse",
+				"INSERT"
+			],
+			[
+				"add",
+				"add_activity_client"
+			],
+			[
+				"add_ac",
+				"add_activity_client"
+			],
+			[
+				"as",
+				"assign_activity_vehicle_client"
+			],
+			[
+				"Upd",
+				"UPDATE"
+			],
+			[
+				"ass",
+				"assign_activity_vehicle_client"
+			],
+			[
+				"tas",
+				"task"
+			],
+			[
+				"activi",
+				"activity"
+			],
+			[
+				"set",
+				"SET"
+			],
+			[
+				"assi",
+				"assign_activity_vehicle"
+			],
+			[
+				"assc",
+				"assign_activity_vehicle"
+			],
+			[
+				"poi_activity_deta",
+				"poi_activity_detail_filter"
+			],
+			[
+				"frm",
+				"FROM"
+			],
+			[
+				"poi_acti",
+				"poi_activity_detail_filter_client"
+			],
+			[
+				"po",
+				"poi_activity_detail_filter"
+			],
+			[
+				"file",
+				"filter"
+			],
+			[
+				"compan",
+				"company_id"
+			],
+			[
+				"poi_acticvi",
+				"poi_activity_detail_filter_client"
+			],
+			[
+				"Fro",
+				"FROM"
+			],
+			[
+				"poi",
+				"poi_activity_detail_filter"
+			],
+			[
 				"acti",
 				"activity_date_list_count"
 			],
@@ -12,40 +132,16 @@
 				"activity_date_list_count"
 			],
 			[
-				"activi",
-				"activity_date_list"
-			],
-			[
 				"poi_ac",
 				"poi_activity_detail_activity_client"
-			],
-			[
-				"poi",
-				"poi_activity_detail_activity"
 			],
 			[
 				"poi_aa",
 				"poi_activity_detail_activity_client"
 			],
 			[
-				"poi_acti",
-				"poi_activity_detail_activity"
-			],
-			[
-				"compan",
-				"company_detail"
-			],
-			[
 				"re",
 				"request"
-			],
-			[
-				"date",
-				"date_activity_count"
-			],
-			[
-				"da",
-				"date"
 			],
 			[
 				"by",
@@ -72,20 +168,12 @@
 				"Could"
 			],
 			[
-				"compa",
-				"company_id"
-			],
-			[
 				"lat",
 				"latitude"
 			],
 			[
 				"us",
 				"username"
-			],
-			[
-				"ro",
-				"row"
 			],
 			[
 				"comap",
@@ -122,10 +210,6 @@
 			[
 				"for",
 				"for	for (…) {…}"
-			],
-			[
-				"po",
-				"poi_activity_detail_client"
 			],
 			[
 				"comp",
@@ -166,10 +250,6 @@
 			[
 				"vehicle_de",
 				"vehicle_detail_client"
-			],
-			[
-				"dat",
-				"date"
 			],
 			[
 				"lon",
@@ -218,10 +298,6 @@
 			[
 				"Sel",
 				"SELECT"
-			],
-			[
-				"from",
-				"FROM"
 			],
 			[
 				"sele",
@@ -328,10 +404,6 @@
 				"FROM"
 			],
 			[
-				"add",
-				"add_category_client"
-			],
-			[
 				"res",
 				"result"
 			],
@@ -412,10 +484,6 @@
 				"isEmail"
 			],
 			[
-				"file",
-				"filename"
-			],
-			[
 				"Up",
 				"UPDATE"
 			],
@@ -446,111 +514,11 @@
 			[
 				"reco",
 				"recover-account"
-			],
-			[
-				"send",
-				"sendFile"
-			],
-			[
-				"ec",
-				"enctype	Attr"
-			],
-			[
-				"le",
-				"length"
-			],
-			[
-				"clie",
-				"signup_client"
-			],
-			[
-				"pas",
-				"password"
-			],
-			[
-				"si",
-				"signup_client"
-			],
-			[
-				"sign",
-				"signup"
-			],
-			[
-				"mail",
-				"mailOptions"
-			],
-			[
-				"to",
-				"to_email"
-			],
-			[
-				"c",
-				"crypto"
-			],
-			[
-				"sen",
-				"send"
-			],
-			[
-				"login_",
-				"login_success"
-			],
-			[
-				"no",
-				"notEmpty"
-			],
-			[
-				"l",
-				"label	Tag"
-			],
-			[
-				"h",
-				"h1	Tag"
-			],
-			[
-				"ER",
-				"error_list"
-			],
-			[
-				"con",
-				"console"
 			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "templates/vehicle/vehicle_data.html",
-			"settings":
-			{
-				"buffer_size": 1447,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "index.js",
-			"settings":
-			{
-				"buffer_size": 78495,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "templates/vehicle/vehicle_map.html",
-			"settings":
-			{
-				"buffer_size": 210,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "static/js/vehicle/vehicle_map.js",
-			"settings":
-			{
-				"buffer_size": 0,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -585,16 +553,20 @@
 	"expanded_folders":
 	[
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/poi",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/poi",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicle",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicleAdd"
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicle"
 	],
 	"file_history":
 	[
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/index.js",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/vehicle/vehicle_dashboard.js",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/vehicle/vehicle_activity.js",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicle/vehicle_data.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicle/vehicle_map.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/vehicle/vehicle_map.js",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/poi/poi_map.js",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/poi/poi_activity.js",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/poi/poi_map.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/poi/poi_activity.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicle/vehicle_dashboard.html",
@@ -743,122 +715,8 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "templates/vehicle/vehicle_data.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1447,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1439,
-								1439
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 153.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "index.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 78495,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								76844,
-								76844
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 38378.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "templates/vehicle/vehicle_map.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 210,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								46,
-								46
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "static/js/vehicle/vehicle_map.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				}
 			]
 		}
 	],

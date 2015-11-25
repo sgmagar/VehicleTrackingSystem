@@ -194,7 +194,7 @@ app.post('/login', urlencodedparser, function (req, res){
 					//console.log(result.rows.length);
 					if(result.rows.length!=0){
 						console.log("Username exists");
-						login_client.query('SELECT password FROM company_detail where username=$1',[username], function (err, result){
+						login_client.query('SELECT password,name,logo FROM company_detail where username=$1',[username], function (err, result){
 							if(err){
 								console.log('error running INSERT user_add query', err);
 							}
@@ -203,6 +203,8 @@ app.post('/login', urlencodedparser, function (req, res){
 								// console.log(password);
 								if(result.rows[0].password == password){
 									req.session.user=username;
+									req.session.company=result.rows[0].name;
+									req.session.logo = result.rows[0].logo;
 									res.redirect('/editprofile');
 
 								}else{
@@ -1170,9 +1172,17 @@ app.get('/vehicle', function (req, res){
 					}else{
 						console.log(result.rows);
 						console.log(typeof(result.rows[0]));
+						var company_name = req.session.company
+						var logo = req.session.logo
+						var company_info = {
+							'company_name':company_name,
+							'logo': logo
+						}
 						io.on('connection', function(socket){
+							socket.emit('company_vehicle_info',company_info);
 							socket.emit('vehicle_info',result.rows);
 							result.rows=[];
+							company_info={};
 						});
 						res.sendFile('/templates/vehicle/vehicle.html',{root: __dirname});
 						get_vehicle_client.end();
@@ -1296,9 +1306,18 @@ app.get('/poi', function (req, res){
 					get_poi_client.end();
 				}else{
 					console.log(result.rows)
+					var company_name = req.session.company
+					var logo = req.session.logo
+					var company_info = {
+						'company_name':company_name,
+						'logo': logo
+					}
+
 					io.on('connection', function(socket){
+						socket.emit('company_poi_info',company_info);
 						socket.emit('poi_info',result.rows);
 						result.rows=[];
+						company_info={};
 					});
 					res.sendFile('/templates/poi/poi.html',{root: __dirname});
 					get_poi_client.end();
@@ -2043,6 +2062,15 @@ io.on('connection', function (socket){
 	});
 	/////////////////////poi and activity ends///////////////////////
 ///////////////////////////poi ends///////////////////////////////////////////////
+
+	socket.on('disconnect', function(){
+		socket.request.session.vehicle_id='';
+		socket.request.session.company_id_vehicle = '';
+		socket.request.session.device_id ='';
+		socket.request.session.vehicle_activity_poi_id='';
+		socket.request.session.poi_id_map='';
+		socket.request.session.poi_activity_date='';
+	});
 });
 
 ////////////////////////////// socket.io end ///////////////////////////////////
@@ -2100,21 +2128,24 @@ function sendMail(email, subjects, htmls){
 // sendMail('+9779841559663@vtext.com', 'Hello', "what's up man?");
 //sendMail('sp.gharti@gmail.com', 'Hello', "what's up man?");
 
-var pin_expiry_client = new pg.Client(db_connection);
-pin_expiry_client.connect(function (err){
-	if(err){
-		console.log('Could not connect to postgres on pin expiry', err);
-	}
-	console.log("pin expiry db connection successful");
-	pin_expiry_client.query('SELECT date,array_agg(time) AS time,array_agg(speed) AS speed, '+
-		'array_agg(latitude) AS latitude,array_agg(longitude) AS longitude '+
-		'FROM vehicle_data WHERE device_id=$1 GROUP BY date ORDER BY date', [3],function (err,result){
-		if(err){
-			console.log('error running select date  on user_pin expiry', err);
-			pin_expiry_client.end();
-		}
-		else{
-			console.log(result.rows);
-		}
-	});
-});
+
+////////////////////////////////Testing Here///////////////////////////////
+
+// var pin_expiry_client = new pg.Client(db_connection);
+// pin_expiry_client.connect(function (err){
+// 	if(err){
+// 		console.log('Could not connect to postgres on pin expiry', err);
+// 	}
+// 	console.log("pin expiry db connection successful");
+// 	pin_expiry_client.query('SELECT date,array_agg(time) AS time,array_agg(speed) AS speed, '+
+// 		'array_agg(latitude) AS latitude,array_agg(longitude) AS longitude '+
+// 		'FROM vehicle_data WHERE device_id=$1 GROUP BY date ORDER BY date', [3],function (err,result){
+// 		if(err){
+// 			console.log('error running select date  on user_pin expiry', err);
+// 			pin_expiry_client.end();
+// 		}
+// 		else{
+// 			console.log(result.rows);
+// 		}
+// 	});
+// });

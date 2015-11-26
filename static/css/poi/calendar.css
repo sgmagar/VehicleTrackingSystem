@@ -1,0 +1,48 @@
+#calendar {
+	margin-left:16px;
+}
+
+td {
+	border: 1px solid #EEE;
+	padding:4px;
+	background: #EEE;
+	height: 3px;
+	width:3px;
+}
+
+td:hover {
+	border: 1px solid #000;
+}
+
+
+#monthName {
+	list-style: none;
+	font-size: 9px;
+	position: fixed;
+	top: -2px;
+	left:-35px;
+	color:#A9A9A9;
+}
+
+#monthName li {
+	padding-top: 5px;
+}
+
+.selected {
+	background-color: #CCC;
+}
+.multiple_visit {
+	background-color: #000;
+}
+
+.lastLine {
+
+	font-size: 9px;
+	background: white;
+	border:none;
+	color:#A9A9A9;
+}
+
+.lastLine:hover {
+	border: none;
+}

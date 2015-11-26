@@ -205,7 +205,7 @@ app.post('/login', urlencodedparser, function (req, res){
 									req.session.user=username;
 									req.session.company=result.rows[0].name;
 									req.session.logo = result.rows[0].logo;
-									res.redirect('/editprofile');
+									res.redirect('/vehicle');
 
 								}else{
 									var error =  ["Password doesn't match."];
@@ -1171,9 +1171,8 @@ app.get('/vehicle', function (req, res){
 						get_vehicle_client.end();
 					}else{
 						console.log(result.rows);
-						console.log(typeof(result.rows[0]));
-						var company_name = req.session.company
-						var logo = req.session.logo
+						var company_name = req.session.company;
+						var logo = req.session.logo;
 						var company_info = {
 							'company_name':company_name,
 							'logo': logo
@@ -1297,17 +1296,18 @@ app.get('/poi', function (req, res){
 				res.sendFile('/templates/poi/poi.html', {root: __dirname});
 			}
 			console.log("Connection successful to postgres on get poi");
-			get_poi_client.query('SELECT poi.name,poi.detail FROM company_detail '+
+			get_poi_client.query('SELECT poi.name,poi.detail,poi.latitude,poi.longitude FROM company_detail '+
 				'INNER JOIN poi ON company_detail.id=poi.company_id WHERE company_detail.username'+
-				'=$1 ORDER BY poi.date DESC;',[req.session.user], function (err, result){
+				'=$1 ORDER BY poi.date DESC',[req.session.user], function (err, result){
 				if(err){
 					console.log('Select poi name detail error in get poi ');
 					res.sendFile('/templates/poi/poi.html', {root: __dirname});
 					get_poi_client.end();
 				}else{
 					console.log(result.rows)
-					var company_name = req.session.company
-					var logo = req.session.logo
+					var company_name = req.session.company;
+					var logo = req.session.logo;
+					console.log(company_name+" "+logo);
 					var company_info = {
 						'company_name':company_name,
 						'logo': logo
@@ -1315,11 +1315,11 @@ app.get('/poi', function (req, res){
 
 					io.on('connection', function(socket){
 						socket.emit('company_poi_info',company_info);
-						socket.emit('poi_info',result.rows);
+						socket.emit('poi_map_filter',result.rows);
 						result.rows=[];
 						company_info={};
 					});
-					res.sendFile('/templates/poi/poi.html',{root: __dirname});
+					res.sendFile('/templates/poi/poi.html',{root: __dirname});					
 					get_poi_client.end();
 					
 				}
@@ -1722,10 +1722,7 @@ io.on('connection', function (socket){
 				console.log('Could connect to postgres on poi map filter');
 			}else{
 				
-				if(!filter){
-					
-				}
-				else if(filter=='A-Z'){
+				if(filter=='A-Z'){
 					poi_map_filter_client.query('SELECT poi.name,poi.detail FROM poi INNER JOIN '+
 						'company_detail ON poi.company_id=company_detail.id WHERE company_detail.'+
 						'username=$1 ORDER BY poi.name', [username], function (err, result){
@@ -1782,6 +1779,7 @@ io.on('connection', function (socket){
 							if(result.rows.length!=0){
 								socket.emit('poi_map_filter',result.rows);
 								poi_map_filter_client.end();
+								console.log('poi_map_filter invoked');
 							}else{
 								poi_map_filter_client.end();
 							}
@@ -1822,6 +1820,7 @@ io.on('connection', function (socket){
 
 	socket.on('poi_map_add', function (data){
 		var poi_name = data.poi_name;
+		console.log(poi_name);
 		var poi_detail = data.poi_detail;
 		var latitude = data.latitude;
 		var longitude = data.longitude;
@@ -1835,18 +1834,20 @@ io.on('connection', function (socket){
 			if(err){
 				console.log('Could not connect to postgres on poi map add', err);
 			}else{
-				poi_map_add_client.query('SELECT id FROM company_detail WHERE username=$1', [usernmae], function (err, result){
+				poi_map_add_client.query('SELECT id FROM company_detail WHERE username=$1', [username], function (err, result){
 					if(err){
 						console.log('Select user id error in poi map add');
 						poi_map_add_client.end();
 					}else{
 						var company_id = result.rows[0].id;
-						poi_map_add_client.query('INSERT INTO poi(name,detail,latitude,longitude,company_id,date) VALUES ($1,$2,$3,$4,$5,$6)'[poi_name,poi_detail,latitude,longitude,company_id,date], function (err){
+						poi_map_add_client.query('INSERT INTO poi(name,detail,latitude,longitude,company_id,date) VALUES ($1,$2,$3,$4,$5,$6)',[poi_name,poi_detail,latitude,longitude,company_id,date], function (err){
 							if(err){
 								console.log('Insert into poi error in poi map add', err);
 								poi_map_add_client.end();
 							}else{
+								console.log("poi addition success");
 								poi_map_add_client.end();
+								socket.emit('poi_reload');
 							}
 						});
 					}

@@ -4,6 +4,262 @@
 		"selected_items":
 		[
 			[
+				"com",
+				"company_name"
+			],
+			[
+				"compa",
+				"company_info"
+			],
+			[
+				"lo",
+				"logo"
+			],
+			[
+				"re",
+				"req"
+			],
+			[
+				"success",
+				"successful"
+			],
+			[
+				"poi_l",
+				"poi_longitude"
+			],
+			[
+				"val",
+				"VALUES"
+			],
+			[
+				"INT",
+				"INTO"
+			],
+			[
+				"coma",
+				"company_id"
+			],
+			[
+				"sele",
+				"Select"
+			],
+			[
+				"assi",
+				"assign_activity_vehicle_client"
+			],
+			[
+				"and",
+				"AND"
+			],
+			[
+				"assign_acti",
+				"assign_activity_vehicle"
+			],
+			[
+				"err",
+				"errror"
+			],
+			[
+				"Where",
+				"WHERE"
+			],
+			[
+				"fro",
+				"FROM"
+			],
+			[
+				"poi_ac",
+				"poi_activity_detail_filter_client"
+			],
+			[
+				"poi",
+				"poi_activity_detail_activity"
+			],
+			[
+				"poi_a",
+				"poi_activity_detail_activity_client"
+			],
+			[
+				"res",
+				"result"
+			],
+			[
+				"O",
+				"ON"
+			],
+			[
+				"from",
+				"FROM"
+			],
+			[
+				"poi_",
+				"poi_activity_detail_activity"
+			],
+			[
+				"poi_av",
+				"poi_activity_detail_client"
+			],
+			[
+				"poi_activi",
+				"poi_activity_detail_client"
+			],
+			[
+				"row",
+				"rows"
+			],
+			[
+				"compan",
+				"company_detail"
+			],
+			[
+				"company",
+				"company_detail"
+			],
+			[
+				"vehicle_dah",
+				"vehicle_dashboard_client"
+			],
+			[
+				"sel",
+				"Select"
+			],
+			[
+				"Sele",
+				"select"
+			],
+			[
+				"POI",
+				"poi_name"
+			],
+			[
+				"LON",
+				"longitude"
+			],
+			[
+				"LAT",
+				"latitude"
+			],
+			[
+				"to",
+				"to_date"
+			],
+			[
+				"B",
+				"BETWEEN"
+			],
+			[
+				"vehicle_dash",
+				"vehicle_dashboard_client"
+			],
+			[
+				"ve",
+				"vehicle_activity_poi_id"
+			],
+			[
+				"vehicle_ac",
+				"vehicle_activity_poi_client_freq"
+			],
+			[
+				"Whe",
+				"WHERE"
+			],
+			[
+				"task",
+				"task"
+			],
+			[
+				"connec",
+				"connection"
+			],
+			[
+				"into",
+				"INTO"
+			],
+			[
+				"vehi",
+				"vehicle_activity_newactivity_client"
+			],
+			[
+				"da",
+				"date"
+			],
+			[
+				"vehicle_a",
+				"vehicle_activity_newactivity_client"
+			],
+			[
+				"vehicle_acti",
+				"vehicle_activity_newactivity_client"
+			],
+			[
+				"vehicle",
+				"vehicle_activity_poi_client_freq"
+			],
+			[
+				"where",
+				"WHERE"
+			],
+			[
+				"vehicle_ma",
+				"vehicle_map_poi_client"
+			],
+			[
+				"vehicle_map",
+				"vehicle_map_location_client"
+			],
+			[
+				"vehicle_m",
+				"vehicle_map_location_client"
+			],
+			[
+				"getVehi",
+				"getVehicleLocation"
+			],
+			[
+				"device",
+				"deviceid"
+			],
+			[
+				"dev",
+				"device_id_client"
+			],
+			[
+				"devic",
+				"device_id_client"
+			],
+			[
+				"deiv",
+				"device"
+			],
+			[
+				"se",
+				"session"
+			],
+			[
+				"conn",
+				"connect"
+			],
+			[
+				"cate",
+				"category_id"
+			],
+			[
+				"cat",
+				"category_id"
+			],
+			[
+				"category",
+				"category_count"
+			],
+			[
+				"catego",
+				"category"
+			],
+			[
+				"get",
+				"get_vehicle_client"
+			],
+			[
 				"s",
 				"speed"
 			],
@@ -24,20 +280,8 @@
 				"time_fuel_data"
 			],
 			[
-				"da",
-				"date_count"
-			],
-			[
 				"ro",
 				"rows"
-			],
-			[
-				"from",
-				"from_date"
-			],
-			[
-				"compa",
-				"company_id"
 			],
 			[
 				"Int",
@@ -80,10 +324,6 @@
 				"SET"
 			],
 			[
-				"assi",
-				"assign_activity_vehicle"
-			],
-			[
 				"assc",
 				"assign_activity_vehicle"
 			],
@@ -108,20 +348,12 @@
 				"filter"
 			],
 			[
-				"compan",
-				"company_id"
-			],
-			[
 				"poi_acticvi",
 				"poi_activity_detail_filter_client"
 			],
 			[
 				"Fro",
 				"FROM"
-			],
-			[
-				"poi",
-				"poi_activity_detail_filter"
 			],
 			[
 				"acti",
@@ -132,16 +364,8 @@
 				"activity_date_list_count"
 			],
 			[
-				"poi_ac",
-				"poi_activity_detail_activity_client"
-			],
-			[
 				"poi_aa",
 				"poi_activity_detail_activity_client"
-			],
-			[
-				"re",
-				"request"
 			],
 			[
 				"by",
@@ -184,28 +408,12 @@
 				"poi_map_filter_client"
 			],
 			[
-				"get",
-				"getPoi"
-			],
-			[
-				"conn",
-				"connection"
-			],
-			[
-				"se",
-				"select"
-			],
-			[
 				"COM",
 				"company_id"
 			],
 			[
 				"db",
 				"db_connection"
-			],
-			[
-				"poi_",
-				"poi_activity_detail_client"
 			],
 			[
 				"for",
@@ -228,20 +436,12 @@
 				"getPoiTask"
 			],
 			[
-				"task",
-				"task_poi_id_count"
-			],
-			[
 				"Select",
 				"SELECT"
 			],
 			[
 				"tak",
 				"task_poi_id_count"
-			],
-			[
-				"vehicle",
-				"vehicle_activity_detail"
 			],
 			[
 				"poi_id",
@@ -256,24 +456,8 @@
 				"longitude"
 			],
 			[
-				"cate",
-				"category_detail"
-			],
-			[
-				"err",
-				"login_error"
-			],
-			[
-				"cat",
-				"category_id"
-			],
-			[
 				"rs",
 				"result"
-			],
-			[
-				"category",
-				"category_detail"
 			],
 			[
 				"select",
@@ -297,10 +481,6 @@
 			],
 			[
 				"Sel",
-				"SELECT"
-			],
-			[
-				"sele",
 				"SELECT"
 			],
 			[
@@ -332,193 +512,29 @@
 				"INTO"
 			],
 			[
-				"vehi",
-				"vehicle_data_client"
-			],
-			[
-				"com",
-				"company_id"
-			],
-			[
-				"devic",
-				"device_id"
-			],
-			[
 				"fu",
 				"fuel"
-			],
-			[
-				"ID",
-				"id"
-			],
-			[
-				"vehci",
-				"vehicle_data_client"
-			],
-			[
-				"post",
-				"postgres"
-			],
-			[
-				"ed",
-				"editprofile"
-			],
-			[
-				"device",
-				"device_id"
-			],
-			[
-				"val",
-				"VALUES"
-			],
-			[
-				"new",
-				"new_vehicle_client"
-			],
-			[
-				"and",
-				"AND"
-			],
-			[
-				"Se",
-				"SELECT"
-			],
-			[
-				"de",
-				"device_id"
-			],
-			[
-				"ad",
-				"addcategory"
-			],
-			[
-				"IN",
-				"INTO"
-			],
-			[
-				"an",
-				"AND"
-			],
-			[
-				"fro",
-				"FROM"
-			],
-			[
-				"res",
-				"result"
-			],
-			[
-				"DEVI",
-				"device_pin"
-			],
-			[
-				"len",
-				"length"
-			],
-			[
-				"pin",
-				"pin"
-			],
-			[
-				"par",
-				"parseInt"
-			],
-			[
-				"fun",
-				"function"
-			],
-			[
-				"devi",
-				"device_id"
-			],
-			[
-				"device_",
-				"device_pin_client"
-			],
-			[
-				"DEV",
-				"device"
-			],
-			[
-				"dec",
-				"device_id_id"
-			],
-			[
-				"lo",
-				"log"
-			],
-			[
-				"devc",
-				"deviceid"
-			],
-			[
-				"FUNCTION",
-				"function"
-			],
-			[
-				"USER",
-				"username"
-			],
-			[
-				"US",
-				"username"
-			],
-			[
-				"row",
-				"rows"
-			],
-			[
-				"error",
-				"errors"
-			],
-			[
-				"er",
-				"error_list"
-			],
-			[
-				"ima",
-				"image2"
-			],
-			[
-				"is",
-				"isEmail"
-			],
-			[
-				"Up",
-				"UPDATE"
-			],
-			[
-				"pass",
-				"password"
-			],
-			[
-				"use",
-				"username"
-			],
-			[
-				"where",
-				"WHERE"
-			],
-			[
-				"ue",
-				"userpin"
-			],
-			[
-				"Ins",
-				"INSERT"
-			],
-			[
-				"sub",
-				"substring"
-			],
-			[
-				"reco",
-				"recover-account"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "index.js",
+			"settings":
+			{
+				"buffer_size": 70291,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/userLogin/user_pin.html",
+			"settings":
+			{
+				"buffer_size": 2197,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -553,12 +569,19 @@
 	"expanded_folders":
 	[
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/poi",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/poi",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicle"
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/images",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin"
 	],
 	"file_history":
 	[
+		"/media/saurav/UUI/edit_your_profile.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/profile_edit.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/user_pin.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/recover_account.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/vehicle/vehicle.js",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/index.js",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/vehicle/vehicle_dashboard.js",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/vehicle/vehicle_activity.js",
@@ -578,13 +601,10 @@
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/vehicleAdd/new_vehicle.js",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicleAdd/device_id.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicleAdd/device_pin.html",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/user_pin.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/signup.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/userLogin/recover_account.js",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/recover_account.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/userLogin/user_pin.js",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/userLogin/edit_profile.js",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/profile_edit.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/userLogin/newpassword.js",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/newpassword.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/node_modules/pg/node_modules/generic-pool/test/generic-pool.test.js",
@@ -687,6 +707,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"poi_activity_list_filter",
+			"commpany",
+			"user_id",
 			"vehicle_activity",
 			"device_id_error",
 			"edit_profile",
@@ -701,6 +724,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"company",
+			"commpany_id",
 			"new_vehicle_error",
 			"device_pin_error",
 			"device_id",
@@ -715,8 +740,67 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 70291,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								47077,
+								47077
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4189.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "templates/userLogin/user_pin.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2197,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								597,
+								598
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -757,7 +841,7 @@
 	},
 	"output.unsaved_changes":
 	{
-		"height": 27.0
+		"height": 29.0
 	},
 	"pinned_build_system": "",
 	"project": "vehicleTrackingSystem.sublime-project",

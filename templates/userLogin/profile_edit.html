@@ -20,6 +20,10 @@
     /*height: 400px;*/
     background-color: #F0F8FF;
 	}
+	#browse{
+		height: 0;
+		visibility: hidden;
+	}
 </style>
 
 
@@ -44,7 +48,11 @@
 			<input type = "text" class = "form-control" name = "name" placeholder = "Name" autofocus><br>
 			<input type = "text" class = "form-control" name = "username" placeholder = "Username" autofocus><br>
 			<input type = "text" class = "form-control" name = "email" placeholder = "Email" autofocus><br>
-			<input type = "file"  class = "form-control" name = "logo" placeholder = "Logo" autofocus><br/>
+			<div class="input-group">
+			  <input type="text" class="form-control" placeholder="logo" aria-describedby="basic-addon2">
+			  <span class="input-group-addon invokeupload" style="padding:3px 10px 3px 10px;"id="basic-addon2"><img src="logo/folder.png" width="28px" height="26px" onmouseover="this.src='logo/folder.png'" onmouseout="this.src='/images/folder.png'"/></span>
+			</div>
+			<input type = "file" name = "logo" id="browse" autofocus><br/>
 			<input type="submit" class = "btn btn-success" value="Save" />&nbsp;
 			<button class = "btn btn-default">Cancel</button>
 		</form>
@@ -63,7 +71,13 @@
 </div>
 
 <script src="socket.io/socket.io.js"></script>
- <script src="js/userLogin/edit_profile.js" type="text/javascript"></script>
+<script src="js/userLogin/edit_profile.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+	$(".invokeupload").click(function(){
+	$("#browse").click();
+});
+  </script>
 
 </body>
 </html>

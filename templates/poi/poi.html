@@ -1,0 +1,303 @@
+
+
+<html>
+<br>
+<title>Locations</title>
+
+<head>
+<!-- Bootstrap -->
+	 <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+  	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
+
+  
+	<link rel="stylesheet" href="/css/poi/poi.css" />
+	<link rel="stylesheet" href="/css/poi/calendar.css" />
+
+
+	<!-- Leaflet resources -->
+	<link rel="stylesheet" href="/leaflet/leaflet.css" />
+	<script src="leaflet/leaflet.js"></script>
+
+
+
+
+<!-- Menu toggle -->
+
+	
+	<!--  -->
+ 
+</head>
+
+<body>
+
+	<div class = "row navbar-fixed-top" style = "background-color: #282828; color: #EEEEEE; padding-left: 25px; padding-right: 15px;">
+		<!-- <div class = "col-sm-1"></div> -->
+<!---->	<div class = "col-sm-6">
+		<div class = "col-sm-2" style="padding-top:0.5em;"><a href="/poi"><img id="logo" height="30em" width="60em" class="img-responsive"/></a></div>
+		<h3><a href="/poi" onMouseOver="this.style.color='#fff'"><div id="company_name" class = "col-sm-10"></div></a></h3>
+		</div>
+		<div class = "col-sm-3"></div>
+		<div class = "col-sm-1"><a href = "#" style = "text-decoration: none;"><h4>Apps</h4></a></div>
+		<div class = "col-sm-1"><a href = "#" style = "text-decoration: none;"><h4>Profile</h4></a></div>
+		<div class = "col-sm-1"><a href = "/logout" style = "text-decoration: none;"><h4>Log Out</h4></a></div>
+
+	</div>
+
+
+	<div class = "container">
+		
+		<!-- <span>{{name}}</span> -->
+		<div class = "row" style="border-bottom:1px solid #CCCCCC;"><br>
+
+			<div class = "col-sm-3">
+				<!-- <a href = "/map"><button class = "btn btn-success btn-lg"><i class="material-icons w3-xxlarge">local_shipping</i></button></a> -->
+<!---->			<div id = "vehicles_menu" class = "col-sm-6"><h5><a href = "/vehicle" 
+				style = "text-decoration: none;"><span class = "glyphicon glyphicon-road"></span> Vehicles</a></h5></div>
+<!---->			<div id = "POI_menu" class = "menuItem currMenu col-sm-5"><h5><a href = "/poi" 
+				style = "text-decoration: none;"><span class = "glyphicon glyphicon-map-marker"></span> POI</a></h5></div>
+				<!-- <div id = "demo">Hey</div> -->
+
+
+			</div>
+			<div class = "col-sm-8">
+				
+			</div>
+
+		</div><br>
+
+		<div class = "row">
+<!---->		<div id = "temporaryBar" style="border-right:1px solid #CCCCCC;height:500px"
+				class = "col-md-3">
+				
+			<div class = "row">
+				<div class = "col-md-10" style = "border-bottom: 1px solid #CCCCCC;">
+					<h4>All POIs</h4>
+					<div class = "row">
+						
+						<div class = "col-md-5">
+						<h4><small>Filter by</small></h4>
+						</div>
+						<div class = "col-md-7">
+<!---->						<select id = "sortKey" style = "background-color: #F0F0F0;
+							 border-radius: 5px; border-color: #909090;" name="orderBy">
+							  <option value="Recently Added">Recently Added</option>
+							  <option value="A-Z" selected>A-Z</option>
+							  <option value="Z-A">Z-A</option>
+							  <option value="Most Visited">Most Visited</option>
+							</select>
+							<!-- <div class="dropup">
+							  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    Recently Added
+							    <span class="caret"></span>
+							  </button>
+							  <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+							    <li><a href="#">Recently Added</a></li>
+							    <li><a href="#">A-Z</a></li>
+							    <li><a href="#">Z-A</a></li>
+							    <li><a href="#">Most Visited</a></li>
+							  </ul>
+							</div> -->
+						</div>
+						
+					</div>
+					
+
+
+				</div>
+<!---->			<div class = "col-md-2" style= "padding-top: 180px; padding:bottom: 100px;">
+					<span data-toggle="tooltip" data-placement="left" title="Hide/show" id = "collapse" style = "border-style: solid; border-color: #C0C0C0; border-width: 1px; cursor: pointer; color: #C0C0C0; font-size: 20px;" class = "glyphicon glyphicon-chevron-left"></span>
+				</div>
+			</div>
+				
+
+
+
+				
+
+				<div class = "row">
+<!---->				<ul id = "poiList">
+						<!-- <li>Abcd</li> -->
+						<!-- <li>Efgh</li> -->
+
+					</ul>	
+				</div>
+
+				
+			</div>
+<!---->		<div id = "poiMapContainer" class = "col-md-9">
+				<div class = "col-md-9"></div>
+				<div class = "btn-group col-md-3">
+					
+<!---->				<button id = "mapPOI" class = "btn btn-default btn-sm currPoiTab">Map</button>
+<!---->				<button id = "actPOI" class = "btn btn-default btn-sm">Activities</button>
+						<!-- <button class = "btn btn-default btn-sm" onclick = "removeLayers()">Remove</button> -->
+					
+				</div><br>
+
+				
+
+					<br>
+					
+
+<!---->			<div class = "col-md-12" id = "poiMap" data-toggle="modal" 
+				data-target="#exampleModal" data-whatever="@mdo" style = "height: 450px;"></div>
+				
+<!---->			<div id = "poiActs" style = "display: none;">
+					<div class = "row">
+
+<!---->					<div id="calDiv">
+					
+<!---->						<ul id="monthName"></ul>
+<!---->						<table id="calendar"></table>
+						</div>
+					</div>
+
+
+						
+					<br><br>
+
+<!---->				<div id = "poi_actlist" class = "scrollActs"></div>
+				</div>
+
+				
+
+
+
+				
+
+
+
+			</div>
+
+
+		</div>
+		
+		
+	</div><br>
+
+
+	<br>
+
+
+
+	<div class = "navbar-fixed-bottom" style = "background-color: #F0F0F0; margin-bottom:5px; opacity: 0.7; height: 60px; padding-right: 100px;">
+		<br><p style = "float:right;"><b>Maulik Taranga Pvt. Ltd. </b> <br>Copyright &copy; 2015</p>
+	</div>
+
+
+
+<!-- Popup prompt form start -->
+
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+	  <div class="modal-dialog" style = "margin-left: 550px; margin-right: 100px; margin-top: 200px; margin-bottom: 100px;">
+	    <div class="modal-content" style = "width: 300px;">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        
+	      </div>
+	     <!--  <div class="modal-body"> -->
+	        <form action = "/sendRecipient" method = "POST">
+	        	<div class="modal-body">
+					<div class="form-group">
+						<label for="recipient-name" class="control-label">Add New POI at: </label><p id = "poiAdd"></p><br>
+						<input type="text" id="poi_name" class="form-control" name = "poiName" placeholder = "Name of POI"><br>
+						<input type = "textarea" id = "poi_details" class="form-control" name = "poiDetails" placeholder = "Details">
+					</div>
+	          
+	     		</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" id = "savePOI">Save</button>
+				</div>
+	        </form>
+	    </div>
+	  </div>
+	</div>
+	<!-- Popup prompt form end -->
+	<script type="text/javascript" src='socket.io/socket.io.js'></script>
+
+	<!-- Calendar -->
+	<script type="text/javascript" src = "/js/poi/calendar.js"></script>
+	<script type="text/javascript" src = "/js/poi/poi.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#mapPOI").click(function(){
+				$('#actPOI').removeClass('currPoiTab');;
+				$(this).addClass('currPoiTab');
+				$('poiMap').show();
+				$('#poiActs').hide();
+		    });
+
+
+		    $("#actPOI").click(function(){
+				$('#mapPOI').removeClass('currPoiTab');
+				$(this).addClass('currPoiTab');
+				$('#poiMap').hide();
+				$('#poiActs').show();
+		    });    
+
+			$('#collapse').click(function(){
+				$('#temporaryBar').toggle(500);
+				// $('#expandBar').show();
+				// $(this).toggleClass('glyphicon-chevron-left');
+				// $(this).toggleClass('glyphicon-chevron-right');
+				$('#poiMapContainer').toggleClass('col-md-9');
+				$('#poiMapContainer').toggleClass('col-md-12');
+			});
+
+			var currpois = document.getElementsByClassName('currPOI');
+				if(currpois.length != 1){
+				// var actButt = document.getElementById('actButton');
+				// $('#actButton').prop('disabled', true);
+				$('#actPOI').prop('disabled', true);
+				console.log(activeVehicles.length);
+
+			}
+		});
+
+	</script>
+	<script type="text/javascript">
+		var my_latitude = 27.68851;
+		var my_longitude = 85.33557;
+		var office_lat = 27.68139;
+		var office_long = 85.30197;
+
+		var popup = L.popup();
+
+		var map = L.map('poiMap',{
+		                center: [my_latitude, my_longitude],
+		                zoom: 13
+		            });  
+
+		map.on('click', onMapClick);
+
+		L.tileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+		         	attribution: '&copy; <a href="#" title="OpenStreetMap" target="_blank">OpenStreetMap</a> contributors Tiles Courtesy of <a href="http://facebook.com/bishes.adhikari" title="MapQuest" target="_blank">Bishes Adhikari<img src="icons/Photo0041.jpg" width="18" height="20"></a>',
+		          //subdomains: []m
+		          subdomains: ['otile1','otile2','otile3','otile4']
+		}).addTo( map );
+
+		var marker = L.marker([my_latitude, my_longitude]);
+		var marker2 = L.marker([office_lat, office_long]);
+
+		// map.on('click', onMapClick);
+
+		
+	</script>
+
+
+</body>
+<!-- 
+
+
+ -->
+	<!-- // Script for activity graph - calendar  -->
+
+
+</html>
+

@@ -1,0 +1,102 @@
+#header{
+font-family: times, Times New Roman, times-roman, georgia, serif;
+	color: #20F;
+	margin: 0;
+	padding: 0px 0px 10px 0px;
+	font-size: 52px;
+	line-height: 40px;
+	letter-spacing: 2px;
+	font-weight: bold;
+}
+
+/*
+#namelist {
+	color: red;
+}*/
+
+.scroll{
+    
+    background-color: #F0F8FF;
+    padding-left: 100px;
+    padding-right: 100px;
+    overflow-x: hidden;
+    width: 850px;
+    height: 180px;
+    /*color: purple;*/
+    font-size: 18px
+}
+.scrollVans{
+    
+    background-color: #F0F8FF;
+    padding-left: 100px;
+    padding-right: 100px;
+    overflow-x: hidden;
+    width: 480px;
+    height: 160px;
+    /*color: blue;*/
+    font-size: 18px;
+}
+
+.myButton {
+	background-color:#1c66e6;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	border:1px solid #4e6096;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:20px;
+	padding:5px 7px;
+	text-decoration:none;
+	text-shadow:0px 1px 4px #283966;
+}
+.myButton:hover {
+	background-color:#285d99;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+.mapButton {
+	background-color:#15870b;
+	-moz-border-radius:9px;
+	-webkit-border-radius:9px;
+	border-radius:9px;
+	border:2px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#fafafa;
+	font-family:Arial;
+	font-size:23px;
+	padding:10px 17px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.mapButton:hover {
+	background-color:#5ce810;
+}
+.mapButton:active {
+	position:relative;
+	top:1px;
+}
+
+.container {
+      /*padding-left:100px;
+      padding-right:50px;*/
+      
+}
+
+#expand {
+	background-color: #300A24;
+	color: #FFFFFF;
+}
+
+.currMenu {
+	color: #808080;
+	/*cursor: pointer;*/
+
+}

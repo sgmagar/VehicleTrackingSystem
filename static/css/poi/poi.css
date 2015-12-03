@@ -151,23 +151,6 @@
 	background-color: #F0F0F0;
 }
 
-.vehicleClass {
-	cursor: pointer;
-}
-.vehicleClass:hover {
-	background-color: #E9C8C8;
-}
-
-.catClass {
-	cursor: pointer;
-	background-color: #F0F8FF;
-	/*overflow-x: hidden;*/
-	/*height: 60px;*/
-}
-.catClass:hover {
-	background-color: #D8F5F8;
-}
-
-.expClass {
+.poiClass{
 	cursor: pointer;
 }

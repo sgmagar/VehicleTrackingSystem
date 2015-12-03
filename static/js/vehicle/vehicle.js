@@ -1,8 +1,112 @@
 "use strict"
 var socket=io();
-var currentVan = []; // For getting current ID of vehicle to update innerHTML
 
-var is_clicked = 0;
+$(document).ready(function(){ 
+    socket.emit('vehicle_map');   
+    $('#actButton').prop('disabled', true);
+    $('#dashButton').prop('disabled', true);
+    $("#mapButton").click(function(){
+      // $("#map").show();
+      $('#dashButton').removeClass('currTab');
+      $('#actButton').removeClass('currTab');;
+      $(this).addClass('currTab');
+      $('#map').show();
+      $('#act').hide();
+      $('#dash').hide();
+      socket.emit('vehicle_map');
+    });
+
+
+    $("#dashButton").click(function(){
+        // $("#map").hide();
+        // $('#dash').show();
+        $('#mapButton').removeClass('currTab');
+        $('#actButton').removeClass('currTab');
+        $(this).addClass('currTab')
+        $('#map').hide();
+        $('#act').hide();
+        $('#dash').show();
+        socket.emit('vehicle_dasboard',{'from_date':'','to_date':'','type':''});
+    });
+    $("#actButton").click(function(){
+      // $("#map").hide();
+      // $('#dash').show();
+      $('#dashButton').removeClass('currTab');
+      $('#mapButton').removeClass('currTab');
+      $(this).addClass('currTab');
+      $('#map').hide();
+      $('#dash').hide();
+      $('#act').show();
+       socket.emit('vehicle_activity');
+    });
+
+    $("#allVehicles").click(function(){
+        $('#all_vehicles_div').toggle();
+        // $('#glyphicon-play').hide();
+    });
+    $("#allCategories").click(function(){
+        $('#all_categories').toggle();
+        // $('#glyphicon-play').hide();
+    });
+
+    $('#collapse').click(function(){
+        $('#collapse_bar').toggle(500);
+        // $('#expandBar').show();
+        $(this).toggleClass('glyphicon-chevron-left');
+        $(this).toggleClass('glyphicon-chevron-right');
+        $('#mapContainer').toggleClass('col-md-9');
+        $('#mapContainer').toggleClass('col-md-12');
+    });
+});
+
+
+/////////////////////////////----------Bar Chart one--------/////////////////////
+$(function(){
+
+    var ctx = $('#my-chart').get(0).getContext('2d');
+    var data = {
+    labels: [
+      'Sep', 'Oct', 'Nov'
+    ],
+    datasets: [
+      {
+          label: 'Months',
+          fillColor: 'rgba(170,170,170,0.5)',
+          highlightFill: 'rgba(140,140,140,0.5)',
+          data: [6, 8, 12]
+      }
+    ]
+    };
+    var options = {
+    barStrokeWidth : 1,
+    // responsive: false,
+    animation: false,
+    barShowStroke: false
+    };
+
+    new Chart(ctx).Bar(data, options);
+});
+
+///////////////////////////////coding from here/////////////////////
+
+var my_latitude = 27.68851;
+var my_longitude = 85.33557;
+
+var popup = L.popup();
+
+var map = L.map('map',{
+                center: [my_latitude, my_longitude],
+                zoom: 13
+            });  
+
+var newmarker; 
+var circle; 
+var polyLine; 
+L.tileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="#" title="OpenStreetMap" target="_blank">OpenStreetMap</a> contributors Tiles Courtesy of <a href="http://facebook.com/bishes.adhikari" title="MapQuest" target="_blank">Bishes Adhikari<img src="icons/Photo0041.jpg" width="18" height="20"></a>',
+          //subdomains: []m
+          subdomains: ['otile1','otile2','otile3','otile4']
+}).addTo( map );
 
 socket.on('company_vehicle_info', function (data){
     var company_name_html = document.getElementById('company_name');
@@ -14,16 +118,156 @@ socket.on('company_vehicle_info', function (data){
         logo_image.src=logo;
     }
 });
+
 socket.on('vehicle_info', function (data){
-    
+    var listCats = document.getElementById('all_categories');
+    for(var i=0;i<data.length;i++){
+        var item =  document.createElement("div"); 
+        item.classList.add("catClass");
+        var itemTitle = document.createElement('h4');
+        itemTitle.innerHTML = data[i].category;
+        item.appendChild(itemTitle);
+        var vehList = document.createElement('ul');
+        vehList.classList.add('vehListClass');
+        for( var j = 0; j < data[i].vehicle.length; j++){
+            var vehName = data[i].vehicle[j];
+            // console.log(vehName);
+            var corrVeh = document.createElement("li");
+            corrVeh.innerHTML = vehName;
+            // item.appendChild(corrVeh);
+            corrVeh.setAttribute('id', 'exp' + (i+1));
+            corrVeh.classList.add('expClass');
+            corrVeh.onclick=function(){
+                socket.emit('vehicle', {'vehicle':this.innerHTML});
+                var menuTab =  document.getElementsByClassName('currTab')[0].innerHTML;
+                $('#actButton').prop('disabled', false);
+                $('#dashButton').prop('disabled', false);
+                if(menuTab=="Map"){
+                    socket.emit('vehicle_map');
+                }else if(menuTab=="Activities"){
+                    socket.emit('vehicle_activity');
+                }else if(menuTab=="Dashboard"){
+                    socket.emit('vehicle_dasboard',{'from_date':'','to_date':'','type':''});
+                }
+                //alert(this.innerHTML+" "+ document.getElementsByClassName('currTab')[0].innerHTML);
+            }
+            vehList.appendChild(corrVeh);
+            // if(i==data.length-1 && i==data[i].vehicle.length-1){
+            //     var event = new Event("vehicleLoaded");
+              
+            // }
+        }
+        item.appendChild(vehList);
+        listCats.appendChild(item);
+    } 
 });
 
-var d = new Date();
-var isoDate = d.toISOString(d);
-var substr = isoDate.substring(0,10);
+socket.on('vehicle_map_first', function (data){
+    console.log(data);
+})
 
 
-var is_logged; 
+
+    
+
+
+
+
+
+
+////////////////toggle///////////////////
+$(".catClass").click(function(){
+    $('#all_vehicles_div').toggle();
+    // $('#glyphicon-play').hide();
+});
+
+
+//////////////////////////////----------------map---------------//////////////////
+
+
+var marker = L.marker([my_latitude, my_longitude]);
+var marker2 = L.marker([office_lat, office_long]);
+
+function onMarkerClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent("Location: " + e.latlng.toString())
+        .openOn(map);
+}
+
+function onCircleClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent("Stopped at: " + e.latlng.toString())
+        .openOn(map);
+}
+
+
+function addToDeliverMarker(lat, lon, e){
+            console.log('Marker function called with ' + lat + ', ' + lon);
+            if(newmarker != undefined){
+                map.removeLayer(newmarker);
+            }
+          // console.log('Plotting these: ' + lat + ', ' + lon);
+          newmarker = L.marker([lat, lon]); //.addTo(map);  // Plotted 
+          // newmarker.valueOf()._icon.style.backgroundColor = 'red';
+          // newmarker.bindPopup("Marker at: " + e.latlng);
+
+          newmarker.on('click', onMarkerClick);
+
+          map.addLayer(newmarker);
+
+     }
+
+
+
+function init_locations(lat, lon){
+    var initMarker = L.marker([lat, lon]);
+    map.addLayer(initMarker);
+    setTimeout(function(){
+        map.removeLayer(initMarker);
+    }, 10000);
+}
+
+
+
+
+// var circle = L.circle([my_latitude, my_longitude], 250, {
+//     color: 'red',
+//     fillColor: '#f03',
+//     fillOpacity: 0.5
+// }).addTo(map);
+
+function stoppage(lat, long, rad, e){
+    console.log('Circle function calledc with ' + lat + ', ' + long);
+        if(circle != undefined){
+            map.removeLayer(circle);
+        }   
+
+        circle = L.circle([lat, long], rad, {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5
+    }); //.addTo(map);  
+// circle.bindPopup("Circle at: " + e.latlng);
+circle.on('click', onCircleClick);
+
+map.addLayer(circle);
+        
+}
+
+function drawRoute(waypoints, polyline_options){
+
+        console.log('Polyline function called qith ');
+        if(polyLine != undefined){
+            map.removeLayer(polyLine);
+        }
+        // console.log(waypoints);
+        polyLine = L.polyline(waypoints, polyline_options); //.addTo(map);
+        map.addLayer(polyLine);
+}
+////////////////////////////////----------jquery-----///////////////////////////
+
 
 // var value = require('./Desktop/Distribution\ Company/init.js');
 

@@ -1,5 +1,6 @@
 
 
+
 <html>
 <br>
 <title>Dashboard</title>
@@ -14,9 +15,9 @@
 	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-<!-- Leaflet resources -->
-<link rel="stylesheet" href="/leaflet/leaflet.css" />
-<link rel="stylesheet" type="text/css" href="/css/vehicle/vehicle.css">
+	<!-- Leaflet resources -->
+	<link rel="stylesheet" href="/leaflet/leaflet.css" />
+	<link rel="stylesheet" type="text/css" href="/css/vehicle/vehicle.css">
 
 
 
@@ -58,15 +59,12 @@
 
 </head>
 
-<body onload = "bodyLoaded()">
-
-<div>
-
+<body>
 
 <div class = "row navbar-fixed-top" style = "background-color: #282828; color: #EEEEEE; padding-left: 25px; padding-right: 15px;">
 		<!-- <div class = "col-sm-1"></div> -->
 		<div class = "col-sm-6">
-		<div class = "col-sm-2" style="padding-top:0.5em;"><a href="/vehicle" ><img id="logo" height="30em" width="60em" class="img-responsive"/></a></div>
+		<div class = "col-sm-2" style="padding-top:0.5em;"><a href="/vehicle" ><img id="logo" height="60em" width="60em" class="img-responsive img-circle"/></a></div>
 		<h3><a href="/vehicle" onMouseOver="this.style.color='#fff'"><div id="company_name" class = "col-sm-10"></div></a></h3>
 		</div>
 		<div class = "col-sm-3"></div>
@@ -92,133 +90,81 @@
 		</div>
 		<div class = "col-sm-8">
 		</div>
-		<!-- <div class = "col-sm-1"> -->
-			<!-- <button type="button" style = "color: blue;" class="btn btn-default btn-lg">
-				<span class = "glyphicon glyphicon-globe"></span>
-			</button> -->
-		<!-- </div> -->
-		<!-- <div class = "col-sm-1"> -->
-			<!-- <button type="button" style = "color: blue;" class="btn btn-default btn-lg">
-				<span class = "glyphicon glyphicon-envelope"></span>
-			</button> -->
-		<!-- </div> -->
-
-		<!-- <div class = "col-sm-1"> -->
-		<!-- <a href = "/logout">
-		<button type = "button" style = "color: blue;" class = "btn btn-default btn-lg">
-			<span class = "glyphicon glyphicon-user"></span>Logout</a>
-		</button></a> -->
-		<!-- </div> -->
-	</div><br>
-	<!-- <hr style = "display: block; color: #000; height: 7px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0;" /> -->
-	<div class = "row">
-		<div style="border-right:1px solid #CCCCCC;height:500px" class = "col-md-2" id = "collapse_bar">
-
-
-		<div class="col-md-10">
-			
 		
+	</div><br>
 
-			<!-- <div class = "col-md-10"> -->
-				<!-- <h5 id = "allVehicles"><span class = "glyphicon glyphicon-play" style = "cursor: pointer;"></span></h5> -->
-				<!-- <div id = "all_vehicles_div" class = "scroll">
-					<ul id = "all_vehicles"></ul>
-				</div> -->
+	<div class = "row">
+		<div style="border-right:1px solid #CCCCCC;height:500px" class = "col-md-3" id = "collapse_bar">
 
-				<h5 id = "allCategories" style = "cursor: pointer;"><b>All Vehicles</b></h5><br>
-				<div class = "row">
-					<div id = "all_categories" style = "font-size: 16px;" class = "col-md-5">
-						
+			<div class="row">
+				<div class="col-md-10">
+					<h5 id = "allCategories" style = "cursor: pointer;"><b>All Vehicles</b></h5><br>
+					<div class = "row">
+						<div id = "all_categories" style = "font-size: 16px;"></div>
 					</div>
-					<div class = "col-md-7">
-						<ul id = "expandList"></ul>
-					</div>
+					<br><br>
+					<a href="/device" style = "text-decoration: none;"><span class = "glyphicon glyphicon-plus"></span>New Vehicle</a>
 				</div>
 
-				<!-- <h5>Trucks</h5>
-				<div class = "scrollCat">
-		
-				</div><br>
-				<h5>Cars</h5>
-
-				<div class = "scrollCat"></div><br>
-				<h5>Delivery Vans</h5>
-				<div class = "scrollCat"></div> -->
-				<br><br>
-				<a href="/device" style = "text-decoration: none;"><span class = "glyphicon glyphicon-plus"></span>New Vehicle</a>
-
-			</div>
-			<!-- </div> -->
-			<div class = "col-md-1"></div>
-			<div class = "col-md-1" style= "padding-top: 180px; padding:bottom: 100px;">
-					<span data-toggle="tooltip" data-placement="left" title="Hide/show" id = "collapse" style = "border-style: solid; border-color: #C0C0C0; border-width: 1px; cursor: pointer; color: #C0C0C0; font-size: 20px;" class = "glyphicon glyphicon-chevron-left"></span>
-			</div>
+				<!-- </div> -->
+				<div class = "col-md-1"></div>
+				<div class = "col-md-1" style= "padding-top: 180px; padding:bottom: 100px;">
+						<span data-toggle="tooltip" data-placement="left" title="Hide/show" id = "collapse" style = "border-style: solid; border-color: #C0C0C0; border-width: 1px; cursor: pointer; color: #C0C0C0; font-size: 20px;" class = "glyphicon glyphicon-chevron-left"></span>
+				</div>
 			
-
-			
-
-			<!-- <div id = "expandDiv" class = "col-md-2" style= "padding-top: 180px; padding:bottom: 100px; "><button id = "expandBar" style = "display: none;" class = "btn btn-default"><span class = "glyphicon glyphicon-chevron-right"></span></button></div> -->
-
+			</div>
 		</div>
-		
-		
 
-		<div class = "col-md-10" id = "mapContainer">
-
+		<div class = "col-md-9" id = "mapContainer">
 			
-			
-			
-					<div class = "col-md-9"></div>
-					<div class = "col-md-3 btn-group">
-						<button id = "mapButton" class = "btn btn-default btn-sm currTab">Map</button><button id = "dashButton" class = "btn btn-default btn-sm">Dashboard</button><button id = "actButton" class = "btn btn-default btn-sm">Activities</button>
-						<!-- <button class = "btn btn-default btn-sm" onclick = "removeLayers()">Remove</button> -->
-					</div><br><br>
+			<div class = "col-md-8"></div>
+			<div class = "col-md-4 btn-group" style="padding-right:0;">
+				<button id = "actButton" class = "btn btn-default btn-sm pull-right">Activities</button>
+				<button id = "dashButton" class = "btn btn-default btn-sm pull-right">Dashboard</button>
+				<button id = "mapButton" class = "btn btn-default btn-sm currTab pull-right">Map</button>
+				<!-- <button class = "btn btn-default btn-sm" onclick = "removeLayers()">Remove</button> -->
+			</div><br /><br />
 
-					<div class = "col-md-12" style = "height: 480px;" id = 'map'></div>
+			<div class = "col-md-12" style = "height: 480px;" id = 'map'></div>
 
-					<div style = "height: 480px; display: none;" id='act'>
-						<br>
+			<!-- activity -->
 
-						<div class = "row">
-							<div class = "col-md-10"></div>
-							<div class = "col-md-2">
-								<a href = "/new_activity"><span class = "glyphicon glyphicon-plus"></span>New Activity</a>
-							</div>
+			<div style = "height: 480px; display: none;" id='act'>
+				<br>
 
-						</div>
-						
-					<table id = "vehicle_activities_table">
-						<tr>
-						    <th style = "text-align: center;">Location</th>
-						    <th style = "text-align: center;">Issued Date</th>		
-						    <th style = "text-align: center;">Status</th>
-						  </tr>
-					</table>
-					<br><br>
-					<div id = "barAndAct" style = "display: none;" class = "row">
-					<div class = "col-md-3">
-					<h6>Frequency of visits</h6>
-						<canvas id="my-chart" height="180"></canvas>
-					</div>
-					<div class = "col-md-2"></div>
-					
-						<div class = "col-md-6" >
-						<h6>Activities</h6>
-							 <div class = "scrollActs" id = "activity_list"></div>
-						</div>
-
-					</div>		
-
+				<div class = "row">
+					<div class = "col-md-10"></div>
+					<div class = "col-md-2">
+						<a href = "/new_activity"><span class = "glyphicon glyphicon-plus"></span>New Activity</a>
 					</div>
 
+				</div>
+				
+				<table id = "vehicle_activities_table">
+					<tr>
+					    <th style = "text-align: center;">Location</th>
+					    <th style = "text-align: center;">Issued Date</th>		
+					    <th style = "text-align: center;">Status</th>
+					  </tr>
+				</table>
+				<br><br>
+				<div id = "barAndAct" style = "display: none;" class = "row">
+				<div class = "col-md-3">
+				<h6>Frequency of visits</h6>
+					<canvas id="my-chart" height="180"></canvas>
+				</div>
+				<div class = "col-md-2"></div>
+				
+					<div class = "col-md-6" >
+					<h6>Activities</h6>
+						 <div class = "scrollActs" id = "activity_list"></div>
+					</div>
 
+				</div>		
 
+			</div>
 
-			
-
-
-			
-
+			<div class = "col-md-12" id = 'dash'><h2>I am dashboard.</h2></div>
 
 
 		</div>
@@ -227,12 +173,8 @@
 	</div>
 	
 	
-</div><br>
-
-
-<br>
-
-
+</div><br />
+<br />
 
 <div class = "navbar-fixed-bottom" style = "background-color: #F0F0F0; opacity: 0.75; padding-right: 100px;">
  	<br><p style = "float:right;"><b>Maulik Taranga Pvt. Ltd. </b> <br>Copyright &copy; 2015</p>
@@ -245,277 +187,10 @@
 	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 	<script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 	<script type="text/javascript" src = "/js/vehicle/vehicle.js"></script>
-	<script type="text/javascript">
-			// var waypoints = [];
-			// var polyline_options = {
-			//             color: '#000'
-			// };
-
-
-
-			// Script for map - open 
-
-			var my_latitude = 27.68851;
-			var my_longitude = 85.33557;
-			var office_lat = 27.68139;
-			var office_long = 85.30197;
-
-
-			var popup = L.popup();
-
-			var map = L.map('map',{
-			                center: [my_latitude, my_longitude],
-			                zoom: 13
-			            });  
-
-			var newmarker; 
-			var circle; 
-			var polyLine; 
-
-
-			// map.on('click', onMapClick);
-
-			L.tileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
-			         	attribution: '&copy; <a href="#" title="OpenStreetMap" target="_blank">OpenStreetMap</a> contributors Tiles Courtesy of <a href="http://facebook.com/bishes.adhikari" title="MapQuest" target="_blank">Bishes Adhikari<img src="icons/Photo0041.jpg" width="18" height="20"></a>',
-			          //subdomains: []m
-			          subdomains: ['otile1','otile2','otile3','otile4']
-			}).addTo( map );
-
-			var marker = L.marker([my_latitude, my_longitude]);
-			var marker2 = L.marker([office_lat, office_long]);
-			// map.addLayer(marker);
-			// map.addLayer(marker2);
-
-			// function removeLayers(){
-				// map.removeLayer(marker);
-				// map.removeLayer(marker2);
-			// }
-
-
-
-			// var popup = L.popup()
-			//     .setLatLng([51.5, -0.09])
-			//     .setContent("I am a standalone popup.")
-			//     .openOn(map);
-
-			function onMarkerClick(e) {
-			    popup
-			        .setLatLng(e.latlng)
-			        .setContent("Location: " + e.latlng.toString())
-			        .openOn(map);
-			}
-
-			function onCircleClick(e) {
-			    popup
-			        .setLatLng(e.latlng)
-			        .setContent("Stopped at: " + e.latlng.toString())
-			        .openOn(map);
-			}
-
-
-			function addToDeliverMarker(lat, lon, e){
-						console.log('Marker function called with ' + lat + ', ' + lon);
-						if(newmarker != undefined){
-							map.removeLayer(newmarker);
-						}
-			          // console.log('Plotting these: ' + lat + ', ' + lon);
-			          newmarker = L.marker([lat, lon]); //.addTo(map);  // Plotted 
-			          // newmarker.valueOf()._icon.style.backgroundColor = 'red';
-			          // newmarker.bindPopup("Marker at: " + e.latlng);
-
-			          newmarker.on('click', onMarkerClick);
-
-			          map.addLayer(newmarker);
-
-			     }
-
-
-
-			function init_locations(lat, lon){
-				var initMarker = L.marker([lat, lon]);
-				map.addLayer(initMarker);
-				setTimeout(function(){
-					map.removeLayer(initMarker);
-				}, 10000);
-			}
-
-
-
-
-			// var circle = L.circle([my_latitude, my_longitude], 250, {
-			//     color: 'red',
-			//     fillColor: '#f03',
-			//     fillOpacity: 0.5
-			// }).addTo(map);
-
-			function stoppage(lat, long, rad, e){
-				console.log('Circle function calledc with ' + lat + ', ' + long);
-					if(circle != undefined){
-						map.removeLayer(circle);
-					}	
-
-					circle = L.circle([lat, long], rad, {
-				    color: 'red',
-				    fillColor: '#f03',
-				    fillOpacity: 0.5
-				}); //.addTo(map);	
-			// circle.bindPopup("Circle at: " + e.latlng);
-			circle.on('click', onCircleClick);
-
-			map.addLayer(circle);
-					
-			}
-
-			// marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
-
-
-			// function onMapClick(e) {
-			//     alert("Location " + e.latlng);
-			// }
-
-			// latlist = [27.703262, 27.726665, 27.671104, 27.701418, 27.68139]; 
-			//                       longlist = [85.311824, 85.345727, 85.324563, 85.320382, 85.30197];
-			//                       var polyline_options = {
-			// 					    color: '#000'
-			// 					};
-			// 					var locArray = [];
-			// 					for(i = 0; i < latlist.length; i++){
-			// 						wpts = [latlist[i], longlist[i]];
-			// 						locArray.push(wpts);
-			// 					}
-			// 					console.log(locArray);
-			// drawRoute(locArray, polyline_options);
-
-			function drawRoute(waypoints, polyline_options){
-
-					console.log('Polyline function called qith ');
-					if(polyLine != undefined){
-						map.removeLayer(polyLine);
-					}
-					// console.log(waypoints);
-			        polyLine = L.polyline(waypoints, polyline_options); //.addTo(map);
-			        map.addLayer(polyLine);
-			}
-	</script>
+	
 		<!-- Menu toggle -->
-	<script type="text/javascript">
-		$(document).ready(function(){
-		    $("#mapButton").click(function(){
-		      // $("#map").show();
-		      $('#dashButton').removeClass('currTab');
-		      $('#actButton').removeClass('currTab');;
-		      $(this).addClass('currTab');
-		      $('#map').show();
-		      $('#act').hide();
-		    });
-
-
-		    $("#dashButton").click(function(){
-				// $("#map").hide();
-				// $('#dash').show();
-				$('#mapButton').removeClass('currTab');
-				$('#actButton').removeClass('currTab');
-				$(this).addClass('currTab');
-		    });
-		    $("#actButton").click(function(){
-		      // $("#map").hide();
-		      // $('#dash').show();
-		      $('#dashButton').removeClass('currTab');
-		      $('#mapButton').removeClass('currTab');
-		      $(this).addClass('currTab');
-		      $('#map').hide();
-		      $('#act').show();
-		    });
-
-		    $("#allVehicles").click(function(){
-		    	$('#all_vehicles_div').toggle();
-		    	// $('#glyphicon-play').hide();
-		    });
-		    $("#allCategories").click(function(){
-		    	$('#all_categories').toggle();
-		    	// $('#glyphicon-play').hide();
-		    });
-
-		    $('#collapse').click(function(){
-		    	$('#collapse_bar').toggle(500);
-		    	// $('#expandBar').show();
-		    	$(this).toggleClass('glyphicon-chevron-left');
-		    	$(this).toggleClass('glyphicon-chevron-right');
-		    	$('#mapContainer').toggleClass('col-md-10');
-		    	$('#mapContainer').toggleClass('col-md-12');
-		    });
-
-
-
-		    // $("#POI_menu").click(function(){
-		    //   // $("#map").hide();
-		    //   // $('#act').hide();
-		    //   // $('#activity_graph').show();
-		    //   $('#vehicles_menu').removeClass('currMenu');
-		    //   $(this).addClass('currMenu');
-
-		    // });
-		    // $("#vehicles_menu").click(function(){
-		    //   // $("#map").show();
-		    //   // $('#activity_graph').hide();
-		      
-		    //   $('#POI_menu').removeClass('currMenu');
-		    //   $(this).addClass('currMenu');
-		    // });
-
-
-			var activeVehicles = document.getElementsByClassName('currVehicle');
-		    if(activeVehicles.length != 1){
-		    	// var actButt = document.getElementById('actButton');
-		    	$('#actButton').prop('disabled', true);
-		    	$('#dashButton').prop('disabled', true);
-		    	console.log(activeVehicles.length);
-
-		    }
-	    // else if (activeVehicles.length != 0){
-	    	// $('#actButton').prop('disabled', false);
-	    	// $('#dashButton').prop('disabled', false);
-	    // 	console.log(activeVehicles.length);
-	    // }
-
-
-
-		});
-	</script>
-	<script type="text/javascript">
-		//Barchart
-		// Reference the labelled graph from bargraph.html 
-		$(function(){
-
-			var ctx = $('#my-chart').get(0).getContext('2d');
-			var data = {
-			labels: [
-			  'Sep', 'Oct', 'Nov'
-			],
-			datasets: [
-			  {
-			      label: 'Months',
-			      fillColor: 'rgba(170,170,170,0.5)',
-			      highlightFill: 'rgba(140,140,140,0.5)',
-			      data: [6, 8, 12]
-			  }
-			]
-			};
-			var options = {
-			barStrokeWidth : 1,
-			// responsive: false,
-			animation: false,
-			barShowStroke: false
-			};
-
-			new Chart(ctx).Bar(data, options);
-		});
-	</script>
 <!-- Calendar -->
 <!-- <script type="text/javascript" src = "adminSource/calendar.js"></script> -->
-
-
-
 </body>
 <!-- 
 

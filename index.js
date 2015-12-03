@@ -1119,7 +1119,7 @@ app.post('/newvehicle', urlencodedparser, function (req, res){
 											new_vehicle_client.end();
 										}else{
 											req.session.device_id='';
-											res.redirect('/editprofile');
+											res.redirect('/vehicle');
 										}
 									});
 
@@ -1304,7 +1304,7 @@ app.get('/poi', function (req, res){
 					res.sendFile('/templates/poi/poi.html', {root: __dirname});
 					get_poi_client.end();
 				}else{
-					console.log(result.rows)
+					
 					var company_name = req.session.company;
 					var logo = req.session.logo;
 					console.log(company_name+" "+logo);
@@ -1312,14 +1312,15 @@ app.get('/poi', function (req, res){
 						'company_name':company_name,
 						'logo': logo
 					}
-
+					res.sendFile('/templates/poi/poi.html',{root: __dirname});		
 					io.on('connection', function(socket){
 						socket.emit('company_poi_info',company_info);
 						socket.emit('poi_map_filter',result.rows);
+						console.log(result.rows);
 						result.rows=[];
 						company_info={};
 					});
-					res.sendFile('/templates/poi/poi.html',{root: __dirname});					
+								
 					get_poi_client.end();
 					
 				}
@@ -1348,6 +1349,7 @@ io.on('connection', function (socket){
 		socket.request.session.company_id_vehicle = '';
 		socket.request.session.device_id ='';
 		var vehicle = data.vehicle;
+		console.log("The vehicle Clicked: "+vehicle);
 		var username =socket.request.session.user;
 		var vehicle_client = new pg.Client(db_connection);
 		vehicle_client.connect(function (err){
@@ -1365,7 +1367,8 @@ io.on('connection', function (socket){
 						console.log(result.rows);
 						socket.request.session.vehicle_id= result.rows[0].vehicle_id;
 						socket.request.session.company_id_vehicle = result.rows[0].company_id;
-						socket.request.session.device_id = device_id;    
+						socket.request.session.device_id = result.rows[0].device_id;
+						console.log(socket.request.session.vehicle_id);    
 						vehicle_client.end();
 					}
 				});
@@ -1377,6 +1380,7 @@ io.on('connection', function (socket){
 	socket.on('vehicle_map', function(data){
 		if(!socket.request.session.vehicle_id){
 			var username = socket.request.session.user;
+			console.log("vehicle_map without session");
 			var device_id_client = new pg.Client(db_connection);
 			device_id_client.connect(function (err){
 				if(err){
@@ -1426,7 +1430,7 @@ io.on('connection', function (socket){
 			var vehicle_id=socket.request.session.vehicle_id;
 			var company_id=socket.request.session.company_id_vehicle;
 			var device_id=socket.request.session.device_id;
-
+			console.log("vehicle_map with session");
 			var d = new Date();
 			var sdd = d.toISOString();
 			var date = sdd.substring(0,10).replace(/-/gi,'');
@@ -1491,7 +1495,7 @@ io.on('connection', function (socket){
 			var vehicle_id=socket.request.session.vehicle_id;
 			var company_id=socket.request.session.company_id_vehicle;
 			var device_id=socket.request.session.device_id;
-
+			console.log("vehicle_activity with session");
 			var vehicle_activity_client = new pg.Client(db_connection);
 			vehicle_activity_client.connect(function (err){
 				if(err){
@@ -1623,6 +1627,7 @@ io.on('connection', function (socket){
 		if(!socket.request.session.vehicle_id){
 
 		}else{
+			console.log("vehicle dash_board with session");
 			var from_date = data.from_date;
 			var to_date = data.to_date;
 			var type = data.type;
@@ -1649,8 +1654,10 @@ io.on('connection', function (socket){
 			if(!to_date){
 				to_date=date;
 			}
+			console.log(from_date);
+			console.log(to_date);
 
-			vehicle_dashboard_client.query.connect(function (err){
+			vehicle_dashboard_client.connect(function (err){
 				if(err){
 					console.log("Could not connect to postgres on vehicle_dashboard", err);
 				}else{
@@ -1659,12 +1666,13 @@ io.on('connection', function (socket){
 							'array_agg(speed) AS speed,array_agg(latitude) AS latitude,'+
 							'array_agg(longitude) AS longitude '+
 							'FROM vehicle_data WHERE device_id=$1 AND date BETWEEN '+
-							'from_date AND to_date GROUP BY date ORDER BY date',
-							[device_id], function (err,result){
+							'$2 AND $3 GROUP BY date ORDER BY date',
+							[device_id,from_date,to_date], function (err,result){
 
 							if(err){
 								console.log('Select speed detail error in vehicle_dashboard',err);
 							}else{
+								console.log(result.rows);
 								socket.emit('vehicle_dashboard_speed', result.rows);
 								vehicle_dashboard_client.end();
 							}
@@ -1674,12 +1682,13 @@ io.on('connection', function (socket){
 							'array_agg(fuel) AS fuel,array_agg(latitude) AS latitude,'+
 							'array_agg(longitude) AS longitude '+
 							'FROM vehicle_data WHERE device_id=$1 AND date BETWEEN '+
-							'from_date AND to_date GROUP BY date ORDER BY date',
+							'$2 AND $3 GROUP BY date ORDER BY date',
 							[device_id], function (err,result){
 
 							if(err){
 								console.log('Select fuel detail error in vehicle_dashboard',err);
 							}else{
+								console.log(result.rows);
 								socket.emit('vehicle_dashboard_fuel', result.rows);
 								vehicle_dashboard_client.end();
 							}
@@ -1689,12 +1698,13 @@ io.on('connection', function (socket){
 							'array_agg(speed) AS speed,array_agg(fuel) AS fuel,array_agg(latitude)'+
 							' AS latitude,array_agg(longitude) AS longitude '+
 							'FROM vehicle_data WHERE device_id=$1 AND date BETWEEN '+
-							'from_date AND to_date GROUP BY date ORDER BY date',
-							[device_id], function (err,result){
+							'$2 AND $3 GROUP BY date ORDER BY date',
+							[device_id,from_date,to_date], function (err,result){
 
 							if(err){
 								console.log('Select speed detail error in vehicle_dashboard',err);
 							}else{
+								console.log(result.rows);
 								socket.emit('vehicle_dashboard', result.rows);
 								vehicle_dashboard_client.end();
 							}
@@ -1723,7 +1733,7 @@ io.on('connection', function (socket){
 			}else{
 				
 				if(filter=='A-Z'){
-					poi_map_filter_client.query('SELECT poi.name,poi.detail FROM poi INNER JOIN '+
+					poi_map_filter_client.query('SELECT poi.name,poi.detail,poi.latitude,poi.longitude FROM poi INNER JOIN '+
 						'company_detail ON poi.company_id=company_detail.id WHERE company_detail.'+
 						'username=$1 ORDER BY poi.name', [username], function (err, result){
 						if(err){
@@ -1738,7 +1748,7 @@ io.on('connection', function (socket){
 						}
 					});
 				}else if(filter=='Z-A'){
-					poi_map_filter_client.query('SELECT poi.name,poi.detail FROM poi INNER JOIN '+
+					poi_map_filter_client.query('SELECT poi.name,poi.detail,poi.latitude,poi.longitude FROM poi INNER JOIN '+
 						'company_detail ON poi.company_id=company_detail.id WHERE company_detail.'+
 						'username=$1 ORDER BY poi.name DESC', [username], function (err, result){
 						if(err){
@@ -1753,10 +1763,12 @@ io.on('connection', function (socket){
 						}
 					});
 				}else if(filter=='Most Visited'){
-					poi_map_filter_client.query('SELECT activity.poi_name AS name, activity.poi_detail AS detail '+
+					poi_map_filter_client.query('SELECT activity.poi_name AS name, activity.poi_detail AS detail,'+
+						'activity.poi_latitude AS latitude,activity.poi_longitude AS longitude '+
 						'FROM activity INNER JOIN company_detail ON activity.company_id='+
 						'company_detail.id WHERE company_detail.username=$1 GROUP BY activity.poi_name,'+
-						'activity.poi_detail ORDER BY COUNT(DISTINCT CONCAT(activity.vehicle_id,activity.date))',
+						'activity.poi_detail,activity.poi_latitude,activity.poi_longitude'+
+						' ORDER BY COUNT(DISTINCT CONCAT(activity.vehicle_id,activity.date))',
 						[username], function (err, result){
 						if(err){
 							console.log('Select name detail error in poi map filter Most Visited', err);
@@ -1770,11 +1782,12 @@ io.on('connection', function (socket){
 						}
 					});
 				}else{
-					poi_map_filter_client.query('SELECT poi.name,poi.detail FROM poi INNER JOIN '+
+					poi_map_filter_client.query('SELECT poi.name,poi.detail,poi.latitude,poi.longitude '+
+					 	'FROM poi INNER JOIN '+
 						'company_detail ON poi.company_id=company_detail.id WHERE company_detail.'+
 						'username=$1 ORDER BY date DESC', [username], function (err, result){
 						if(err){
-							console.log('Select name detail error in poi map filter Z-A', err);
+							console.log('Select name detail error in poi map filter recently added', err);
 						}else{
 							if(result.rows.length!=0){
 								socket.emit('poi_map_filter',result.rows);
@@ -1791,31 +1804,74 @@ io.on('connection', function (socket){
 			}
 		});
 	});
-
-	socket.on('poi_map_detail', function (data){
+	socket.on('poi', function (data){
 		socket.request.session.poi_id_map='';
 		var poi = data.poi;
 		var username = socket.request.session.user;
-		var poi_map_detail_client = new pg.Client(db_connection);
-		poi_map_detail_client.connect(function(err){
+		var poi_client = new pg.Client(db_connection);
+		poi_client.connect(function(err){
 			if(err){
 				console.log('Could connect to postgres on poi map detail');
 			}else{
-				poi_map_detail_client.query('SELECT poi.id,poi.name,poi.detail,poi.latitude,'+
-					'poi.longitude FROM poi INNER JOIN company_detail ON poi.company_id'+
+				poi_client.query('SELECT poi.id'+
+					' FROM poi INNER JOIN company_detail ON poi.company_id'+
 					'=company_detail.id WHERE company_detail.username=$1 AND poi.name=$2', [username,poi], function (err, result){
 					if(err){
 						console.log('SELECT poi info error in poi map detail', err);
-						poi_map_detail_client.end();
+						poi_client.end();
 					}else{
 						socket.request.session.poi_id_map=result.rows[0].id;
-						delete result.rows[0].id;
-						socket.emit('poi_map_detail',result.rows);
-						poi_map_detail_client.end();	
+						poi_client.end();	
 					}
 				});
 			}
 		});
+	});
+	socket.on('poi_map_detail', function (data){
+		var poi_id = socket.request.session.poi_id_map;
+		var username = socket.request.session.user;
+		if(!poi_id){
+			var get_poi_client = new pg.Client(db_connection);
+			get_poi_client.connect(function (err){
+				if(err){
+					console.log('Could not connect to postgres on get poi', err);
+				}
+				console.log("Connection successful to postgres");
+				get_poi_client.query('SELECT poi.name,poi.detail,poi.latitude,poi.longitude FROM company_detail '+
+					'INNER JOIN poi ON company_detail.id=poi.company_id WHERE company_detail.username'+
+					'=$1 ORDER BY poi.date DESC',[username], function (err, result){
+					if(err){
+						console.log('Select poi name detail error in get poi ');
+						get_poi_client.end();
+					}else{
+						socket.emit('poi_map_filter',result.rows);	
+						console.log(result.rows);
+						get_poi_client.end();
+						
+					}
+				});
+			});
+		}else{
+			var poi_client = new pg.Client(db_connection);
+			poi_client.connect(function(err){
+				if(err){
+					console.log('Could connect to postgres on poi map detail');
+				}else{
+					poi_client.query('SELECT poi.name,poi.detail,poi.latitude,poi.longitude '+
+						'FROM poi WHERE poi.id=$1', [poi_id], function (err, result){
+						if(err){
+							console.log('SELECT poi info error in poi map detail', err);
+							poi_client.end();
+						}else{
+							console.log(result.rows);
+							socket.emit('poi_map_detail',result.rows);
+							poi_client.end();	
+						}
+					});
+				}
+			});
+		}
+		
 	});
 
 	socket.on('poi_map_add', function (data){
@@ -1829,32 +1885,35 @@ io.on('connection', function (socket){
 		var sdd = d.toISOString();
 		var date = sdd.substring(0,10).replace(/-/gi,'');
 
-		var poi_map_add_client = new pg.Client(db_connection);
-		poi_map_add_client.connect(function(err){
-			if(err){
-				console.log('Could not connect to postgres on poi map add', err);
-			}else{
-				poi_map_add_client.query('SELECT id FROM company_detail WHERE username=$1', [username], function (err, result){
-					if(err){
-						console.log('Select user id error in poi map add');
-						poi_map_add_client.end();
-					}else{
-						var company_id = result.rows[0].id;
-						poi_map_add_client.query('INSERT INTO poi(name,detail,latitude,longitude,company_id,date) VALUES ($1,$2,$3,$4,$5,$6)',[poi_name,poi_detail,latitude,longitude,company_id,date], function (err){
-							if(err){
-								console.log('Insert into poi error in poi map add', err);
-								poi_map_add_client.end();
-							}else{
-								console.log("poi addition success");
-								poi_map_add_client.end();
-								socket.emit('poi_reload');
-							}
-						});
-					}
-				});
-			}
-		});
-
+		if(poi_name && poi_detail){
+			var poi_map_add_client = new pg.Client(db_connection);
+			poi_map_add_client.connect(function(err){
+				if(err){
+					console.log('Could not connect to postgres on poi map add', err);
+				}else{
+					poi_map_add_client.query('SELECT id FROM company_detail WHERE username=$1', [username], function (err, result){
+						if(err){
+							console.log('Select user id error in poi map add');
+							poi_map_add_client.end();
+						}else{
+							var company_id = result.rows[0].id;
+							poi_map_add_client.query('INSERT INTO poi(name,detail,latitude,longitude,company_id,date) VALUES ($1,$2,$3,$4,$5,$6)',[poi_name,poi_detail,latitude,longitude,company_id,date], function (err){
+								if(err){
+									console.log('Insert into poi error in poi map add', err);
+									poi_map_add_client.end();
+								}else{
+									console.log("poi addition success");
+									poi_map_add_client.end();
+									socket.emit('poi_reload');
+								}
+							});
+						}
+					});
+				}
+			});
+		}else{
+			console.log("Enter the poi and detail field");
+		}
 	});
 	///////////////////////poi and map ends////////////////////////////
 
@@ -1883,6 +1942,7 @@ io.on('connection', function (socket){
 	socket.on('poi_activity_detail_activity', function (data){
 		socket.request.session.poi_activity_date='';
 		var date = data.date;
+		console.log(date);
 		var username = socket.request.session.user;
 		var poi_id = socket.request.session.poi_id_map;
 

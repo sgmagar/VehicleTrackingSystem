@@ -1,48 +1,54 @@
+table {
+	border-collapse: separate;
+	border-spacing: 1px;
+}
+
+#calDiv {
+	margin-left: 50px;
+}
+
 #calendar {
 	margin-left:16px;
 }
 
 td {
-	border: 1px solid #EEE;
+	border: 1px solid #CCC;
 	padding:4px;
-	background: #EEE;
+	/*margin:3px;*/
+	background: #F0F0F0;
 	height: 3px;
 	width:3px;
 }
 
 td:hover {
 	border: 1px solid #000;
+	/*background-color: #ddd;*/
+	/*opacity: 0.7;*/
 }
 
-
-#monthName {
-	list-style: none;
-	font-size: 9px;
-	position: fixed;
-	top: -2px;
-	left:-35px;
-	color:#A9A9A9;
+.lot {
+	background-color: #000000;
 }
 
-#monthName li {
-	padding-top: 5px;
+.much {
+	background-color: #636363;
 }
 
-.selected {
-	background-color: #CCC;
-}
-.multiple_visit {
-	background-color: #000;
+.more {
+	background-color: #A3A3A3;
 }
 
-.lastLine {
+.little {
+	background-color: #E0E0E0;
+}
 
+.labelRow {
 	font-size: 9px;
 	background: white;
 	border:none;
 	color:#A9A9A9;
 }
 
-.lastLine:hover {
+.labelRow:hover {
 	border: none;
 }

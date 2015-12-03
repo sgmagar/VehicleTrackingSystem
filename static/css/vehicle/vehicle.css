@@ -13,6 +13,10 @@ font-family: times, Times New Roman, times-roman, georgia, serif;
 #namelist {
 	color: red;
 }*/
+.activeLocation {
+	font-weight: bold;
+	cursor: pointer;
+}
 
 .scroll{
     
@@ -25,6 +29,13 @@ font-family: times, Times New Roman, times-roman, georgia, serif;
     /*color: purple;*/
     font-size: 18px
 }
+
+.scrollCat {
+	overflow-x: hidden;
+	height:80px;
+	background-color: #FFF;
+}
+
 .scrollVans{
     
     background-color: #F0F8FF;
@@ -35,6 +46,34 @@ font-family: times, Times New Roman, times-roman, georgia, serif;
     height: 160px;
     /*color: blue;*/
     font-size: 18px;
+}
+.scrollNotes{
+    
+    /*padding-left: 100px;*/
+    /*padding-right: 100px;*/
+    overflow-x: hidden;
+    /*width: 850px;*/
+    /*height: 180px;*/
+    font-size: 14px
+}
+
+.scrollActs {
+    overflow-x: hidden;
+	height: 180px; background-color: #E0E0E0;
+	padding-top: 10px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	padding-right: 5px;
+}
+
+.dimSpan {
+	font-size: 17px;
+	color: #909090;
+}
+
+.spanClass {
+	font-size: 17px;
+	font-weight: normal;
 }
 
 .myButton {
@@ -100,3 +139,68 @@ font-family: times, Times New Roman, times-roman, georgia, serif;
 	/*cursor: pointer;*/
 
 }
+
+#instantNotes {
+	background-color: #300A24;
+	color: #FFFFFF;
+}
+#map { 
+	height: 180px;
+}
+
+.currVehicle {
+	font-weight: bold;
+}
+
+.hoverList:hover {
+	background-color: #D8F5F8;
+}
+
+.currPoiTab {
+	font-weight: bold;
+	background-color: #F0F0F0;
+}
+
+.currTab {
+	font-weight: bold;
+	background-color: #F0F0F0;
+}
+
+.vehicleClass {
+	cursor: pointer;
+}
+.vehicleClass:hover {
+	background-color: #D8F5F8;
+}
+
+.catClass {
+	/*cursor: pointer;*/
+	font-size: 16px; 
+	height: 140px;
+	/*font-weight: bold; */
+	/*background-color: #F0F8FF;*/
+	/*overflow-x: hidden;*/
+	/*height: 60px;*/
+}
+.vehListClass{
+	/*cursor: pointer;*/
+	font-size: 16px; 
+	height: 140px;
+	/*font-weight: bold; */
+	/*background-color: #F0F8FF;*/
+	overflow-x: hidden;
+	/*height: 60px;*/
+}
+
+.vehListClass:hover {
+	background-color: #F9F8FA;
+}
+
+.expClass {
+	cursor: pointer;
+	font-size: 14px;
+}
+
+
+
+

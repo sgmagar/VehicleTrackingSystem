@@ -3,6 +3,7 @@ var socket=io();
 
 //////////////////////////////////jquery///////////////////////////////////////
 $(document).ready(function(){
+    $("#activityBox").hide();
     $('#actPOI').prop('disabled', true);
     $("#mapPOI").click(function(){
         $('#actPOI').removeClass('currPoiTab');;
@@ -98,9 +99,10 @@ socket.on('poi_map_filter', function (data){
                 socket.emit('poi',{'poi':this.innerHTML});
                 $('#actPOI').prop('disabled', false);
                 var currTab=document.getElementsByClassName("currPoiTab")[0].innerHTML;
-                if(currTab=="Map"){
+                if(currTab.trim()=="Map"){
                     socket.emit('poi_map_detail');
-                }else if(currTab=="Activities"){
+                }else if(currTab.trim()=="Activities"){
+                    console.log(currTab);
                     socket.emit('poi_activity_detail');
                 }
                 //alert(this.innerHTML+" "+document.getElementsByClassName("currPoiTab")[0].innerHTML);
@@ -150,6 +152,111 @@ socket.on('poi_map_detail', function (data){
         this.closePopup();
     });
 
+});
+
+socket.on('poi_name', function (data){
+    var poi_header = document.getElementById('actScrHeader');
+    poi_header.innerHTML=data;
+});
+var vehicle_list=[];
+socket.on('vehicle_list', function (data){
+    if(data){
+        vehicle_list=data;
+        var actScrSel = document.getElementById('actScrSelect');
+        actScrSel.innerHTML='';
+        var addOption1 = document.createElement('option');
+        addOption1.innerHTML = 'All';
+        actScrSel.appendChild(addOption1);
+        var addOption2 = document.createElement('option');
+        addOption2.innerHTML = 'Not Assigned';
+        actScrSel.appendChild(addOption2);
+        for(var i=0; i<data.length; i++){
+            var addOpt = document.createElement('option');
+            addOpt.innerHTML = data[i].name;
+            actScrSel.appendChild(addOpt);
+            actScrSel.onchange = function(){
+                var chosen = this.options[this.selectedIndex].text;
+                socket.emit('poi_activity_detail_filter', {filter:chosen});
+                //alert('Sorting by: ' + chosen);
+            }
+        }
+    }
+});
+
+socket.on("poi_activity_list", function (data){
+    var poi_actlist=document.getElementById('poi_actlist');
+    poi_actlist.innerHTML='';
+    var icount=0;
+    (function activity_listt(){
+        if(icount<data.length){
+            var activity = data[icount].activity;
+            var status = data[icount].status;
+            var vehicle;
+            var vehicle = data[icount].vehicle;
+            console.log(activity+ " "+status+" "+vehicle);
+
+            var act = document.createElement('input');
+            var radSpan = document.createElement('span');
+            var newLine = document.createElement('br');
+            act.setAttribute('type', 'radio');
+            act.classList.add('radioClass');
+            radSpan.innerHTML=activity;
+
+            poi_actlist.appendChild(act);
+            poi_actlist.appendChild(radSpan);
+
+            if(!vehicle){
+                radSpan.setAttribute('style','color:#999;')
+                var sel = document.createElement('select');
+                sel.classList.add('selectClass');
+                var addOption = document.createElement('option');
+                addOption.innerHTML = 'Vehicle';
+                sel.appendChild(addOption);
+                sel.setAttribute('id', 'sel'+(icount+1));
+                sel.setAttribute('style', 'border-style: solid; border-radius: 5px; background-color: #FCFCFC;');
+                if(vehicle_list){
+                    for(var i=0; i<vehicle_list.length; i++){
+                        var addOpt = document.createElement('option');
+                        addOpt.innerHTML = vehicle_list[i].name;
+                        sel.appendChild(addOpt);
+                        sel.onchange = function(){
+                            var chosen = this.options[this.selectedIndex].text;
+                            socket.emit('assign_activity_vehicle', {'vehicle':chosen, 'activity':radSpan.innerHTML});
+                            //alert('Sorting by: ' + chosen+ radSpan.innerHTML);
+                        }
+                    }
+                }
+                poi_actlist.appendChild(sel);
+                act.setAttribute('disabled', true);
+                poi_actlist.appendChild(newLine);
+                icount++;
+                activity_listt();
+            }
+            else{
+                if(!status){
+                    act.setAttribute('disabled', true);
+                    var vehicleElem = document.createElement('span');
+                    vehicleElem.innerHTML=vehicleElem.innerHTML=" to "+ vehicle;
+                    vehicleElem.setAttribute('style', 'color:#999;font-size:10px');
+                    poi_actlist.appendChild(vehicleElem);
+                    poi_actlist.appendChild(newLine);
+                    icount++;
+                    activity_listt();
+                }else{
+                    act.setAttribute('checked', true);
+                    var vehicleElem = document.createElement('span');
+                    vehicleElem.innerHTML=" to "+ vehicle;
+                    vehicleElem.setAttribute('style', 'color:#999;font-size:10px');
+                    poi_actlist.appendChild(vehicleElem);
+                    poi_actlist.appendChild(newLine);
+                    icount++;
+                    activity_listt();
+                }
+            }    
+        }else{
+
+        }
+    })();
 });
 
 
@@ -228,6 +335,11 @@ function onMapClick(e){
     
 }
 
+function addActivity(){
+    var activity = document.getElementById("act_name").value;
+    socket.emit('add_activity', {'activity':activity});
+}
+
 
 
 
@@ -235,7 +347,11 @@ function onMapClick(e){
 ///////////////////////////////////Reloading datas////////////////////
 socket.on('poi_reload', function(){
     socket.emit('poi_map_filter',{'filter':''});
-})
+});
+
+socket.on('reload_vehiclelist', function (data){
+    socket.emit('poi_activity_detail_filte',{'filter':'All'});
+});
 
 
 

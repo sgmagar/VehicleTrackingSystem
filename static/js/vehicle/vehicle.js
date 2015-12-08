@@ -3,6 +3,8 @@ var socket=io();
 
 $(document).ready(function(){ 
     socket.emit('vehicle_map');   
+    $('#act').hide();
+    $('#dash').hide();
     $('#actButton').prop('disabled', true);
     $('#dashButton').prop('disabled', true);
     $("#mapButton").click(function(){

@@ -1,0 +1,42 @@
+{
+  "name": "VehicleTrackingSystem",
+  "version": "1.0.0",
+  "description": "This is the project for the vehicle tracking system with additional features.",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "connect-redis": "^3.0.1",
+    "crypto": "^0.0.3",
+    "express": "^4.13.3",
+    "express-session": "^1.12.1",
+    "express-validator": "^2.18.0",
+    "http": "^0.0.0",
+    "multer": "^1.1.0",
+    "nodemailer": "^1.8.0",
+    "pg": "^4.4.3",
+    "socket.io": "^1.3.7",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sgmagar/VehicleTrackingSystem.git"
+  },
+  "keywords": [
+    "Nodejs",
+    "express",
+    "socket.io",
+    "pg",
+    "multer",
+    "nodemailer"
+  ],
+  "author": "saurav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sgmagar/VehicleTrackingSystem/issues"
+  },
+  "homepage": "https://github.com/sgmagar/VehicleTrackingSystem"
+}

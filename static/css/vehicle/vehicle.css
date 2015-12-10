@@ -201,6 +201,11 @@ font-family: times, Times New Roman, times-roman, georgia, serif;
 	font-size: 14px;
 }
 
+.fullWidth{
+	padding-left: 8px;
+	width: 100%;
+}
+
 
 
 

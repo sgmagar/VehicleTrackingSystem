@@ -95,7 +95,12 @@ function dumpSpots(){
 
 				if(i>=12) {
 					col.classList.add('labelRow');
-					if(j > 0) col.innerHTML = parseInt(j);
+					if((j > 0) && (j < 10)) {
+						col.innerHTML = '&nbsp;&nbsp;' + parseInt(j);
+					}
+					else if(j >= 10){
+						col.innerHTML = parseInt(j);
+					}
 					col.setAttribute('style', 'text-align: center;');
 				}
 

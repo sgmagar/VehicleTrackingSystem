@@ -17,7 +17,7 @@ var smtpTransport = nodemailer.createTransport({
 	service: 'Gmail',
 	auth: {
 		user: 'elanor2050@gmail.com',
-		pass: 'thelongestride'
+		pass: '######'
 	}
 });
 
@@ -318,6 +318,7 @@ app.post('/recover-account', urlencodedparser, function (req, res){
 					var message = "<h1>Pin Number</h1><br/><p>Dear Sir,<br/>You had requested for the \
 					account recovery.Here is the pin number, you should enter to recover account. \
 					</p><br/><b>Pin Number:</b>"+pin;
+					// var message = "<html><body><div class='row'><div class='col-sm-6'>Hello man what's up</div><div class='col-sm-6'>This is about me man.</div></div><script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script></body></html>"
 					db.insert('INSERT INTO user_pin(company_id, pin) VALUES ($1, $2)',[company_id, pin]);
 					sendMail(company_email, subject, message);
 				 	res.redirect('/userpin');
@@ -952,7 +953,7 @@ io.on('connection', function (socket){
 		socket.request.session.vehicle_id='';
 		socket.request.session.company_id_vehicle = '';
 		socket.request.session.device_id ='';
-		var vehicle = data.vehicle;
+		var vehicle = data.vehicle.trim();
 		console.log("The vehicle Clicked: "+vehicle);
 		var username =socket.request.session.user;
 
@@ -984,21 +985,24 @@ io.on('connection', function (socket){
 							if(err){
 
 							}else{
-								var vehicle=[];
-								for( row in result.length){
-									vehicle.push(result[row]);
+								var vehicleList=[];
+								console.log(result);
+								for(var row=0;row<result.length;row++){
+									vehicleList.push(result[row]);
 								}
+								console.log(vehicleList);
 								var vehicle_data=[];
 								var vehicle_count=0;
 								(function getVehicleLocation(){
-									if(vehicle[vehicle_count]){
-										device_id_client.query('SELECT latitude,longitude FROM vehicle_data WHERE device_id=$1 ORDER BY date DESC,time DESC LIMIT 1', [vehicle[vehicle_count].device_id], function (err, result){
-											if(err){
-												console.log('Select lat lon error in vehicle map', err);
-											}else{
-												if(result.length!=0){
+									if(vehicleList[vehicle_count]){
+										db.select('SELECT latitude,longitude FROM vehicle_data WHERE device_id=$1 ORDER BY date DESC,time DESC LIMIT 1',
+										 [vehicleList[vehicle_count].device_id], function (err, result){
+										 	if(err){
+
+										 	}else{
+										 		if(result.length!=0){
 													var vehicle_location = result[0];
-													vehicle_location.vehicle = vehicle[vehicle_count].name;
+													vehicle_location.vehicle = vehicleList[vehicle_count].vehicle;
 													vehicle_data.push(vehicle_location);
 													vehicle_count++;
 													getVehicleLocation();
@@ -1006,9 +1010,11 @@ io.on('connection', function (socket){
 													vehicle_count++;
 													getVehicleLocation();
 												}
-											}
-										});
+										 	}
+										 });
+										
 									}else{
+										console.log(vehicle_data);
 										socket.emit('vehicle_map_first',vehicle_data);
 									}										
 								})();
@@ -1029,30 +1035,25 @@ io.on('connection', function (socket){
 							if(err){
 
 							}else{
-								if(resultlength!=0){
-									var location = [];
-									for(row in result.length){
-										location.push(result[row]);
-									}
-									socket.emit('vehicle_map_location', location);
+								if(result.length!=0){
+									socket.emit('vehicle_map_location', result);
+									console.log(result);
+								}else{
+									socket.emit('vehicle_map_location');
 								}
 							}
 			});
-			db.select('SELECT latitude, longitude FROM '+
-						'vehicle_data WHERE date=$1 and device_id=$2 ORDER By time', 
-						[date, device_id], function (err, result){
-							if(err){
+			db.select('SELECT poi_latitude AS latitude, poi_longitude AS longitude,poi_name as poi,'+
+				' poi_detail AS detail FROM '+
+				'activity WHERE vehicle_id=$1 GROUP BY poi_latitude, poi_longitude,poi_name, poi_detail '+
+				'HAVING bool_and(status)=$2', [vehicle_id, false], function (err, result){
+					if(err){
 
-							}else{
-								if(result.rows.length!=0){
-									var location = [];
-									for(row in result.length){
-										location.push(result[row]);
-									}
-									socket.emit('vehicle_map_location', location);
-								}
-							}
-			});
+					}else{
+						console.log(result);
+						socket.emit('vehicle_poi_location', result);
+					}
+				});
 		}
 	});
 	
@@ -1067,7 +1068,7 @@ io.on('connection', function (socket){
 			var company_id=socket.request.session.company_id_vehicle;
 			var device_id=socket.request.session.device_id;
 			console.log("vehicle_activity with session");
-			db.select('SELECT poi_name,date,bool_and(status) AS status '+
+			db.select('SELECT poi_name AS poi,date,bool_and(status) AS status '+
 						'FROM activity '+
 						'WHERE company_id=$1 AND vehicle_id=$2 GROUP BY poi_name,date',
 						[company_id,vehicle_id], function (err, result){
@@ -1075,6 +1076,7 @@ io.on('connection', function (socket){
 
 							}else{
 								socket.emit('vehicle_activity_info',result);
+								console.log(result);
 
 							}
 			});
@@ -1096,6 +1098,7 @@ io.on('connection', function (socket){
 
 						}else{
 							socket.emit('vehicle_activity_poi_frequency', result);
+							console.log(result);
 						}
 		});
 		db.select('SELECT poi_id,activity,status FROM activity '+
@@ -1105,12 +1108,13 @@ io.on('connection', function (socket){
 
 						}else{
 							var activity=[];
-							socket.request.session.vehicle_activity_poi_id=result[0].id;
-							for(row in result.length){
-								delete result[row].poi_id;
-								activity.push(result[row]);
+							socket.request.session.vehicle_activity_poi_id=result[0].poi_id;
+							for(var i=0;i<result.length;i++){
+								delete result[i].poi_id;
+								activity.push(result[i]);
 							}
 							socket.emit('vehicle_activity_poi_activity', activity);
+							console.log(activity);
 						}
 		});				
 	});
@@ -1120,7 +1124,8 @@ io.on('connection', function (socket){
 			var vehicle_id=socket.request.session.vehicle_id;
 			var company_id=socket.request.session.company_id_vehicle;
 			var poi_id = socket.request.session.vehicle_activity_poi_id;
-			var activity = data.activity;
+			var activity = data.activity.trim();
+			console.log(activity);
 
 			var d = new Date();
 			var sdd = d.toISOString();
@@ -1140,6 +1145,7 @@ io.on('connection', function (socket){
 									'poi_detail,poi_latitude,poi_longitude) '+
 									'VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)'
 									,[company_id,poi_id,vehicle_id,activity,date,poi_name,poi_detail,poi_latitude,poi_longitude]);
+							
 							}
 			});
 		}else{
@@ -1500,6 +1506,7 @@ io.on('connection', function (socket){
 										'VALUES ($1,$2,$3,$4,$5,$6,$7,$8)',
 										[company_id,poi_id,activity,date,poi_name,poi_detail,
 										poi_latitude,poi_longitude]);
+									socket.emit('reload_vehiclelist', {});
 								}
 				});
 			}else{

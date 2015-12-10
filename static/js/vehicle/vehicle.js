@@ -9,13 +9,13 @@ $(document).ready(function(){
     $('#dashButton').prop('disabled', true);
     $("#mapButton").click(function(){
       // $("#map").show();
-      $('#dashButton').removeClass('currTab');
-      $('#actButton').removeClass('currTab');;
-      $(this).addClass('currTab');
-      $('#map').show();
-      $('#act').hide();
-      $('#dash').hide();
-      socket.emit('vehicle_map');
+        $('#dashButton').removeClass('currTab');
+        $('#actButton').removeClass('currTab');;
+        $(this).addClass('currTab');
+        $('#map').show();
+        $('#act').hide();
+        $('#dash').hide();
+        socket.emit('vehicle_map');
     });
 
 
@@ -52,42 +52,25 @@ $(document).ready(function(){
     });
 
     $('#collapse').click(function(){
-        $('#collapse_bar').toggle(500);
-        // $('#expandBar').show();
-        $(this).toggleClass('glyphicon-chevron-left');
-        $(this).toggleClass('glyphicon-chevron-right');
-        $('#mapContainer').toggleClass('col-md-9');
-        $('#mapContainer').toggleClass('col-md-12');
+        $('#collapse_bar').hide(500);
+        $('#expandDiv').show(500);
+        // $(this).toggleClass('glyphicon-chevron-left');
+        // $(this).toggleClass('glyphicon-chevron-right');
+        $('#mapContainer').removeClass('col-md-9');
+        $('#mapContainer').addClass('fullWidth');
+    });
+
+    $('#expandBar').click(function(){
+        $('#collapse_bar').show(500);
+        $('#expandDiv').hide(500);
+        $('#mapContainer').addClass('col-md-9');
+        $('#mapContainer').removeClass('fullWidth');
     });
 });
 
 
 /////////////////////////////----------Bar Chart one--------/////////////////////
-$(function(){
 
-    var ctx = $('#my-chart').get(0).getContext('2d');
-    var data = {
-    labels: [
-      'Sep', 'Oct', 'Nov'
-    ],
-    datasets: [
-      {
-          label: 'Months',
-          fillColor: 'rgba(170,170,170,0.5)',
-          highlightFill: 'rgba(140,140,140,0.5)',
-          data: [6, 8, 12]
-      }
-    ]
-    };
-    var options = {
-    barStrokeWidth : 1,
-    // responsive: false,
-    animation: false,
-    barShowStroke: false
-    };
-
-    new Chart(ctx).Bar(data, options);
-});
 
 ///////////////////////////////coding from here/////////////////////
 
@@ -123,6 +106,7 @@ socket.on('company_vehicle_info', function (data){
 
 socket.on('vehicle_info', function (data){
     var listCats = document.getElementById('all_categories');
+    listCats.innerHTML='';
     for(var i=0;i<data.length;i++){
         var item =  document.createElement("div"); 
         item.classList.add("catClass");
@@ -163,324 +147,286 @@ socket.on('vehicle_info', function (data){
         listCats.appendChild(item);
     } 
 });
-
+var marker=[];
 socket.on('vehicle_map_first', function (data){
-    console.log(data);
-})
+    for(var i=0;i<marker.length;i++){
+        if(marker[i]){
 
-
-
-    
-
-
-
-
-
-
-////////////////toggle///////////////////
-$(".catClass").click(function(){
-    $('#all_vehicles_div').toggle();
-    // $('#glyphicon-play').hide();
+            map.removeLayer(marker[i]);
+        }
+    }
+    marker=[];
+    if(data.length!=0){
+        var latt=0, lonn=0;
+        for( var i = 0; i < data.length; i++){
+            console.log(data[i]);
+            lonn+=parseFloat(data[i].longitude);
+            latt+=parseFloat(data[i].latitude);
+            if(!marker[i]){
+                console.log(data[i].latitude);
+                marker[i]= L.marker([data[i].latitude,data[i].longitude]).addTo(map).
+                    bindPopup("<h4><b>"+data[i].vehicle+"</b></h4><p>");
+                marker[i].on('mouseover', function (e) {
+                    this.openPopup();
+                });
+                marker[i].on('mouseout', function (e) {
+                    this.closePopup();
+                });
+            }
+            if(i==data.length-1){
+                console.log(lonn/data.length);
+                map.setView([latt/data.length,lonn/data.length],13);
+            }
+        }
+       
+    }
+    // console.log(atozPoiList[i]);
 });
 
+var vehicle_marker;
+var polyline;
+var circle=[];
+socket.on('vehicle_map_location', function (data){
+    for(var i=0;i<marker.length;i++){
+        if(marker[i]){
 
-//////////////////////////////----------------map---------------//////////////////
-
-
-var marker = L.marker([my_latitude, my_longitude]);
-var marker2 = L.marker([office_lat, office_long]);
-
-function onMarkerClick(e) {
-    popup
-        .setLatLng(e.latlng)
-        .setContent("Location: " + e.latlng.toString())
-        .openOn(map);
-}
-
-function onCircleClick(e) {
-    popup
-        .setLatLng(e.latlng)
-        .setContent("Stopped at: " + e.latlng.toString())
-        .openOn(map);
-}
-
-
-function addToDeliverMarker(lat, lon, e){
-            console.log('Marker function called with ' + lat + ', ' + lon);
-            if(newmarker != undefined){
-                map.removeLayer(newmarker);
-            }
-          // console.log('Plotting these: ' + lat + ', ' + lon);
-          newmarker = L.marker([lat, lon]); //.addTo(map);  // Plotted 
-          // newmarker.valueOf()._icon.style.backgroundColor = 'red';
-          // newmarker.bindPopup("Marker at: " + e.latlng);
-
-          newmarker.on('click', onMarkerClick);
-
-          map.addLayer(newmarker);
-
-     }
-
-
-
-function init_locations(lat, lon){
-    var initMarker = L.marker([lat, lon]);
-    map.addLayer(initMarker);
-    setTimeout(function(){
-        map.removeLayer(initMarker);
-    }, 10000);
-}
-
-
-
-
-// var circle = L.circle([my_latitude, my_longitude], 250, {
-//     color: 'red',
-//     fillColor: '#f03',
-//     fillOpacity: 0.5
-// }).addTo(map);
-
-function stoppage(lat, long, rad, e){
-    console.log('Circle function calledc with ' + lat + ', ' + long);
-        if(circle != undefined){
-            map.removeLayer(circle);
-        }   
-
-        circle = L.circle([lat, long], rad, {
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.5
-    }); //.addTo(map);  
-// circle.bindPopup("Circle at: " + e.latlng);
-circle.on('click', onCircleClick);
-
-map.addLayer(circle);
-        
-}
-
-function drawRoute(waypoints, polyline_options){
-
-        console.log('Polyline function called qith ');
-        if(polyLine != undefined){
-            map.removeLayer(polyLine);
+            map.removeLayer(marker[i]);
         }
-        // console.log(waypoints);
-        polyLine = L.polyline(waypoints, polyline_options); //.addTo(map);
-        map.addLayer(polyLine);
+    }
+    marker=[];
+    if(vehicle_marker){
+        map.removeLayer(vehicle_marker);
+    }
+    if(polyline){
+        map.removeLayer(polyline);
+    }
+    if(circle){
+        for(var i=0;i<circle.length;i++){
+        if(circle[i]){
+
+            map.removeLayer(circle[i]);
+        }
+    }
+    circle=[];
+    }
+    if(data){
+        var line_points=[];
+        var latSlice = [];
+        var longSlice = [];
+        var oneLat,oneLong,prevLat,prevLong,count = [];
+        for( var i = 0; i < data.length; i++){
+            // console.log(data[i]);
+            var waypts = [parseFloat(data[i].latitude.trim()), parseFloat(data[i].longitude.trim())];
+            line_points.push(waypts);
+            oneLat = data[i].latitude.trim().slice(0,6);
+            oneLong = data[i].longitude.trim().slice(0,6);
+            if((oneLat == prevLat) && (oneLong == prevLong)){
+                count[count.length-1]++;
+            }else{
+
+                latSlice.push(oneLat);
+                longSlice.push(oneLong);
+                count.push(1);
+                // count[count.length-1]++;
+            }
+            prevLat = oneLat;
+            prevLong = oneLong;
+            // console.log(waypts);
+            if(i==data.length-1){
+                vehicle_marker= L.marker([data[i].latitude,data[i].longitude]).addTo(map);
+                vehicle_marker.valueOf()._icon.style.color='red';
+                polyline = L.polyline(line_points, {color: '#000'}).addTo(map);
+                for ( var j = 0; j < latSlice.length; j++){
+                    if (count[j] < 2){
+                    // addMarker(eachLat[i], eachLong[i]);
+                    }
+                    else if (count[j] >= 2){
+                        var radius = count[j] * 50;
+                        circle[j] = L.circle([latSlice[j], longSlice[j]], radius, {
+                            color: 'red',
+                            fillColor: '#f03',
+                            fillOpacity: 0.5
+                        }).addTo(map);  
+                    }
+
+                }
+            }
+        }
+        
+
+    }
+    
+});
+var marker_poi=[];
+socket.on('vehicle_poi_location', function (data){
+    for(var i=0;i<marker_poi.length;i++){
+        if(marker_poi[i]){
+
+            map.removeLayer(marker_poi[i]);
+        }
+    }
+    marker_poi=[];
+    if(data.length!=0){
+        var latt=0, lonn=0;
+        for( var i = 0; i < data.length; i++){
+            // console.log(data[i]);
+            lonn+=parseFloat(data[i].longitude);
+            latt+=parseFloat(data[i].latitude);
+            if(!marker_poi[i]){
+                // console.log(data[i].latitude);
+                marker_poi[i]= L.marker([data[i].latitude,data[i].longitude]).addTo(map).
+                    bindPopup("<h4><b>"+data[i].poi+"</b></h4><p>"+data[i].detail);
+                marker_poi[i].on('mouseover', function (e) {
+                    this.openPopup();
+                });
+                marker_poi[i].on('mouseout', function (e) {
+                    this.closePopup();
+                });
+            }
+            if(i==data.length-1){
+                // console.log(lonn/data.length);
+                map.setView([latt/data.length,lonn/data.length],13);
+            }
+        }
+       
+    }
+    // console.log(atozPoiList[i]);
+});
+
+socket.on('vehicle_activity_info', function (data){
+    var actTable = document.getElementById('vehicle_activities_table');
+    actTable.innerHTML='';
+    var table_header = document.createElement('tr');
+    table_header.innerHTML= '<th style = "text-align: center;">'+
+        'Location</th><th>Issued Date</th>'+
+        ' <th style = "text-align: center;">Status</th>';    
+    actTable.appendChild(table_header);   
+    if(data){
+        for(var i=0;i<data.length;i++){
+            var statStr; 
+            if(data[i].status == 0){
+                statStr = 'Pending';
+            }
+            else {
+                statStr = 'Done'; 
+            }
+            var dateYMD = data[i].date.slice(0,4)+'-'+data[i].date.slice(4,6)+'-'+data[i].date.slice(6,8);
+            var unformattedDate = new Date(dateYMD).toString();
+            var formattedDate = unformattedDate.slice(0,15);
+            var newTableRow = document.createElement('tr');
+            newTableRow.setAttribute('id', 'tr' + (i+1));
+            newTableRow.classList.add("tableRows");
+            var newTableRow = document.createElement('tr');
+            newTableRow.setAttribute('id', 'tr' + (i+1));
+            newTableRow.classList.add("tableRows");
+            var poi = document.createElement('td');
+            poi.innerHTML = data[i].poi;
+            // poi.setAttribute('style', 'margin-left:');
+            var date = document.createElement('td');
+            date.innerHTML=formattedDate;
+            // date.setAttribute('align', 'center');
+            var status = document.createElement('td');
+            status.innerHTML=statStr;
+            // status.setAttribute(.setAttribute('align', 'center'););
+            newTableRow.appendChild(poi);
+            newTableRow.appendChild(date);
+            newTableRow.appendChild(status);
+            actTable.appendChild(newTableRow);
+            newTableRow.onclick=function(){
+                for(var j=0;j<document.getElementsByClassName('tableRows').length; j++){
+                    document.getElementById('tr'+(j+1)).firstChild.removeAttribute('style');
+                }
+                socket.emit('vehicle_activity_poi', {'poi':this.firstChild.innerHTML});
+                console.log(this.firstChild.innerHTML);
+                this.firstChild.setAttribute('style', 'font-weight:bold;');
+
+                var adds_act = document.getElementById('actAddition');
+                adds_act.setAttribute('style', 'cursor: pointer; color: #000');
+                adds_act.setAttribute('data-target', '#exModal');
+                $('#barAndAct').fadeIn(600);
+            }
+
+        }
+    }
+});
+
+function sendActivity(data){
+
+    var actID = document.getElementById('activity_name');
+    var actName = actID.value;
+    socket.emit('vehicle_activity_poi_newactivity', {'activity':actName});
 }
-////////////////////////////////----------jquery-----///////////////////////////
 
+socket.on('vehicle_activity_poi_frequency', function (data){
+    if(data){
+        var month_array = ['Jan','Feb','March','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+        var label=[];
+        var count=[];
+        for(var i=0;i<data.length;i++){
+            label.push(month_array[parseInt(data[i].date.slice(4,6))-1]);
+            count.push(data[i].count);
 
-// var value = require('./Desktop/Distribution\ Company/init.js');
+        }
+        $(function(){
 
-// var sess;
+            var ctx = $('#my-chart').get(0).getContext('2d');
+            var data = {
+            labels: label,
+            datasets: [
+              {
+                  label: 'Months',
+                  fillColor: 'rgba(170,170,170,0.5)',
+                  highlightFill: 'rgba(140,140,140,0.5)',
+                  data: count
+              }
+            ]
+            };
+            var options = {
+            barStrokeWidth : 1,
+            // responsive: false,
+            animation: false,
+            barShowStroke: false
+            };
 
-// console.log(sess.user);
-
-// window.onload = function(){
-    // if( name == ''){
-
-        // window.location.href = '/login.html';
-    // }
-    // else {
-    //     window.location.href = '/dashboard.html';
-    // }
-// }
-
-
-// function displayVanTasks(){
-//     alert(message.data);
-// }
-
-
-
-
-
-// ws.onmessage = function (evt){
-
-//   if(evt.data) {
-// //     var message = evt.data;
-// //     // var reply = messageHandler[message.cmd](message.msg);
-//     var message = evt.data;
-//     message = JSON.parse(message);
-//     // console.log(message.data[0]);
-
-//     if(message.table == 'session'){
-//         console.log(message.is_logged);
-//             // document.write('Your session has expired. Please ' + '<a href = "/login.html">Login</a>to continue.');
-//             // window.location.href = '/login.html';
-//         is_logged = message.is_logged;
-//         if(is_logged != 1){
-//             // window.location.href = '/login.html';
-//         }
-//         }
+            new Chart(ctx).Bar(data, options);
+        });
+    }
     
-//     if(message.table == 'customers'){
-//         //update customers div
+});
 
-//         var listClients = document.getElementById('listclients');
-//         if(message.data){
-//             for(i = 0; i < message.data.length; i++){
-//                 var listitem = document.createElement("li");        
+socket.on('vehicle_activity_poi_activity', function (data){
+    var poi_actlist=document.getElementById('activity_list');
+    poi_actlist.innerHTML='';
+    var icount=0;
+    (function activity_listt(){
+        if(icount<data.length){
+            console.log(data[icount]);
+            var activity = data[icount].activity;
+            var status = data[icount].status;
+            var act = document.createElement('input');
+            var radSpan = document.createElement('span');
+            var newLine = document.createElement('br');
+            act.setAttribute('type', 'radio');
+            act.classList.add('radioClass');
+            radSpan.innerHTML=activity;
 
-//             listitem.innerHTML = 'Customer ID >>' + message.id[i] + ',  Name: ' + message.data[i] + 
-//             ', Location: ' + message.lat[i] + ', ' + message.long[i]; 
-//             listClients.appendChild(listitem);
-//             }    
-//         }
+            poi_actlist.appendChild(act);
+            poi_actlist.appendChild(radSpan);
+            if(!status){
+                act.setAttribute('disabled', true);
+                poi_actlist.appendChild(newLine);
+                icount++;
+                activity_listt();
+            }else{
+                act.setAttribute('checked', true);
+                poi_actlist.appendChild(newLine);
+                icount++;
+                activity_listt();
+            }   
+        }else{
 
-               
-        
-//     }
-
-    
-
-//     if(message.table == 'tasks'){
-//         //update tasks div
-//             var listJobs = document.getElementById('listjobs');
-//         for(i = 0; i < message.data.length; i++){
-//             // console.log(substr);
-//             // console.log(message.days[i])
-//             // tasks for today 
-//             if(message.days[i] == substr){
-//             // console.log('matched!');   
-//             var listitem = document.createElement("li");        
-
-//             listitem.innerHTML = 'Task No. >>' + message.data[i] + ' to ' + message.names[i] + 
-//             ' at location ' + message.address[i] + ' today at ' + message.time[i] + '.  <u><b>' + message.stat[i].toUpperCase() + '</b></u>';
-//             listJobs.appendChild(listitem);
- 
-//             }
-//             // other days 
-//         //     else{
-//         //     var jobs = document.getElementById('jobs');
-//         //         jobs.innerHTML = jobs.innerHTML + 'Task Number ' + message.data[i] + ' to ' + message.names[i] + 
-//         //         ' at location ' + message.address[i] + ' on ' + message.days[i] + ' at ' + message.time[i];
-//         //         jobs.innerHTML = jobs.innerHTML + '<br>';
-//         //     }
-//         // // console.log(message.days[i]);
-
-
-        
-//         }
-//     }
-
-//     if(message.table == 'vehicles'){
-//         //update vehicles div
-//         var listVans = document.getElementById('listvans');
-//         if(message.data){
-//             for(i = 0; i < message.data.length; i++){
-//                 // Display the jobs assigned to vehicles today
-//                 var listitem = document.createElement("button"); // Creates a list element 
-//                 var newline = document.createElement('p');
-//                 listitem.classList.add("vanClass");
-
-//                 // listitem.setAttribute("class", 'vans'+(i+1));
-//                 listitem.setAttribute("id", 'van'+(i+1));   // Gives ID to the list element 
-//                 // newline.setAttribute("id", 'fill'+(i+1));
-
-//                 listitem.innerHTML = message.data[i];
-//                 newline.innerHTML = '\n';
-
-//                 listVans.appendChild(listitem);
-//                 listvans.appendChild(newline);
-
-//                 // }
-
-//                 // Other days 
-//                 // else{
-//                 //     var vans = document.getElementById('vans');
-//                 // vans.innerHTML = vans.innerHTML + 'Vehicle Identifier: ' + message.data[i] + 
-//                 // ', Task No. ' + message.tasks[i] + ' on ' + message.date[i];
-//                 // vans.innerHTML = vans.innerHTML + '<br>';
-//                 // }
-
-//             }    
-//         }
-        
-
-//         // var listVehicles = document.getElementsByClassName("listVehicles");
-//         // for(var n = 0; n < listVehicles.length; n++){
-//         //     listVehicles[n].id = 'vans_' + (n+1);
-//         // }
-//         // for(i = 1; i < 10; i++){
-//         //     var listID = [];
-//         //      listID = document.getElementsByClassName("listVehicles");
-//         //      for(i = 0; i < listID.length; i++){
-//         //     listID.onclick = function(){
-//         //     // alert(listclass.innerHTML);
-//         //     alert(listID.innerHTML);
-//         //     }
-//         // }
-        
-//         var listID = [];
-//         var listClass = document.getElementsByClassName('vanClass');
-       
-//             // console.log(listClass.length);
-       
-
-//         for(i = 0; i < listClass.length; i++){
-
-//             listID[i] = document.getElementById('van'+(i+1));
-//         listID[i].onclick = function(){
-//             var data = this.innerHTML;
-//             currentVan = this.id; // Gets the ID of this element
-//             // is_clicked = is_clicked + 1;
-//             // alert(data + currentVan);
-//             sendData(data); 
-            
-            
-            
-//         }    
-//         }
-        
-//         // for(i = 0; i < listClass.length; i++){
-//         //     listID[i].onclick = function(){
-//         //     alert(this.innerHTML);
-//         //     }    
-//         // }
-        
-        
-
-
-//     }
-
-    
-
-
-
-  //   var expand = document.getElementById('expand');
-
-  //   if(message.table == 'vantasks'){
-        
-            
-  //            //Disable updating on clicking twice
-  //               var vanid = document.getElementById(currentVan);
-  //       if(message.data.length > 0){
-  //           // vanid.innerHTML = vanid.innerHTML + '<br>  > Task No. ' + message.data;
-  //           // alert(message.data);
-  //           expand.innerHTML = '> Vehicle: ' + message.vehicle + '<br> Tasks: ' + message.data;
-  //       }
-  //       else{
-  //           // vanid.innerHTML = vanid.innerHTML + '<br>  > No tasks listed.'
-  //           // alert(message.data);
-  //           expand.innerHTML = '> Vehicle: ' + message.vehicle + '<br> Tasks: Not assigned';
-  //       }
-    
-            
-            
-  //   }
-
-  //   var i;
-
-    
-
-  // }
-// };
-
-
-        
-       
-
+        }
+    })();
+});
 
 

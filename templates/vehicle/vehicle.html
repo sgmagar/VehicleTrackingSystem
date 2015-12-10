@@ -3,7 +3,7 @@
 
 <html>
 <br>
-<title>Dashboard</title>
+<title>Vehicles</title>
 
 <head>
 	<!-- Bootstrap -->
@@ -68,7 +68,7 @@
 		<h3><a href="/vehicle" onMouseOver="this.style.color='#fff'"><div id="company_name" class = "col-sm-10"></div></a></h3>
 		</div>
 		<div class = "col-sm-3"></div>
-		<div class = "col-sm-1"><a href = "postjob" style = "text-decoration: none;"><h4>Apps</h4></a></div>
+		<div class = "col-sm-1"><a href = "#" style = "text-decoration: none;"><h4>Apps</h4></a></div>
 		<div class = "col-sm-1"><a href = "/editprofile" style = "text-decoration: none;"><h4>Profile</h4></a></div>
 		<div class = "col-sm-1"><a href = "/logout" style = "text-decoration: none;"><h4>Log Out</h4></a></div>
 
@@ -114,7 +114,9 @@
 			
 			</div>
 		</div>
-
+		<div id = "expandDiv" style= "display: none; position: absolute; left: 0px; top: 360px;">
+			<span data-toggle="tooltip" data-placement="left" title="Show Sidebar" id = "expandBar" class = "glyphicon glyphicon-chevron-right" style = "border-style: solid; border-color: #C0C0C0; border-width: 1px; cursor: pointer; color: #C0C0C0; font-size: 20px;"></span>
+		</div>
 		<div class = "col-md-9" id = "mapContainer">
 			
 			<div class = "col-md-8"></div>
@@ -134,26 +136,19 @@
 
 				<div class = "row">
 					<div class = "col-md-10"></div>
-					<div class = "col-md-2">
-						<a href = "/new_activity"><span class = "glyphicon glyphicon-plus"></span>New Activity</a>
-					</div>
+					<div class = "col-md-2" style = "color: #AAA" id = "actAddition" data-toggle = "modal" ><span class = "glyphicon glyphicon-plus"></span>New Activity</div>
 
 				</div>
 				
 				<table id = "vehicle_activities_table">
-					<tr>
-					    <th style = "text-align: center;">Location</th>
-					    <th style = "text-align: center;">Issued Date</th>		
-					    <th style = "text-align: center;">Status</th>
-					  </tr>
 				</table>
 				<br><br>
 				<div id = "barAndAct" style = "display: none;" class = "row">
-				<div class = "col-md-3">
-				<h6>Frequency of visits</h6>
-					<canvas id="my-chart" height="180"></canvas>
-				</div>
-				<div class = "col-md-2"></div>
+					<div class = "col-md-5">
+					<h6>Frequency of visits</h6>
+						<canvas id="my-chart" height="180"></canvas>
+					</div>
+					<div class = "col-md-1"></div>
 				
 					<div class = "col-md-6" >
 					<h6>Activities</h6>
@@ -170,10 +165,34 @@
 		</div>
 
 
-	</div>
-	
-	
+	</div>	
 </div>
+
+<div class = "row">
+	<div class="modal fade" id="exModal" tabindex="-1" role="dialog" aria-labelledby="exModalLabel">
+  <div class="modal-dialog" style = "margin-left: 550px; margin-right: 100px; margin-top: 200px; margin-bottom: 100px;" role="document">
+    <div class="modal-content" style = "width: 300px;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">Add New Activity </label>
+            <input type="textarea" class="form-control" placeholder = "Add activity" id="activity_name" name = "recipient">
+          </div>
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <input type="submit" class="btn btn-primary" onclick = "sendActivity()" data-dismiss="modal" value = "Save">
+      </div>
+        
+    </div>
+  </div>
+</div>
+</div>
+
 <br><br><br><br><br><br><br><br>
 <div class = "navbar-fixed-bottom" style = "background-color: #F0F0F0; opacity: 0.75; padding-right: 100px;">
  	<br><p style = "float:right;"><b>Maulik Taranga Pvt. Ltd. </b> <br>Copyright &copy; 2015</p>

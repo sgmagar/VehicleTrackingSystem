@@ -5,7 +5,7 @@ function insert(query, value){
 	var client=new pg.Client(db_connection);
 	client.connect(function (err){
 		if(err){
-			console.log("could not connect to postgres on insert");
+			console.log("could not connect to postgres on insert",err);
 		}
 		client.query(query, value, function(err){
 			if(err){
@@ -20,7 +20,7 @@ function update(query,value){
 	var client=new pg.Client(db_connection);
 	client.connect(function (err){
 		if(err){
-			console.log("could not connect to postgres on update");
+			console.log("could not connect to postgres on update",err);
 		}
 		client.query(query, value, function(err){
 			if(err){
@@ -36,7 +36,7 @@ function select(query,value,callback){
 	var client=new pg.Client(db_connection);
 	client.connect(function (err){
 		if(err){
-			console.log("could not connect to postgres on select");
+			console.log("could not connect to postgres on select",err);
 		}
 		client.query(query, value, function(err, result){
 			if(err){
@@ -56,7 +56,7 @@ function delet(query,value){
 	var client=new pg.Client(db_connection);
 	client.connect(function (err){
 		if(err){
-			console.log("could not connect to postgres on delet");
+			console.log("could not connect to postgres on delet",err);
 		}
 		client.query(query, value, function (err){
 			if(err){

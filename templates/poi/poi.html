@@ -2,7 +2,7 @@
 
 <html>
 <br>
-<title>Locations</title>
+<title>Point of Interest</title>
 
 <head>
 <!-- Bootstrap -->
@@ -125,12 +125,15 @@
 
 					</ul>	
 					</div>
-					<div class = "col-md-2" style= "padding-top: 180px; padding:bottom: 100px;">
-					<span data-toggle="tooltip" data-placement="left" title="Hide/show" id = "collapse" style = "border-style: solid; border-color: #C0C0C0; border-width: 1px; cursor: pointer; color: #C0C0C0; font-size: 20px;" class = "glyphicon glyphicon-chevron-left"></span>
-				</div>
+					<div class = "col-md-2" style= "float: right; padding-top: 180px; padding-bottom: 150px; padding-right: 0px;">
+						<span data-toggle="tooltip" data-placement="left" title="Hide Sidebar" id = "collapse" style = "border-style: solid; border-color: #C0C0C0; border-width: 1px; cursor: pointer; color: #C0C0C0; font-size: 20px;" class = "glyphicon glyphicon-chevron-left"></span>
+					</div>
 				</div>
 
 				
+			</div>
+				<div id = "expandDiv" style= "display: none; cursor: pointer; position: absolute; left: 5px; top: 360px; right: 5px;">
+				<span data-toggle="tooltip" data-placement="left" title="Show Sidebar" id = "expandBar" class = "glyphicon glyphicon-chevron-right" style = "border-style: solid; border-color: #C0C0C0; border-width: 1px;  color: #C0C0C0; font-size: 20px;"></span>
 			</div>
 <!---->		<div id = "poiMapContainer" class = "col-md-9">
 				<div class="row">

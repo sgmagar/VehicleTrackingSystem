@@ -154,3 +154,7 @@
 .poiClass{
 	cursor: pointer;
 }
+.fullWidth{
+	padding-left: 8px;
+	width: 100%;
+}

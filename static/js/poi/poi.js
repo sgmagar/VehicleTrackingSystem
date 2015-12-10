@@ -8,8 +8,8 @@ $(document).ready(function(){
     $("#mapPOI").click(function(){
         $('#actPOI').removeClass('currPoiTab');;
         $(this).addClass('currPoiTab');
-        $('#poiMap').show();
-        $('#poiActs').hide();
+        $('#poiMap').fadeIn(600);
+        $('#poiActs').fadeOut(400);
         socket.emit('poi_map_detail');
     });
 
@@ -17,18 +17,24 @@ $(document).ready(function(){
     $("#actPOI").click(function(){
         $('#mapPOI').removeClass('currPoiTab');
         $(this).addClass('currPoiTab');
-        $('#poiMap').hide();
-        $('#poiActs').show();
+        $('#poiMap').fadeOut(400);
+        $('#poiActs').fadeIn(600);
         socket.emit('poi_activity_detail');
     });    
 
     $('#collapse').click(function(){
-        $('#temporaryBar').toggle(500);
-        // $('#expandBar').show();
-        // $(this).toggleClass('glyphicon-chevron-left');
-        // $(this).toggleClass('glyphicon-chevron-right');
-        $('#poiMapContainer').toggleClass('col-md-9');
-        $('#poiMapContainer').toggleClass('col-md-12');
+        $('#temporaryBar').hide(500);
+        $('#expandDiv').show(500);
+
+        $('#poiMapContainer').removeClass('col-md-9');
+        $('#poiMapContainer').addClass('fullWidth');
+    });
+
+    $('#expandBar').click(function(){
+        $('#temporaryBar').show(500);
+        $('#expandDiv').hide(500);
+        $('#poiMapContainer').addClass('col-md-9');
+        $('#poiMapContainer').removeClass('fullWidth');
     });
 });
 
@@ -58,7 +64,7 @@ socket.on('company_poi_info', function (data){
 });
 
 var marker=[];
- var poiList = document.getElementById('poiList');
+var poiList = document.getElementById('poiList');
 socket.on('poi_map_filter', function (data){
     if(data.length!=0){
        poiList.innerHTML='';
@@ -98,6 +104,7 @@ socket.on('poi_map_filter', function (data){
             poi.onclick=function(){
                 socket.emit('poi',{'poi':this.innerHTML});
                 $('#actPOI').prop('disabled', false);
+                $("#activityBox").hide();
                 var currTab=document.getElementsByClassName("currPoiTab")[0].innerHTML;
                 if(currTab.trim()=="Map"){
                     socket.emit('poi_map_detail');
@@ -207,6 +214,8 @@ socket.on("poi_activity_list", function (data){
 
             if(!vehicle){
                 radSpan.setAttribute('style','color:#999;')
+                var spanElem = document.createElement('span');
+                spanElem.innerHTML="    ";
                 var sel = document.createElement('select');
                 sel.classList.add('selectClass');
                 var addOption = document.createElement('option');
@@ -217,7 +226,7 @@ socket.on("poi_activity_list", function (data){
                 if(vehicle_list){
                     for(var i=0; i<vehicle_list.length; i++){
                         var addOpt = document.createElement('option');
-                        addOpt.innerHTML = vehicle_list[i].name;
+                        addOpt.innerHTML =vehicle_list[i].name;
                         sel.appendChild(addOpt);
                         sel.onchange = function(){
                             var chosen = this.options[this.selectedIndex].text;
@@ -228,6 +237,7 @@ socket.on("poi_activity_list", function (data){
                 }
                 poi_actlist.appendChild(sel);
                 act.setAttribute('disabled', true);
+                poi_actlist.appendChild(spanElem);
                 poi_actlist.appendChild(newLine);
                 icount++;
                 activity_listt();
@@ -336,8 +346,9 @@ function onMapClick(e){
 }
 
 function addActivity(){
-    var activity = document.getElementById("act_name").value;
-    socket.emit('add_activity', {'activity':activity});
+    var activity = document.getElementById("act_name");
+    socket.emit('add_activity', {'activity':activity.value});
+    activity.value='';
 }
 
 
@@ -350,7 +361,7 @@ socket.on('poi_reload', function(){
 });
 
 socket.on('reload_vehiclelist', function (data){
-    socket.emit('poi_activity_detail_filte',{'filter':'All'});
+    socket.emit('poi_activity_detail_filter',{'filter':'All'});
 });
 
 

@@ -148,8 +148,8 @@ font-family: times, Times New Roman, times-roman, georgia, serif;
 	height: 180px;
 }
 
-.currVehicle {
-	font-weight: bold;
+.clickedVehicle {
+	color: #999;
 }
 
 .hoverList:hover {

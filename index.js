@@ -17,7 +17,7 @@ var smtpTransport = nodemailer.createTransport({
 	service: 'Gmail',
 	auth: {
 		user: 'elanor2050@gmail.com',
-		pass: '######'
+		pass: '###'
 	}
 });
 
@@ -1272,7 +1272,7 @@ io.on('connection', function (socket){
 						'FROM activity INNER JOIN company_detail ON activity.company_id='+
 						'company_detail.id WHERE company_detail.username=$1 GROUP BY activity.poi_name,'+
 						'activity.poi_detail,activity.poi_latitude,activity.poi_longitude'+
-						' ORDER BY COUNT(DISTINCT CONCAT(activity.vehicle_id,activity.date))',
+						' ORDER BY COUNT(DISTINCT CONCAT(activity.vehicle_id,activity.date)) DESC',
 						[username], function (err, result){
 							if(err){
 
@@ -1302,8 +1302,8 @@ io.on('connection', function (socket){
 		socket.request.session.poi_id_map='';
 		socket.request.session.poi_name = ''
 		var poi = data.poi;
+		console.log(poi);
 		var username = socket.request.session.user;
-		socket.request.session.poi_name = poi;
 		db.select('SELECT poi.id'+
 					' FROM poi INNER JOIN company_detail ON poi.company_id'+
 					'=company_detail.id WHERE company_detail.username=$1 AND poi.name=$2',
@@ -1312,6 +1312,8 @@ io.on('connection', function (socket){
 
 						}else{
 							socket.request.session.poi_id_map=result[0].id;
+							socket.request.session.poi_name = poi;
+							console.log(result)
 						}
 		});
 	});
@@ -1319,8 +1321,8 @@ io.on('connection', function (socket){
 		var poi_id = socket.request.session.poi_id_map;
 		var username = socket.request.session.user;
 		if(!poi_id){
-			db.select('SELECT poi.name,poi.detail,poi.latitude,poi.longitude FROM company_detail '+
-					'INNER JOIN poi ON company_detail.id=poi.company_id WHERE company_detail.username'+
+			db.select('SELECT poi.name,poi.detail,poi.latitude,poi.longitude FROM poi '+
+					'INNER JOIN company_detail ON poi.company_id=company_detail.id WHERE company_detail.username'+
 					'=$1 ORDER BY poi.date DESC',[username], function (err, result){
 						if(err){
 

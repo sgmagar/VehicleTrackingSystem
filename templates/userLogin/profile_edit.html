@@ -41,8 +41,10 @@
 		<div class = "col-sm-1"><a href = "/logout" style = "text-decoration: none;"><h4>Log Out</h4></a></div>
 
 </div>
+<br><br>
 <div class = "row">
-		<div class = "col-md-4 col-sm-3 col-xs-2"></div>
+		<div class="col-md-1"></div>
+		<div class = "col-md-3 col-sm-3 col-xs-2"><h3><a href="/vehicle" class = "glyphicon glyphicon-road" style = "text-decoration: none;">Vehicle</a></h3></div>
 		<div class = "col-md-4 col-sm-6 col-xs-8">
 		<div class="row" id="edit_profile_error"></div>
 		<h2 align = "center"><b>Edit Your Profile</b></h2><br>
@@ -62,7 +64,7 @@
 			<input type = "text" class = "form-control" name = "email" placeholder = "Email" autofocus><br>
 			<div class="input-group">
 			  <input type="text" class="form-control" placeholder="logo" aria-describedby="basic-addon2">
-			  <span class="input-group-addon invokeupload" style="padding:3px 10px 3px 10px;"id="basic-addon2"><img src="logo/folder.png" width="28px" height="26px" onmouseover="this.src='logo/folder.png'" onmouseout="this.src='/images/folder.png'"/></span>
+			  <span class="input-group-addon invokeupload" style="padding:3px 10px 3px 10px;"id="basic-addon2"><img src="logo/folder.png" width="28px" height="26px" onmouseover="this.src='/images/folder.png'" onmouseout="this.src='/images/folder.png'"/></span>
 			</div>
 			<input type = "file" name = "logo" id="browse" autofocus><br/>
 			<input type="submit" class = "btn btn-success" value="Save" />&nbsp;
@@ -73,13 +75,11 @@
 
 
 		</div>	
-		<img src="images/company_logo/547f02f71abd977b9fab7d52621c00e7" height="100" width="150" />
 
 	
 
 
 	</div>
-	<div class = "col-md-4 col-sm-3 col-xs-2 navbar-right"><a href="/logout">Logout</a></div>
 </div>
 
 <script src="socket.io/socket.io.js"></script>

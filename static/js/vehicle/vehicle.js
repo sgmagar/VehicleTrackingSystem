@@ -121,20 +121,32 @@ socket.on('vehicle_info', function (data){
             var corrVeh = document.createElement("li");
             corrVeh.innerHTML = vehName;
             // item.appendChild(corrVeh);
-            corrVeh.setAttribute('id', 'exp' + (i+1));
+            corrVeh.setAttribute('id', 'exp' + (i+1)+(j+1));
             corrVeh.classList.add('expClass');
+            corrVeh.classList.add('expClass'+(i+1));
             corrVeh.onclick=function(){
                 socket.emit('vehicle', {'vehicle':this.innerHTML});
-                var menuTab =  document.getElementsByClassName('currTab')[0].innerHTML;
-                $('#actButton').prop('disabled', false);
-                $('#dashButton').prop('disabled', false);
-                if(menuTab=="Map"){
-                    socket.emit('vehicle_map');
-                }else if(menuTab=="Activities"){
-                    socket.emit('vehicle_activity');
-                }else if(menuTab=="Dashboard"){
-                    socket.emit('vehicle_dasboard',{'from_date':'','to_date':'','type':''});
+                $('#barAndAct').fadeOut(600);
+                for(var k=0;k<document.getElementsByClassName('vehListClass').length;k++){
+                    for(var l=0;l<document.getElementsByClassName('expClass'+(k+1)).length;l++){
+                        document.getElementById('exp' + (k+1)+(l+1)).removeAttribute('style');
+                    }
                 }
+                
+                this.setAttribute('style', 'color: #999;');
+                setTimeout(function(){
+                    var menuTab =  document.getElementsByClassName('currTab')[0].innerHTML;
+                    $('#actButton').prop('disabled', false);
+                    $('#dashButton').prop('disabled', false);
+                    if(menuTab=="Map"){
+                        socket.emit('vehicle_map');
+                    }else if(menuTab=="Activities"){
+                        socket.emit('vehicle_activity');
+                    }else if(menuTab=="Dashboard"){
+                        socket.emit('vehicle_dasboard',{'from_date':'','to_date':'','type':''});
+                    }
+                },100);
+                
                 //alert(this.innerHTML+" "+ document.getElementsByClassName('currTab')[0].innerHTML);
             }
             vehList.appendChild(corrVeh);
@@ -146,6 +158,11 @@ socket.on('vehicle_info', function (data){
         item.appendChild(vehList);
         listCats.appendChild(item);
     } 
+
+
+   
+
+
 });
 var marker=[];
 socket.on('vehicle_map_first', function (data){

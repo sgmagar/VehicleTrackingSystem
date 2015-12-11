@@ -103,16 +103,23 @@ socket.on('poi_map_filter', function (data){
 
             poi.onclick=function(){
                 socket.emit('poi',{'poi':this.innerHTML});
-                $('#actPOI').prop('disabled', false);
-                $("#activityBox").hide();
-                var currTab=document.getElementsByClassName("currPoiTab")[0].innerHTML;
-                if(currTab.trim()=="Map"){
-                    socket.emit('poi_map_detail');
-                }else if(currTab.trim()=="Activities"){
-                    console.log(currTab);
-                    socket.emit('poi_activity_detail');
+                for(var j=0;j<document.getElementsByClassName('poiClass').length;j++){
+                    document.getElementById('poi' + (j+1)).removeAttribute('style');
                 }
-                //alert(this.innerHTML+" "+document.getElementsByClassName("currPoiTab")[0].innerHTML);
+                this.setAttribute('style','color:#999;');
+                setTimeout(function(){
+                    $('#actPOI').prop('disabled', false);
+                    $("#activityBox").hide();
+                    var currTab=document.getElementsByClassName("currPoiTab")[0].innerHTML;
+                    if(currTab.trim()=="Map"){
+                        socket.emit('poi_map_detail');
+                    }else if(currTab.trim()=="Activities"){
+                        console.log(currTab);
+                        socket.emit('poi_activity_detail');
+                    }
+                },100);
+               
+                // alert(this.innerHTML+" "+document.getElementsByClassName("currPoiTab")[0].innerHTML);
             }
         }
        

@@ -316,7 +316,37 @@ io.on('connection', function (socket){
 								if(err){
 
 								}else{
-									socket.emit('vehicle_dashboard_speed', result);
+									//socket.emit('vehicle_dashboard_speed', result);
+									console.log(result);
+									if(result.length!=0){
+										var i=0;
+										(function sendSpeed(){
+											if(i<result.length){
+												var speed=[];
+												var time=[];
+												var latitude=[];
+												var longitude=[];
+												for(var j=0;j<result[i].speed.length;j++){
+													if((j%(result.length*4))==0){
+														speed.push(result[i].speed[j]);
+														time.push(result[i].time[j]);
+														latitude.push(result[i].latitude[j]);
+														longitude.push(result[i].longitude[j]);
+													}
+												}
+												result[i].time=time;
+												result[i].speed=speed;
+												result[i].latitude=latitude;
+												result[i].longitude=longitude;
+												i++;
+												sendSpeed();
+											}else{
+												console.log(result);
+												socket.emit('vehicle_dashboard_speed',result);
+											}
+										})();
+									}
+
 								}
 			});
 
@@ -326,11 +356,40 @@ io.on('connection', function (socket){
 							'array_agg(longitude) AS longitude '+
 							'FROM vehicle_data WHERE device_id=$1 AND date BETWEEN '+
 							'$2 AND $3 GROUP BY date ORDER BY date',
-							[device_id], function (err,result){
+							[device_id,from_date,to_date], function (err,result){
 								if(err){
 
 								}else{
-									socket.emit('vehicle_dashboard_fuel', result);	
+									//socket.emit('vehicle_dashboard_fuel', result);
+									console.log(result);
+									if(result.length!=0){
+										var i=0;
+										(function sendFuel(){
+											if(i<result.length){
+												var fuel=[];
+												var time=[];
+												var latitude=[];
+												var longitude=[];
+												for(var j=0;j<result[i].fuel.length;j++){
+													if((j%(result.length*4))==0){
+														fuel.push(result[i].fuel[j]);
+														time.push(result[i].time[j]);
+														latitude.push(result[i].latitude[j]);
+														longitude.push(result[i].longitude[j]);
+													}
+												}
+												result[i].time=time;
+												result[i].fuel=fuel;
+												result[i].latitude=latitude;
+												result[i].longitude=longitude;
+												i++;
+												sendFuel();
+											}else{
+												console.log(result);
+												socket.emit('vehicle_dashboard_fuel',result);
+											}
+										})();
+									}	
 								}
 				});
 			}else{
@@ -343,7 +402,39 @@ io.on('connection', function (socket){
 								if(err){
 
 								}else{
-									socket.emit('vehicle_dashboard', result);
+									//socket.emit('vehicle_dashboard', result);
+									console.log(result);
+									if(result.length!=0){
+										var i=0;
+										(function sendAll(){
+											if(i<result.length){
+												var speed=[];
+												var fuel=[];
+												var time=[];
+												var latitude=[];
+												var longitude=[];
+												for(var j=0;j<result[i].fuel.length;j++){
+													if((j%(result.length*4))==0){
+														speed.push(result[i].speed[j]);
+														fuel.push(result[i].fuel[j]);
+														time.push(result[i].time[j]);
+														latitude.push(result[i].latitude[j]);
+														longitude.push(result[i].longitude[j]);
+													}
+												}
+												result[i].time=time;
+												result[i].speed=speed;
+												result[i].fuel=fuel;
+												result[i].latitude=latitude;
+												result[i].longitude=longitude;
+												i++;
+												sendAll();
+											}else{
+												console.log(result);
+												socket.emit('vehicle_dashboard_all',result);
+											}
+										})();
+									}	
 								}
 				});
 			}		
@@ -385,8 +476,8 @@ io.on('connection', function (socket){
 			});
 		}else if(filter=='Most Visited'){
 			db.select('SELECT activity.poi_name AS name, activity.poi_detail AS detail,'+
-						'activity.poi_latitude AS latitude,activity.poi_longitude AS longitude,'+
-						'COUNT(DISTINCT CONCAT(activity.poi_name,activity.date)) FROM activity INNER JOIN company_detail ON activity.company_id='+
+						'activity.poi_latitude AS latitude,activity.poi_longitude AS longitude '+
+						'FROM activity INNER JOIN company_detail ON activity.company_id='+
 						'company_detail.id WHERE company_detail.username=$1 GROUP BY activity.poi_name,'+
 						'activity.poi_detail,activity.poi_latitude,activity.poi_longitude'+
 						' ORDER BY COUNT(DISTINCT CONCAT(activity.poi_name,activity.date)) DESC',

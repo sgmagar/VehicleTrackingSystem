@@ -28,7 +28,7 @@ $(document).ready(function(){
         $('#map').hide();
         $('#act').hide();
         $('#dash').show();
-        socket.emit('vehicle_dasboard',{'from_date':'','to_date':'','type':''});
+        //socket.emit('vehicle_dasboard',{'from_date':'','to_date':'','type':''});
     });
     $("#actButton").click(function(){
       // $("#map").hide();
@@ -153,7 +153,7 @@ socket.on('vehicle_info', function (data){
                     }else if(menuTab=="Activities"){
                         socket.emit('vehicle_activity');
                     }else if(menuTab=="Dashboard"){
-                        socket.emit('vehicle_dasboard',{'from_date':'','to_date':'','type':''});
+                        //socket.emit('vehicle_dasboard',{'from_date':'','to_date':'','type':''});
                     }
                 },100);
                 
@@ -456,4 +456,15 @@ socket.on('vehicle_activity_poi_activity', function (data){
     })();
 });
 
+
+
+function speed(){
+    socket.emit('vehicle_dasboard', {'from_date':'','to_date':'','type':'speed'});
+}
+function fuel(){
+    socket.emit('vehicle_dasboard', {'from_date':'','to_date':'','type':'fuel'});
+}
+function all(){
+    socket.emit('vehicle_dasboard', {'from_date':'','to_date':'','type':'all'});
+}
 

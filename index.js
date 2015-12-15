@@ -385,16 +385,17 @@ io.on('connection', function (socket){
 			});
 		}else if(filter=='Most Visited'){
 			db.select('SELECT activity.poi_name AS name, activity.poi_detail AS detail,'+
-						'activity.poi_latitude AS latitude,activity.poi_longitude AS longitude '+
-						'FROM activity INNER JOIN company_detail ON activity.company_id='+
+						'activity.poi_latitude AS latitude,activity.poi_longitude AS longitude,'+
+						'COUNT(DISTINCT CONCAT(activity.poi_name,activity.date)) FROM activity INNER JOIN company_detail ON activity.company_id='+
 						'company_detail.id WHERE company_detail.username=$1 GROUP BY activity.poi_name,'+
 						'activity.poi_detail,activity.poi_latitude,activity.poi_longitude'+
-						' ORDER BY COUNT(DISTINCT CONCAT(activity.vehicle_id,activity.date)) DESC',
+						' ORDER BY COUNT(DISTINCT CONCAT(activity.poi_name,activity.date)) DESC',
 						[username], function (err, result){
 							if(err){
 
 							}else{
 								if(result.length!=0){
+									console.log(result);
 									socket.emit('poi_map_filter',result);
 								}
 							}

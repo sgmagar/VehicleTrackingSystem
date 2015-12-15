@@ -53,11 +53,16 @@ $(document).ready(function(){
 
     $('#collapse').click(function(){
         $('#collapse_bar').hide(500);
-        $('#expandDiv').show(500);
+        $('#expandDiv').show(600);
         // $(this).toggleClass('glyphicon-chevron-left');
         // $(this).toggleClass('glyphicon-chevron-right');
         $('#mapContainer').removeClass('col-md-9');
         $('#mapContainer').addClass('fullWidth');
+        $('#vehicleBtnGroup').attr('style', 'visibility: hidden;');
+            
+        setTimeout(function (){
+            $('#vehicleBtnGroup').attr('style', 'visibility: visible;');
+        }, 600);
     });
 
     $('#expandBar').click(function(){
@@ -65,6 +70,11 @@ $(document).ready(function(){
         $('#expandDiv').hide(500);
         $('#mapContainer').addClass('col-md-9');
         $('#mapContainer').removeClass('fullWidth');
+        $('#vehicleBtnGroup').attr('style', 'visibility: hidden;');
+        
+        setTimeout(function (){
+            $('#vehicleBtnGroup').attr('style', 'visibility: visible;');
+        }, 600);
     });
 });
 

@@ -54,7 +54,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
         <h4 class="modal-title" id="exampleModalLabel">Resend Pin Number</h4>
       </div>
       <div class="modal-body">
-        <form action = "/resendpin" method = "POST">
+        <form action = "/vehicleadd/resendpin" method = "POST">
           <div class="form-group">
             <label for="device_id2" class="control-label">Enter Device Id</label>
            <input type = "text" class = "form-control input-md" id = "device_id2" name = "deviceid" placeholder = "DEVICE ID" autofocus>
@@ -86,7 +86,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
   Please enter the pin received in the email, below. <br><br>
   Should we <span id="resend_pin" style="color: blue; font-size: medium; cursor: pointer;"><a href = "#" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">resend</a></span> the pin?</h4><br>
 
-    <form  class = "form-inline" action = "/devicepin" method = "POST">
+    <form  class = "form-inline" action = "/vehicleadd/devicepin" method = "POST">
       
       <!-- <input type = "text" class = "form-control" name = "user_name" placeholder = "Username" autofocus> -->
       <input type = "text" class = "form-control input-md" id = "device_id1" name = "deviceid" placeholder = "DEVICE ID" autofocus>

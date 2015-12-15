@@ -1,6 +1,4 @@
-
-
-
+<!DOCTYPE html>
 <html>
 <br>
 <title>Vehicles</title>
@@ -12,8 +10,18 @@
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<!-- <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" type="text/css" media="screen"
+     href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+
+     <!-- Include Date Range Picker -->
+	<script type="text/javascript" src="http://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+	<script type="text/javascript" src="/canvasFiles/canvasjs.min.js"></script>
+
 
 	<!-- Leaflet resources -->
 	<link rel="stylesheet" href="/leaflet/leaflet.css" />
@@ -103,7 +111,7 @@
 						<div id = "all_categories" style = "font-size: 16px;"></div>
 					</div>
 					<br><br>
-					<a href="/device" style = "text-decoration: none;"><span class = "glyphicon glyphicon-plus"></span>New Vehicle</a>
+					<a href="/vehicleadd/device" style = "text-decoration: none;"><span class = "glyphicon glyphicon-plus"></span>New Vehicle</a>
 				</div>
 
 				<!-- </div> -->
@@ -120,7 +128,7 @@
 		<div class = "col-md-9" id = "mapContainer">
 			
 			<div class = "col-md-8"></div>
-			<div class = "col-md-4 btn-group" style="padding-right:0;">
+			<div id ="vehicleBtnGroup" class = "col-md-4 btn-group" style="padding-right:0;">
 				<button id = "actButton" class = "btn btn-default btn-sm pull-right">Activities</button>
 				<button id = "dashButton" class = "btn btn-default btn-sm pull-right">Dashboard</button>
 				<button id = "mapButton" class = "btn btn-default btn-sm currTab pull-right">Map</button>
@@ -159,13 +167,51 @@
 
 			</div>
 
-			<div class = "col-md-12" id = 'dash'><h2>I am dashboard.</h2></div>
+			<div class = "col-md-12" id = 'dash'>
+			 <!-- date picker -->
+				   <div class="container">
+				   <form class="form-inline" role="form">
+				    <div class="form-group">
+				      <label for="Fuel Consuption"><h4>Fuel Consumption<small> from </small></h4></label>
+				   <input type="text" style = "height:30px;" name ="datefilter" value="" />
+				   </div>
+				   <div class="form-group">
+				      <label for=""><h4><small> to </small></h4></label>
+				    <input type="text" style = "height:30px;" name="datefilter" value="" />
+				    </div>
+				    </form>
+				    </div>
+				    <!-- end date picker -->
+
+				<!-- chart -->
+				    <div id="chartContainer" style="height: 200px; width: 90%; margin-left: 80px;"></div>
+				<!-- end of chart -->
+				<br><br>
+				<div class="container">
+				   <form class="form-inline" role="form">
+				    <div class="form-group">
+				      <label for="Speed"><h4>Speed<small> from </small></h4></label>
+				   <input type="text" style = "height:30px;" name="datefilter" value="" />
+				   </div>
+				   <div class="form-group">
+				      <label for=""><h4><small> to </small></h4></label>
+				    <input type="text" style = "height:30px;" name="datefilter" value="" />
+				    </div>
+				    </form>
+				    </div>
+
+				    <!-- chart -->
+				    <div id="chartContainer2" style="height: 200px; width: 90%; margin-left: 80px;"></div>
+				<!-- end of chart -->
+
+			</div>
 
 
 		</div>
 
 
 	</div>	
+
 </div>
 
 <div class = "row">
@@ -193,14 +239,14 @@
 </div>
 </div>
 
-<br><br><br><br><br><br><br><br>
+<div style="height:300px; visibility:hidden;" ></div>
+
 <div class = "navbar-fixed-bottom" style = "background-color: #F0F0F0; opacity: 0.75; padding-right: 100px;">
  	<br><p style = "float:right;"><b>Maulik Taranga Pvt. Ltd. </b> <br>Copyright &copy; 2015</p>
 </div>
-
+	
 	<script type="text/javascript" src='socket.io/socket.io.js'></script>
 	<script src="/leaflet/leaflet.js"></script>
-
 	  <!-- D3.js -->
 	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 	<script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
@@ -215,7 +261,6 @@
 
  -->
 	<!-- // Script for activity graph - calendar  -->
-
 
 </html>
 

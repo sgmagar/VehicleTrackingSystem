@@ -4,20 +4,188 @@
 		"selected_items":
 		[
 			[
+				"get",
+				"getElementById"
+			],
+			[
+				"curr",
+				"currVehicle"
+			],
+			[
+				"set",
+				"setAttribute"
+			],
+			[
+				"da",
+				"data"
+			],
+			[
+				"on",
+				"onclick"
+			],
+			[
+				"nw",
+				"newTableRow"
+			],
+			[
+				"new",
+				"newTableRow"
+			],
+			[
+				"sta",
+				"statStr"
+			],
+			[
+				"act",
+				"actTable"
+			],
+			[
+				"oneL",
+				"oneLong"
+			],
+			[
+				"one",
+				"oneLat"
+			],
+			[
+				"onel",
+				"oneLat"
+			],
+			[
+				"lon",
+				"longSlice"
+			],
+			[
+				"lat",
+				"latSlice"
+			],
+			[
+				"pre",
+				"prevLong"
+			],
+			[
+				"onl",
+				"oneLong"
+			],
+			[
+				"padd",
+				"padding-left"
+			],
+			[
+				"rse",
+				"result"
+			],
+			[
+				"ve",
+				"vehicle_marker"
+			],
+			[
+				"vehicle",
+				"vehicle_marker"
+			],
+			[
+				"vehi",
+				"vehicle_map"
+			],
+			[
+				"va",
+				"value"
+			],
+			[
+				"span",
+				"spanElem"
+			],
+			[
+				"rad",
+				"radSpan"
+			],
+			[
+				"in",
+				"innerHTML"
+			],
+			[
+				"actr",
+				"actScrSel"
+			],
+			[
+				"acti",
+				"activity_listt"
+			],
+			[
+				"poi_act",
+				"poi_actlist"
+			],
+			[
+				"from",
+				"from"
+			],
+			[
+				"sel",
+				"select"
+			],
+			[
+				"se",
+				"select"
+			],
+			[
+				"device",
+				"device_id"
+			],
+			[
+				"compa",
+				"company_detail"
+			],
+			[
+				"as",
+				"AS"
+			],
+			[
+				"joi",
+				"JOIN"
+			],
+			[
+				"cate",
+				"category"
+			],
+			[
+				"dv",
+				"device_pin"
+			],
+			[
+				"From",
+				"FROM"
+			],
+			[
+				"len",
+				"length"
+			],
+			[
+				"inse",
+				"insert"
+			],
+			[
+				"sele",
+				"select"
+			],
+			[
+				"req",
+				"require"
+			],
+			[
+				"re",
+				"require"
+			],
+			[
+				"backgro",
+				"background-color"
+			],
+			[
 				"res",
 				"result"
 			],
 			[
-				"re",
-				"req"
-			],
-			[
 				"poi_acti",
 				"poi_activity_detail"
-			],
-			[
-				"get",
-				"getElementById"
 			],
 			[
 				"poi_ac",
@@ -32,28 +200,12 @@
 				"onclick"
 			],
 			[
-				"from",
-				"from_date"
-			],
-			[
-				"on",
-				"onclick"
-			],
-			[
 				"la",
 				"latt"
 			],
 			[
-				"curr",
-				"currTab"
-			],
-			[
 				"fun",
 				"function"
-			],
-			[
-				"vehicle",
-				"vehicleLoaded"
 			],
 			[
 				"vehic",
@@ -96,18 +248,6 @@
 				"poi_map_filter"
 			],
 			[
-				"da",
-				"data"
-			],
-			[
-				"se",
-				"setAttribute"
-			],
-			[
-				"compa",
-				"company_name"
-			],
-			[
 				"comp",
 				"company_name_html"
 			],
@@ -138,10 +278,6 @@
 			[
 				"coma",
 				"company_id"
-			],
-			[
-				"sele",
-				"Select"
 			],
 			[
 				"assi",
@@ -204,10 +340,6 @@
 				"vehicle_dashboard_client"
 			],
 			[
-				"sel",
-				"Select"
-			],
-			[
 				"Sele",
 				"select"
 			],
@@ -236,10 +368,6 @@
 				"vehicle_dashboard_client"
 			],
 			[
-				"ve",
-				"vehicle_activity_poi_id"
-			],
-			[
 				"vehicle_ac",
 				"vehicle_activity_poi_client_freq"
 			],
@@ -258,10 +386,6 @@
 			[
 				"into",
 				"INTO"
-			],
-			[
-				"vehi",
-				"vehicle_activity_newactivity_client"
 			],
 			[
 				"vehicle_a",
@@ -292,10 +416,6 @@
 				"getVehicleLocation"
 			],
 			[
-				"device",
-				"deviceid"
-			],
-			[
 				"dev",
 				"device_id_client"
 			],
@@ -310,10 +430,6 @@
 			[
 				"conn",
 				"connect"
-			],
-			[
-				"cate",
-				"category_id"
 			],
 			[
 				"cat",
@@ -356,20 +472,12 @@
 				"INTO"
 			],
 			[
-				"inse",
-				"INSERT"
-			],
-			[
 				"add",
 				"add_activity_client"
 			],
 			[
 				"add_ac",
 				"add_activity_client"
-			],
-			[
-				"as",
-				"assign_activity_vehicle_client"
 			],
 			[
 				"Upd",
@@ -386,10 +494,6 @@
 			[
 				"activi",
 				"activity"
-			],
-			[
-				"set",
-				"SET"
 			],
 			[
 				"assc",
@@ -410,144 +514,64 @@
 			[
 				"file",
 				"filter"
-			],
-			[
-				"poi_acticvi",
-				"poi_activity_detail_filter_client"
-			],
-			[
-				"Fro",
-				"FROM"
-			],
-			[
-				"acti",
-				"activity_date_list_count"
-			],
-			[
-				"ac",
-				"activity_date_list_count"
-			],
-			[
-				"poi_aa",
-				"poi_activity_detail_activity_client"
-			],
-			[
-				"by",
-				"BY"
-			],
-			[
-				"grou",
-				"GROUP"
-			],
-			[
-				"in",
-				"INTO"
-			],
-			[
-				"Inse",
-				"INSERT"
-			],
-			[
-				"cou",
-				"Could"
-			],
-			[
-				"lat",
-				"latitude"
-			],
-			[
-				"us",
-				"username"
-			],
-			[
-				"comap",
-				"company_detail"
-			],
-			[
-				"poi_ma",
-				"poi_map_filter_client"
-			],
-			[
-				"COM",
-				"company_id"
-			],
-			[
-				"db",
-				"db_connection"
-			],
-			[
-				"for",
-				"for	for (…) {…}"
-			],
-			[
-				"vehicle_id",
-				"vehicle_id_activity"
-			],
-			[
-				"user",
-				"username"
-			],
-			[
-				"getP",
-				"getPoiTask"
-			],
-			[
-				"Select",
-				"SELECT"
-			],
-			[
-				"tak",
-				"task_poi_id_count"
-			],
-			[
-				"poi_id",
-				"poi_id_count"
-			],
-			[
-				"vehicle_de",
-				"vehicle_detail_client"
-			],
-			[
-				"lon",
-				"longitude"
-			],
-			[
-				"rs",
-				"result"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
+			"file": "db.js",
+			"settings":
+			{
+				"buffer_size": 1725,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "index.js",
 			"settings":
 			{
-				"buffer_size": 73522,
+				"buffer_size": 49264,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/home/saurav/Documents/Taranga/test_proj_express/app.js",
+			"file": "templates/userLogin/profile_edit.html",
 			"settings":
 			{
-				"buffer_size": 1442,
+				"buffer_size": 3507,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "static/js/vehicle/vehicle.js",
+			"file": "templates/userLogin/recover_account.html",
 			"settings":
 			{
-				"buffer_size": 14696,
+				"buffer_size": 1492,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "static/css/vehicle/vehicle.css",
+			"file": "templates/userLogin/signup.html",
 			"settings":
 			{
-				"buffer_size": 3089,
+				"buffer_size": 2748,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/userLogin/newpassword.html",
+			"settings":
+			{
+				"buffer_size": 1838,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/userLogin/user_pin.html",
+			"settings":
+			{
+				"buffer_size": 2324,
 				"line_ending": "Unix"
 			}
 		},
@@ -555,15 +579,15 @@
 			"file": "templates/vehicle/vehicle.html",
 			"settings":
 			{
-				"buffer_size": 6348,
+				"buffer_size": 7663,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "static/css/poi/poi.css",
+			"file": "static/js/vehicle/vehicle.js",
 			"settings":
 			{
-				"buffer_size": 2276,
+				"buffer_size": 15595,
 				"line_ending": "Unix"
 			}
 		},
@@ -571,47 +595,59 @@
 			"file": "static/js/poi/poi.js",
 			"settings":
 			{
-				"buffer_size": 7788,
+				"buffer_size": 12942,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "static/js/poi/calendar.js",
+			"contents": "    \"use strict\"\n\nvar currentVan = []; // For getting current ID of vehicle to update innerHTML\nvar i; \n\nvar is_clicked = 0;\n\nvar d = new Date();\nvar isoDate = d.toISOString(d);\nvar substr = isoDate.substring(0,10);\n\n\nvar is_logged; \n\n\nvar chartObj;\n\n\nvar init_lat = [27.703262, 27.726665, 27.671104, 27.701418, 27.68139];\nvar init_long = [85.311824, 85.345727, 85.324563, 85.320382, 85.30197];\n\n\nfor(i = 0; i < init_lat.length; i++){\n    init_locations(init_lat[i], init_long[i]);\n}\n\n\n\n\n// Websocket start\n\n    \n    var ws = new WebSocket(\"ws://127.0.0.1:3000\");\nfunction sendData(data){\n\n    var jsonData = {\n            \"origin\": \"ask4data\", \n            \"vandata\": data\n          };\n\n    waitForSocketConnection(ws, function() { \n        ws.send(JSON.stringify(jsonData));\n\n    });\n\n    \n}\n\n\nfunction sendActivity(data){\n\n    var actID = document.getElementById('activity_name');\n    var actName = actID.value;\n    socket.emit('popupActData', actName);\n    \n}\n\n\nfunction sendCat(data, catId){\n    var jsonCat = {\n        \"origin\": \"requestCat\", \n        \"catdata\": data,\n        \"catID\": catId\n    }\n    waitForSocketConnection(ws, function() {\n        ws.send(JSON.stringify(jsonCat));\n    });\n}\n\nfunction bodyLoaded(){\n    var jsonData = {\n        \"origin\": \"body\", \n        \"status\": \"loaded\"\n    }\n    waitForSocketConnection(ws, function() {\n        ws.send(JSON.stringify(jsonData));\n\n    });\n    \n\n}\n\n\n\nfunction sendExpData(data){\n\n\n// sendData(name, address, phone, latitude, longitude);\n    var jsonData = {\n            \"origin\": \"expData\", \n            \"vandata\": data\n          };\n\n    waitForSocketConnection(ws, function() { \n        ws.send(JSON.stringify(jsonData));\n\n    });\n}\n\n\n// Socket.io\n\nvar socket=io();\n\n    // var demo = document.getElementById('demo');\n    socket.on('server', function(data){\n        //socket.emit('tab2', data);\n        //for(dat in data){\n            // demo.innerHTML = data.message;\n            console.log(data.message);\n        //}\n\n        socket.emit('client','Hello from client');\n\n    });\n\n\n\n\nfunction queryActivities(loc) {\n    // console.log('Data sent!!');\n    socket.emit('location', loc);\n}\n\n\n\n// ......\n\n\nvar location_list = ['Near Arm Futsal', 'Dilli Bazar', 'Anamnagar', 'Putalisadak'];\nvar issuedDate = ['2015-11-12', '2015-11-16', '2015-11-18', '2015-11-20'];\n// var status = ['done', 'done', 'pending', 'pending'];\n\n\n\n\n\nvar parsedData = [['Near Arm Futsal', '2015-11-12', 'done'], ['Dilli Bazar', '2015-11-16', 'done'], \n    ['Putalisadak', '2015-11-20', 'pending'], ['Anamnagar', '2015-11-22', 'pending']]; \n\n\n\nvar activity_list = ['Collect cash from futsal Kirana', 'Deposit 10 gallons of water', \n'Deposit 10 cartoons of chow chow', 'Meet Ram Prasad and talk about cash', 'List note of new orders '];\nvar stat = [0, 0, 1, 1, 1];\n\n\n\n\n\nvar actTable = document.getElementById('vehicle_activities_table');\nfor(i = 0; i < parsedData.length; i++){\n    var statStr; \n    if(stat[i] == 0){\n        statStr = 'Done';\n    }\n    else {\n        statStr = 'Pending'; \n    }\n    var newTableRow = document.createElement('tr');\n    newTableRow.setAttribute('id', 'tr' + (i+1));\n    newTableRow.classList.add(\"tableRows\");\n    for (var j = 0; j < 3; j++){\n        var newTableCol = document.createElement('td');\n        newTableCol.innerHTML = data;\n        newTableCol.setAttribute('id', 'td' + (i+1) + (j+1));\n        newTableCol.setAttribute('align', 'center');\n        newTableCol.classList.add('tableCols');\n        newTableRow.appendChild(newTableCol);\n    }\n    // newTableRow.innerHTML = '<td>' + location_list[i] + '</td><td>' + issuedDate[i] + '</td><td>' + statStr + '</td>'; \n    actTable.appendChild(newTableRow);\n}\nvar lent = document.getElementsByClassName('tableCols');\n\n\nfor(i = 0; i < lent.length; i++){\n    lent[i].onclick = function (){\n        // alert(this.innerHTML);\n        var actLocs = document.getElementsByClassName('activeLocation');\n        var adds_act = document.getElementById('actAddition');\n\n        for(i = 0; i < actLocs.length; i++){\n                actLocs[i].classList.remove('activeLocation');    \n        }\n\n        this.classList.add('activeLocation');\n        var location = this.innerHTML;\n        \n        var eyedee = this.id;\n        var lastDig = eyedee.slice()[3];\n            \n            adds_act.setAttribute('style', 'cursor: pointer; color: #000');\n            adds_act.setAttribute('data-target', '#exModal');\n            \n        if(lastDig == '1'){\n            // this.classList.add('activeAddress');\n            var chartHead = document.getElementById('chartHeader');\n            chartHead.innerHTML = location;\n            queryActivities(location);\n            // Creating chart object \n\n            $(function(){\n\n          var ctx = $('#my-chart').get(0).getContext('2d');\n\n          $('#my-chart').attr('style', 'height: 180px; width: 300px;');\n          $('#my-chart').attr('height', '180');\n          $('#my-chart').attr('width', '300');\n\n          var myChart = document.getElementById('my-chart');\n          myChart.innerHTML = '';\n\n\n          var data = {\n            labels: [\n              'Sep', 'Oct', 'Nov'\n            ],\n            datasets: [\n              {\n                  label: 'Months',\n                  fillColor: 'rgba(170,170,170,0.5)',\n                  highlightFill: 'rgba(140,140,140,0.5)',\n                  data: [6, 8, 12]\n              }\n            ]\n          };\n          var options = {\n            barStrokeWidth : 1,\n            // responsive: false,\n            animation: false,\n            barShowStroke: false\n          };\n\n          chartObj = new Chart(ctx).Bar(data, options);\n\n          \n\n          // chartObj.chart.height = 180;\n          // chartObj.chart.width = 300;\n\n          console.log(chartObj);\n\n        }); \n\n\n\n        // .........\n                \n        setTimeout(function(){\n            $('#barAndAct').fadeIn(500);\n        }, 1000);\n\n        }\n\n        \n    }\n}\n\n\n\n\n\n\n\n\nvar actList = document.getElementById('activity_list');\nfor(i = 0; i < activity_list.length; i++){\n    var newAct = document.createElement('input');\n    var radioSpan = document.createElement('span');\n    newAct.setAttribute('type', 'radio');\n    newAct.setAttribute('disabled', true);\n    newAct.classList.add('radioClass');\n    if(stat[i] == 0){\n        radioSpan.classList.add('dimSpan');\n        // radioSpan.innerHTML = radioSpan.innerHTML + '<span class = \"glyphicon glyphicon-map-marker\"></span>';\n        newAct.setAttribute('checked', true);\n    }\n    else {\n        radioSpan.classList.add('spanClass');\n    }\n    \n    // console.log(activity_list[i]);\n    newAct.setAttribute('value', activity_list[i]); \n    newAct.setAttribute('id', 'radio' + (i + 1)); \n    // desc.innerHTML = activity_list[i];\n    actList.appendChild(newAct);\n    // actList.appendChild(desc); \n    // var radioSpan = document.createElement('span');\n    radioSpan.innerHTML =  newAct.value + '<br />';\n    actList.appendChild(radioSpan);\n}\nvar abc = document.getElementsByClassName('radioClass');\nfor(i = 0; i < abc.length; i++){\n    abc[i].onclick = function(){\n        // console.log('Checked!');\n        this.classList.add('spanClass');\n    }\n}\n\n\n\n\n\n// nov 29 edit\n\nvar caty = 'Van';\nvar vehArr = ['Me1Pa 2300', 'Me1Cha 120', 'Me1Ja 202', 'Ba1Cha 1000', 'Ba1Ja 4444'];\nvar jCatVehicles = \n        {\n        \"category\": 'Van', \n        \"vehicle\": vehArr\n    }\n\n\n\nvar listCats = document.getElementById('all_categories');\n            // var Cats = jCatVehicles.category;\n            console.log(jCatVehicles.category);\n\n            for(i = 0; i < 1; i++){\n                // Display the jobs assigned to vehicles today\n                var item = document.createElement(\"div\"); // Creates a list element \n\n\n\n                // var newline = document.createElement('br');\n                item.style.width = \"150px\";\n                // item.style.background = \"#F0F8FF\";\n                item.classList.add(\"catClass\");\n                // item.classList.add(\"btn-default\");\n\n                // listitem.setAttribute(\"class\", 'vans'+(i+1));\n                // item.setAttribute(\"id\", 'cat'+(i+1));   // Gives ID to the list element \n                // newline.setAttribute(\"id\", 'fill'+(i+1));\n\n                // var itemData = message.data[i];\n                // var finalData = itemData.charAt(0).toUpperCase() + itemData.slice(1);\n                var itemTitle = document.createElement('h4');\n\n                itemTitle.innerHTML = jCatVehicles.category;\n                // console.log(jCatVehicles.category);\n                // newline.innerHTML = '\\n';\n                item.appendChild(itemTitle);\n\n                for(i = 0; i < jCatVehicles.vehicle.length; i++){\n                    var vehName = jCatVehicles.vehicle[i];\n                    // console.log(vehName);\n                    var corrVeh = document.createElement(\"li\");\n                    corrVeh.innerHTML = vehName;\n                    // item.appendChild(corrVeh);\n                    corrVeh.setAttribute('id', 'exp' + (i+1));\n                    corrVeh.classList.add('expClass');\n                    item.appendChild(corrVeh);\n                }\n\n                listCats.appendChild(item);\n\n\n\n\n                // listCats.innerHTML = listCats.innerHTML + item.innerHTML + '<br>';\n                // listCats.appendChild(newline);\n\n            }    \n        \n      var expID = [];\n        var expClass = document.getElementsByClassName('expClass');\n\n       // Counting the elements of class \n\n            // console.log(listClass.length);\n       \n\n        for(i = 0; i < expClass.length; i++){\n\n            expID[i] = document.getElementById('exp'+(i+1));\n            // Getting vehicle by asigned ID \n        expID[i].onclick = function(){\n            var data = this.innerHTML;\n            // currentCat = this.id; // Gets the ID of this element\n            var active = document.getElementsByClassName('currVehicle');\n            for(i = 0; i < active.length; i++){\n                active[i].classList.remove('currVehicle');    \n            }\n            this.classList.add('currVehicle');\n            // map.removeLayer(initMarker);\n            var tabHead = document.getElementById('tableHeader');\n            tabHead.innerHTML = data;\n\n             $('#actButton').prop('disabled', false);\n             $('#dashButton').prop('disabled', false);\n\n            sendExpData(data);\n            // alert(data); \n            \n            \n            \n            }    \n        }\n\n\n// nov 29 edit\n\n\n\n\n\n\n\n\nws.onmessage = function (evt){\n             if(evt.data) {\n                var message = evt.data;\n                // console.log(message);\n                message = JSON.parse(message);\n                // console.log(message.table);\n\n\n        //      27.703262, 85.311824 NEWROAD \n        //      27.726665, 85.345727 SUKEDHARA \n        //      27.671104, 85.324563 PATAN\n        //      27.701418, 85.320382 FUN PARK \n\n                if(message.table == 'session'){\n        // console.log(message.is_logged);\n        is_logged = message.is_logged;\n        if(is_logged != 1){\n        }\n       }\n    \n    if(message.table == 'customers'){\n        //update customers div\n\n        var listClients = document.getElementById('listclients');\n        if(message.data){\n            for(i = 0; i < message.data.length; i++){\n                var listitem = document.createElement(\"li\");        \n\n            listitem.innerHTML = 'Customer ID <b>' + message.id[i] + '</b>,  Name: <b>' + message.data[i] + \n            '</b>, Location: <b>' + message.lat[i] + '</b>, <b>' + message.long[i] + '</b>'; \n            listClients.appendChild(listitem);\n            }    \n        }\n\n               \n        \n    }\n\n    \n\n    if(message.table == 'tasks'){\n        //update tasks div\n            var listJobs = document.getElementById('listjobs');\n        for(i = 0; i < message.data.length; i++){\n            // console.log(substr);\n            // console.log(message.days[i])\n            // tasks for today \n            if(message.days[i] == substr){\n            // console.log('matched!');   \n            var listitem = document.createElement(\"li\");        \n\n            listitem.innerHTML = 'Task No. <b>' + message.data[i] + '</b> to <b>' + message.names[i] + \n            '</b> at location <b>' + message.address[i] + '</b> today at <b>' + message.time[i] + '</b>.  <u><b>' + message.stat[i].toUpperCase() + '</b></u>';\n            listJobs.appendChild(listitem);\n \n            }\n            // other days \n        //     else{\n        //     var jobs = document.getElementById('jobs');\n        //         jobs.innerHTML = jobs.innerHTML + 'Task Number ' + message.data[i] + ' to ' + message.names[i] + \n        //         ' at location ' + message.address[i] + ' on ' + message.days[i] + ' at ' + message.time[i];\n        //         jobs.innerHTML = jobs.innerHTML + '<br>';\n        //     }\n        // // console.log(message.days[i]);\n\n\n        \n        }\n    }\n\n\n    if(message.table == 'category'){\n        //update vehicles div\n        // console.log(message);\n        // var listCats = document.getElementById('all_categories');\n        // // console.log(listCats);\n        // if(message.data){\n        //     for(i = 0; i < message.data.length; i++){\n        //         // Display the jobs assigned to vehicles today\n        //         var item = document.createElement(\"div\"); // Creates a list element \n        //         var newline = document.createElement('br');\n        //         item.style.width = \"150px\";\n        //         // item.style.background = \"#F0F8FF\";\n        //         item.classList.add(\"catClass\");\n        //         item.classList.add(\"btn-default\");\n\n        //         // listitem.setAttribute(\"class\", 'vans'+(i+1));\n        //         item.setAttribute(\"id\", 'cat'+(i+1));   // Gives ID to the list element \n        //         // newline.setAttribute(\"id\", 'fill'+(i+1));\n\n        //         var itemData = message.data[i];\n        //         var finalData = itemData.charAt(0).toUpperCase() + itemData.slice(1);\n\n        //         item.innerHTML = finalData;\n        //         // newline.innerHTML = '\\n';\n\n        //         listCats.appendChild(item);\n        //         // listCats.innerHTML = listCats.innerHTML + item.innerHTML + '<br>';\n        //         listCats.appendChild(newline);\n\n        //     }    \n        // }\n        // var catID = [];\n        // var catClass = document.getElementsByClassName('catClass');\n       \n        //     // console.log(listClass.length);\n       \n        //     // var togg = document.getElementById('all_categories');\n\n        // for(i = 0; i < catClass.length; i++){\n\n        //     catID[i] = document.getElementById('cat'+(i+1));\n\n        // catID[i].onclick = function(){\n        //     // var newDiv = document.createElement('div');\n\n        //     var data = this.innerHTML.toLowerCase();\n        //     var catId = this.id;\n        //     // Toggle: hide/show \n\n        //     // currentCat = this.id; // Gets the ID of this element\n\n        //     sendCat(data, catId);\n        //     // alert(data); \n            \n        //     }    \n        // }\n\n    }\n\n\n    // if(message.table == 'vehicles'){\n       \n    //     var listVans = document.getElementById('all_vehicles');\n    //     if(message.data){\n    //         for(i = 0; i < message.data.length; i++){\n    //             var listitem = document.createElement(\"li\"); // Creates a list element \n    //             listitem.classList.add(\"vehicleClass\");\n\n    //             listitem.setAttribute(\"id\", 'vehicle'+(i+1));   // Gives ID to the list element \n\n    //             listitem.innerHTML = message.data[i];\n\n    //             listVans.appendChild(listitem);\n       \n    //         }    \n    //     }\n        \n\n        \n    //     var listID = [];\n    //     var listClass = document.getElementsByClassName('vehicleClass');\n       \n\n    //     for(i = 0; i < listClass.length; i++){\n\n    //         listID[i] = document.getElementById('vehicle'+(i+1));\n    //     listID[i].onclick = function(){\n    //         var data = this.innerHTML;\n    //         currentVan = this.id; // Gets the ID of this element\n\n    //         var selected = document.getElementsByClassName('currVehicle');\n    //         for(i = 0; i < selected.length; i++){\n    //             selected[i].classList.remove('currVehicle');\n    //         }\n    //         this.classList.add('currVehicle');\n    //         sendData(data);\n            \n    //         }    \n    //     }\n\n    // }\n\n                \n\n                if(message.table == 'vantasks'){\n                  if(message.latitude){\n                    var togoLat = message.latitude;\n                    var togoLong = message.longitude; \n                    // alert(togoLat + ' + ' + togoLong); // All values are fetched correctly :) \n                    // console.log('To deliver to: ');\n                    // console.log('My array: Lat- ' + togoLat + ', Long- ' + togoLong); // _/ Fine \n\n                    \n                    var rad = [150,480,300,280,450,470];\n                    // console.log('No. of items: ' + togoLat.length);\n                    var waypoints = [];\n                    var polyline_options = {\n                        color: '#000'\n                    };\n                    for(var i = 0; i < togoLat.length; i++){\n                        // console.log('My array: Lat-> ' + togoLat + ', Long-> ' + togoLong); // _/ Fine \n                      // console.log(typeof(togoLat));\n                      stoppage(togoLat[i], togoLong[i], rad[i]);\n                      addToDeliverMarker(togoLat[i], togoLong[i]);\n                      var latlist = [27.703262, 27.726665, 27.671104, 27.701418, 27.68139]; \n                      var longlist = [85.311824, 85.345727, 85.324563, 85.320382, 85.30197];\n                      // console.log(typeof(latlist));\n\n\n                      var waypts = L.latLng(togoLat[i], togoLong[i]); //L.LatLng()\n                      // console.log(waypts);\n                      waypoints.push(waypts);\n\n                      // console.log(togoLat[i] + ', ' + togoLong[i]);\n                    }\n                    \n                    // console.log('locations to plot with polylines: ' + waypoints);\n                      // console.log(waypoints);\n\n                        drawRoute(waypoints, polyline_options);\n\n                      // drawRoute(waypoints);\n\n                  }\n                }\n\n                if(message.table == 'catVehicles'){\n       //              var ID = message.id;\n       //              var expandList = document.getElementById(ID);\n       //              // expandList.innerHTML = ''; \n       //              // console.log(message.category);\n\n       //              // console.log(message.data);\n       //              var category = message.category;\n\n       //              if(message.data){\n       //                  for(i = 0; i < message.data.length; i++){\n       //                      var expand = document.createElement(\"li\"); // Creates a list element \n       //                      expand.classList.add(category+\"Class\"); \n       //                      expand.classList.add('hoverList');\n       //                      // Assign class to the vehicle relative to category name \n       //                      expand.setAttribute(\"id\", category+(i+1));   \n       //                      // Assign id to vehicle relative to category name \n       //                      expand.innerHTML = message.data[i];\n       //                      // expandList.appendChild(expand);\n       //                      // $(expandList).append(expand);\n       //                      // var newTag = document.createElement('ul');\n       //                      // newDiv.appendChild(expand);\n       //                      expandList.appendChild(expand);\n\n       //                  }   \n       //              }\n       //              var expID = [];\n       //  var expClass = document.getElementsByClassName(category+'Class');\n\n       // // Counting the elements of class \n\n       //      // console.log(listClass.length);\n       \n\n       //  for(i = 0; i < expClass.length; i++){\n\n       //      expID[i] = document.getElementById(category+(i+1));\n       //      // Getting vehicle by asigned ID \n       //  expID[i].onclick = function(){\n       //      var data = this.innerHTML;\n       //      // currentCat = this.id; // Gets the ID of this element\n       //      var active = document.getElementsByClassName('currVehicle');\n       //      for(i = 0; i < active.length; i++){\n       //          active[i].classList.remove('currVehicle');    \n       //      }\n       //      this.classList.add('currVehicle');\n       //      // map.removeLayer(initMarker);\n       //       $('#actButton').prop('disabled', false);\n       //       $('#dashButton').prop('disabled', false);\n\n       //      sendExpData(data);\n       //      // alert(data); \n            \n            \n            \n       //      }    \n       //  }\n\n                \n                }\n\n                \n             }\n        }\n\nvar waitTimeOut = 0;\n\n        function waitForSocketConnection(socket, callback) {\n\n            setTimeout(\n                function() {\n                    waitTimeOut = waitTimeOut + 1;\n                    if (waitTimeOut === parseInt(3)) {\n                        waitTimeOut = 0;\n                        return;\n                    }\n\n                    if (socket.readyState === 1) {\n                        // console.log(\"Connection is made\");\n                        if (callback != null) {\n                            callback();\n                        }\n                        return;\n                    } else {\n                        console.log(\"wait for connection...\")\n                        waitForSocketConnection(socket, callback);\n                    }\n\n                }, 1000); // wait 1 second for the connection...\n        }\n\n    \n// Websocket End\n    \n\n\n\n\n\n    // var expand = document.getElementById('expand');\n\n    // if(message.table == 'vantasks'){\n            \n            \n    //          //Disable updating on clicking twice\n    //             var vanid = document.getElementById(currentVan);\n    //     if(message.data.length > 0){\n    //         // vanid.innerHTML = vanid.innerHTML + '<br>  > Task No. ' + message.data;\n    //         // alert(message.data);\n    //         expand.innerHTML = '<span class = \"glyphicon glyphicon-console\"></span> Vehicle: ' + message.vehicle + '<br> Tasks: ' + message.data;\n    //     }\n    //     else{\n    //         // vanid.innerHTML = vanid.innerHTML + '<br>  > No tasks listed.'\n    //         // alert(message.data);\n    //         expand.innerHTML = '<span class = \"glyphicon glyphicon-console\"></span>Vehicle: ' + message.vehicle + '<br> Tasks: Not assigned';\n    //     }\n    \n            \n            \n    // }\n\n// Script for map\n\n\n\n\n\n    \n\n\n        \n       \n\n\n\n\n\n",
+			"file": "/media/saurav/UUI/vehicle files/dashboard.js",
+			"file_size": 22937,
+			"file_write_time": 130941173520000000,
 			"settings":
 			{
-				"buffer_size": 3523,
+				"buffer_size": 22925,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "static/css/poi/calendar.css",
+			"file": "static/css/vehicle/vehicle.css",
 			"settings":
 			{
-				"buffer_size": 617,
+				"buffer_size": 3135,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "templates/poi/poi.html",
+			"contents": "\n\n<html>\n<br>\n<title>Dashboard</title>\n\n<head>\n<!-- Bootstrap -->\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <link rel=\"stylesheet\" href=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\">\n  <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\"></script>\n  <script src=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js\"></script>\n\n<!-- Leaflet resources -->\n <link rel=\"stylesheet\" href=\"leaflet/leaflet.css\" />\n\n  <script src=\"leaflet/leaflet.js\"></script>\n\n  <!-- D3.js -->\n    <script src=\"http://d3js.org/d3.v3.min.js\" charset=\"utf-8\"></script>\n    <script src = \"adminSource/chartJS/Chart.min.js\"></script>\n	<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\"></script>\n\n\n\n<!-- Script for bar-chart -->\n	\n<script type=\"text/javascript\">\n	\n	$(function(){\n\n  var ctx = $('#my-chart').get(0).getContext('2d');\n  var data = {\n    labels: [\n      'Sep', 'Oct', 'Nov'\n    ],\n    datasets: [\n      {\n          label: 'Months',\n          fillColor: 'rgba(170,170,170,0.5)',\n          highlightFill: 'rgba(140,140,140,0.5)',\n          data: [6, 8, 12]\n      }\n    ]\n  };\n  var options = {\n    barStrokeWidth : 1,\n    // responsive: false,\n    animation: false,\n    barShowStroke: false\n  };\n\n  var chartObj = new Chart(ctx).Bar(data, options);\n  console.log(chartObj);\n});	\n</script>\n\n\n\n<!-- End -->\n\n<!-- Menu toggle -->\n\n\n<script type=\"text/javascript\">\n		$(document).ready(function(){\n    $(\"#mapButton\").click(function(){\n      // $(\"#map\").show();\n      $('#dashButton').removeClass('currTab');\n      $('#actButton').removeClass('currTab');;\n      $(this).addClass('currTab');\n      $('#map').show();\n      $('#act').hide();\n      $('#dash').hide();\n    });\n\n\n    $(\"#dashButton\").click(function(){\n      // $(\"#map\").hide();\n      // $('#dash').show();\n      $('#mapButton').removeClass('currTab');\n      $('#actButton').removeClass('currTab');\n      $(this).addClass('currTab');\n      $('#dash').show();\n      $('#map').hide();\n      $('#act').hide();\n    });\n    $(\"#actButton\").click(function(){\n      // $(\"#map\").hide();\n      // $('#dash').show();\n      $('#dashButton').removeClass('currTab');\n      $('#mapButton').removeClass('currTab');\n      $(this).addClass('currTab');\n      $('#map').hide();\n      $('#act').show();\n      // $('#my-chart').attr('style', 'height: 180px; width: 300px;');\n      // $('#my-chart').attr('height', '180');\n      // $('#my-chart').attr('width', '300');\n\n\n\n      $('#dash').hide();\n    });\n\n    $(\"#allVehicles\").click(function(){\n    	$('#all_vehicles_div').toggle();\n    	// $('#glyphicon-play').hide();\n    });\n    $(\"#allCategories\").click(function(){\n    	$('#all_categories').toggle();\n    	// $('#glyphicon-play').hide();\n    });\n\n    $('#collapse').click(function(){\n    	$('#collapse_bar').hide(500);\n    	$('#expandDiv').show(500);\n    	// $(this).toggleClass('glyphicon-chevron-left');\n    	// $(this).toggleClass('glyphicon-chevron-right');\n    	$('#mapContainer').removeClass('col-md-10');\n    	$('#mapContainer').addClass('fullWidth');\n    });\n\n    $('#expandBar').click(function(){\n    	$('#collapse_bar').show(500);\n    	$('#expandDiv').hide(500);\n    	$('#mapContainer').addClass('col-md-10');\n    	$('#mapContainer').removeClass('fullWidth');\n    });\n\n\n\n    // $(\"#POI_menu\").click(function(){\n    //   // $(\"#map\").hide();\n    //   // $('#act').hide();\n    //   // $('#activity_graph').show();\n    //   $('#vehicles_menu').removeClass('currMenu');\n    //   $(this).addClass('currMenu');\n\n    // });\n    // $(\"#vehicles_menu\").click(function(){\n    //   // $(\"#map\").show();\n    //   // $('#activity_graph').hide();\n      \n    //   $('#POI_menu').removeClass('currMenu');\n    //   $(this).addClass('currMenu');\n    // });\n\n\n	var activeVehicles = document.getElementsByClassName('currVehicle');\n    if(activeVehicles.length != 1){\n    	// var actButt = document.getElementById('actButton');\n    	$('#actButton').prop('disabled', true);\n    	$('#dashButton').prop('disabled', true);\n    	console.log(activeVehicles.length);\n\n    }\n    // else if (activeVehicles.length != 0){\n    	// $('#actButton').prop('disabled', false);\n    	// $('#dashButton').prop('disabled', false);\n    // 	console.log(activeVehicles.length);\n    // }\n\n\n\n  });\n\n\n\n\n</script>\n\n<style type=\"text/css\">\n	th {\n		background-color: #E0E0E0;\n		padding:0 18px 0 18px;\n	}\n	#vehicle_activities_table {\n\n	}\n	.tableRows {\n		cursor: pointer; \n	}\n\n	.tableRows:hover {\n		/*font-weight: bold;*/\n		background-color: #F0F0F0;\n	}\n\n</style>\n\n\n\n<!--  -->\n	<script type=\"text/javascript\" src='socket.io/socket.io.js'></script>\n\n\n <!-- // <script src = \"/lib/websocket.js\"></script> -->\n<!-- // socket.io -->\n  \n\n  <!-- // <script type=\"text/javascript\" src = \"adminSource/dashboard.js\"></script> -->\n\n<!-- Calendar -->\n<!-- <link rel=\"stylesheet\" href=\"adminSource/calendar.css\" /> -->\n\n\n\n  <script type=\"text/javascript\">\n\n\n  // Copied from dashboard.js\n\n\n\n/* Check if socket is connected */\n\n\n\n\n	\n\n\n\n// End of copied code from dashboard.js\n\n  </script>\n \n\n  <link rel=\"stylesheet\" type=\"text/css\" href=\"adminSource/dashboard.css\">\n\n  <link rel=\"stylesheet\" href=\"http://www.w3schools.com/lib/w3.css\">\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/icon?family=Material+Icons\">\n\n</head>\n\n<body onload = \"bodyLoaded()\">\n\n<div>\n\n<!-- Activity modal in vehicle page End -->\n\n<div class = \"row\">\n	<div class=\"modal fade\" id=\"exModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exModalLabel\">\n  <div class=\"modal-dialog\" style = \"margin-left: 550px; margin-right: 100px; margin-top: 200px; margin-bottom: 100px;\" role=\"document\">\n    <div class=\"modal-content\" style = \"width: 300px;\">\n      <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\n      </div>\n      <div class=\"modal-body\">\n\n          <div class=\"form-group\">\n            <label for=\"recipient-name\" class=\"control-label\">Add New Activity </label>\n            <input type=\"textarea\" class=\"form-control\" placeholder = \"Add activity\" id=\"activity_name\" name = \"recipient\">\n          </div>\n          \n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel</button>\n        <input type=\"submit\" class=\"btn btn-primary\" onclick = \"sendActivity()\" value = \"Save\">\n      </div>\n        \n    </div>\n  </div>\n</div>\n</div>\n<!-- Activity modal in vehicle page End -->\n\n\n\n\n<div class = \"row navbar-fixed-top\" style = \"background-color: #282828; color: #EEEEEE; padding-left: 25px; padding-right: 15px;\">\n		<!-- <div class = \"col-sm-1\"></div> -->\n		<div class = \"col-sm-6\"><h3>Skylight Tradelink Pvt. Ltd.</h3></div>\n		<div class = \"col-sm-3\"></div>\n		<div class = \"col-sm-1\"><a href = \"postjob\" style = \"text-decoration: none;\"><h4>Apps</h4></a></div>\n		<div class = \"col-sm-1\"><a href = \"postclient\" style = \"text-decoration: none;\"><h4>Profile</h4></a></div>\n		<div class = \"col-sm-1\"><a href = \"/logout\" style = \"text-decoration: none;\"><h4>Log Out</h4></a></div>\n\n</div>\n\n\n<div class = \"customContainer\">\n\n<!-- Start of container -->\n	\n	<!-- <span>{{name}}</span> -->\n	<div class = \"row\" style=\"border-bottom:1px solid #CCCCCC;\"><br>\n\n		<div class = \"col-sm-3\">\n			<!-- <a href = \"/map\"><button class = \"btn btn-success btn-lg\"><i class=\"material-icons w3-xxlarge\">local_shipping</i></button></a> -->\n			<div id = \"vehicles_menu\" class = \"col-sm-6 currMenu\"><h5><a href = \"/dashboard\" style = \"text-decoration: none;\"><span class = \"glyphicon glyphicon-road\"></span> Vehicles</a></h5></div>\n			<div id = \"POI_menu\" class = \"menuItem col-sm-5\"><h5><a href = \"/locations\" style = \"text-decoration: none;\"><span class = \"glyphicon glyphicon-map-marker\"></span> POI</a></h5></div>\n			<!-- <div id = \"demo\">Hey</div> -->\n\n\n		</div>\n		<div class = \"col-sm-8\">\n			\n		</div>\n		<!-- <div class = \"col-sm-1\"> -->\n			<!-- <button type=\"button\" style = \"color: blue;\" class=\"btn btn-default btn-lg\">\n				<span class = \"glyphicon glyphicon-globe\"></span>\n			</button> -->\n		<!-- </div> -->\n		<!-- <div class = \"col-sm-1\"> -->\n			<!-- <button type=\"button\" style = \"color: blue;\" class=\"btn btn-default btn-lg\">\n				<span class = \"glyphicon glyphicon-envelope\"></span>\n			</button> -->\n		<!-- </div> -->\n\n		<!-- <div class = \"col-sm-1\"> -->\n		<!-- <a href = \"/logout\">\n		<button type = \"button\" style = \"color: blue;\" class = \"btn btn-default btn-lg\">\n			<span class = \"glyphicon glyphicon-user\"></span>Logout</a>\n		</button></a> -->\n		<!-- </div> -->\n	</div><br>\n	<!-- <hr style = \"display: block; color: #000; height: 7px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0;\" /> -->\n	<div class = \"row\">\n		<div style=\"border-right:1px solid #CCCCCC;height:500px\" class = \"col-md-2\" id = \"collapse_bar\">\n\n		<div class = \"row\">\n\n			<div class=\"col-md-10\">\n		\n				<!-- <div class = \"col-md-10\"> -->\n					<!-- <h5 id = \"allVehicles\"><span class = \"glyphicon glyphicon-play\" style = \"cursor: pointer;\"></span></h5> -->\n					<!-- <div id = \"all_vehicles_div\" class = \"scroll\">\n						<ul id = \"all_vehicles\"></ul>\n					</div> -->\n\n					<h5 id = \"allCategories\" style = \"cursor: pointer;\"><b>All Vehicles</b></h5><br>\n					<div class = \"row\">\n						<div id = \"all_categories\" style = \"font-size: 16px;\" class = \"col-md-5\">\n							\n						</div>\n							<div class = \"col-md-7\">\n								<ul id = \"expandList\"></ul>\n							</div>\n					</div>\n\n					<!-- <h5>Trucks</h5>\n					<div class = \"scrollCat\">\n			\n					</div><br>\n					<h5>Cars</h5>\n\n					<div class = \"scrollCat\"></div><br>\n					<h5>Delivery Vans</h5>\n					<div class = \"scrollCat\"></div> -->\n					<br><br>\n					<a href=\"/addVehicle\" style = \"text-decoration: none;\"><span class = \"glyphicon glyphicon-plus\"></span>New Vehicle</a>\n\n				</div>\n				\n				<!-- <div class = \"col-md-3\"></div> -->\n				<div class = \"col-md-2\" style = \"float: right; padding-top: 250px; padding-bottom: 150px; padding-right: 0px;\">\n						<span data-toggle=\"tooltip\" data-placement=\"left\" title=\"Hide Sidebar\" id = \"collapse\" style = \"border-style: solid; border-color: #C0C0C0; border-width: 1px; cursor: pointer; color: #C0C0C0; font-size: 20px;\" class = \"glyphicon glyphicon-chevron-left\"></span>\n				</div>\n			</div>			\n\n			\n\n			\n\n		</div>\n		\n		\n		<div id = \"expandDiv\" style= \"display: none; position: absolute; left: 0px; top: 360px;\">\n			<span data-toggle=\"tooltip\" data-placement=\"left\" title=\"Show Sidebar\" id = \"expandBar\" class = \"glyphicon glyphicon-chevron-right\" style = \"border-style: solid; border-color: #C0C0C0; border-width: 1px; cursor: pointer; color: #C0C0C0; font-size: 20px;\"></span>\n		</div>\n\n		<div class = \"col-md-10\" id = \"mapContainer\">\n\n			\n			\n			\n					<div class = \"col-md-9\"></div>\n					<div class = \"col-md-3 btn-group\">\n						<button id = \"mapButton\" class = \"btn btn-default btn-sm currTab\">Map</button><button id = \"dashButton\" class = \"btn btn-default btn-sm\">Dashboard</button><button id = \"actButton\" class = \"btn btn-default btn-sm\">Activities</button>\n						<!-- <button class = \"btn btn-default btn-sm\" onclick = \"removeLayers()\">Remove</button> -->\n					</div><br><br>\n\n\n					<!-- Map div -->\n					<div class = \"col-md-12\" style = \"height: 560px;\" id = 'map'></div>\n\n\n					<!-- Activity div -->\n\n\n					<div style = \"height: 480px;  margin-left: 10px;\" id='act'>\n							<br>\n\n									<h4 id = \"tableHeader\"></h4>\n\n\n							<div class = \"row\">\n								<div class = \"col-md-10\"></div>\n								\n								\n								<div class = \"col-md-2\" style = \"color: #AAA\" id = \"actAddition\" data-toggle = \"modal\" ><span class = \"glyphicon glyphicon-plus\"></span>New Activity</div>\n								\n\n							</div>\n							\n						<table id = \"vehicle_activities_table\">\n							<tr>\n							    <th style = \"text-align: center;\">Location</th>\n							    <th style = \"text-align: center;\">Issued Date</th>		\n							    <th style = \"text-align: center;\">Status</th>\n							  </tr>\n						</table>\n						<br>\n						<div id = \"barAndAct\" style = \"display: block; margin-left: 10px;\" class = \"row\">\n						<h4 id = \"chartHeader\"></h4>\n\n							<div class = \"col-md-3\">\n								<h6>Frequency of visits</h6>\n								<canvas id=\"my-chart\" height=\"180\"></canvas>\n							</div>\n							<div class = \"col-md-2\"></div>\n						\n							<div class = \"col-md-6\" >\n							<h6>Activities</h6>\n								 <div class = \"scrollActs\" id = \"activity_list\"></div>\n							</div>\n\n						</div>		\n\n					</div>\n\n\n					<!-- Dashboard div -->\n\n					<div id = \"dash\" style = \"display: none;\">\n						<h1 align = \"center\">Please be patient. Contents are being added in dashboard...</h1> \n					</div>\n\n					<div style = \"width: 50px; height: 50px; visibility: hidden;\">Level up</div>\n\n\n\n			\n\n\n			\n\n\n\n		</div>\n\n\n	</div>\n	\n	<!-- End of container -->\n\n</div>\n\n\n<br>\n\n\n\n<div class = \"navbar-fixed-bottom\" style = \"margin-top: 100px; background-color: #F0F0F0; opacity: 0.75; padding-right: 100px;\">\n 	<br><p style = \"float:right;\"><b>Maulik Taranga Pvt. Ltd. </b> <br>Copyright &copy; 2015</p>\n</div>\n\n\n<script type=\"text/javascript\">\n// var waypoints = [];\n// var polyline_options = {\n//             color: '#000'\n// };\n\n\n\n// Script for map - open \n\n\nvar my_latitude = 27.68851;\nvar my_longitude = 85.33557;\nvar office_lat = 27.68139;\nvar office_long = 85.30197;\n\n\nvar popup = L.popup();\n\nvar map = L.map('map',{\n                center: [my_latitude, my_longitude],\n                zoom: 13\n            });  \n\nvar newmarker; \nvar circle; \nvar polyLine; \n\n\n// map.on('click', onMapClick);\n\nL.tileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {\n         	attribution: '&copy; <a href=\"#\" title=\"OpenStreetMap\" target=\"_blank\">OpenStreetMap</a> contributors Tiles Courtesy of <a href=\"http://facebook.com/bishes.adhikari\" title=\"MapQuest\" target=\"_blank\">Bishes Adhikari<img src=\"icons/Photo0041.jpg\" width=\"18\" height=\"20\"></a>',\n          //subdomains: []m\n          subdomains: ['otile1','otile2','otile3','otile4']\n}).addTo( map );\n\nvar marker = L.marker([my_latitude, my_longitude]);\nvar marker2 = L.marker([office_lat, office_long]);\n// map.addLayer(marker);\n// map.addLayer(marker2);\n\n// function removeLayers(){\n	// map.removeLayer(marker);\n	// map.removeLayer(marker2);\n// }\n\n\n\n// var popup = L.popup()\n//     .setLatLng([51.5, -0.09])\n//     .setContent(\"I am a standalone popup.\")\n//     .openOn(map);\n\nfunction onMarkerClick(e) {\n    popup\n        .setLatLng(e.latlng)\n        .setContent(\"Location: \" + e.latlng.toString())\n        .openOn(map);\n}\n\nfunction onCircleClick(e) {\n    popup\n        .setLatLng(e.latlng)\n        .setContent(\"Stopped at: \" + e.latlng.toString())\n        .openOn(map);\n}\n\n\nfunction addToDeliverMarker(lat, lon, e){\n			console.log('Marker function called with ' + lat + ', ' + lon);\n			if(newmarker != undefined){\n				map.removeLayer(newmarker);\n			}\n          // console.log('Plotting these: ' + lat + ', ' + lon);\n          newmarker = L.marker([lat, lon]); //.addTo(map);  // Plotted \n          // newmarker.valueOf()._icon.style.backgroundColor = 'red';\n          // newmarker.bindPopup(\"Marker at: \" + e.latlng);\n\n          newmarker.on('click', onMarkerClick);\n\n          map.addLayer(newmarker);\n\n     }\n\n\n\nfunction init_locations(lat, lon){\n	var initMarker = L.marker([lat, lon]);\n	map.addLayer(initMarker);\n	setTimeout(function(){\n		map.removeLayer(initMarker);\n	}, 10000);\n}\n\n\n\n\n// var circle = L.circle([my_latitude, my_longitude], 250, {\n//     color: 'red',\n//     fillColor: '#f03',\n//     fillOpacity: 0.5\n// }).addTo(map);\n\nfunction stoppage(lat, long, rad, e){\n	console.log('Circle function calledc with ' + lat + ', ' + long);\n		if(circle != undefined){\n			map.removeLayer(circle);\n		}	\n\n		circle = L.circle([lat, long], rad, {\n	    color: 'red',\n	    fillColor: '#f03',\n	    fillOpacity: 0.5\n	}); //.addTo(map);	\n// circle.bindPopup(\"Circle at: \" + e.latlng);\ncircle.on('click', onCircleClick);\n\nmap.addLayer(circle);\n		\n}\n\n// marker.bindPopup(\"<b>Hello world!</b><br>I am a popup.\").openPopup();\n\n\n// function onMapClick(e) {\n//     alert(\"Location \" + e.latlng);\n// }\n\n// latlist = [27.703262, 27.726665, 27.671104, 27.701418, 27.68139]; \n//                       longlist = [85.311824, 85.345727, 85.324563, 85.320382, 85.30197];\n//                       var polyline_options = {\n// 					    color: '#000'\n// 					};\n// 					var locArray = [];\n// 					for(i = 0; i < latlist.length; i++){\n// 						wpts = [latlist[i], longlist[i]];\n// 						locArray.push(wpts);\n// 					}\n// 					console.log(locArray);\n// drawRoute(locArray, polyline_options);\n\nfunction drawRoute(waypoints, polyline_options){\n\n		console.log('Polyline function called qith ');\n		if(polyLine != undefined){\n			map.removeLayer(polyLine);\n		}\n		// console.log(waypoints);\n        polyLine = L.polyline(waypoints, polyline_options); //.addTo(map);\n        map.addLayer(polyLine);\n}\n\n\n\n\n\n\n// var actAdd = document.getElementsByClassName('activeAddress');\n// console.log('Printing object');\n// console.log(add_act);\n\n// if (actAdd.length != 0){\n			\n// }\n\n\n\n</script>\n\n<script type=\"text/javascript\">\n//Barchart // Reference the labelled graph from bargraph.html \n// 	$(function(){\n\n//   var ctx = $('#my-chart').get(0).getContext('2d');\n//   var data = {\n//     labels: [\n//       'Sep', 'Oct', 'Nov'\n//     ],\n//     datasets: [\n//       {\n//           label: 'Months',\n//           fillColor: 'rgba(170,170,170,0.5)',\n//           highlightFill: 'rgba(140,140,140,0.5)',\n//           data: [6, 8, 12]\n//       }\n//     ]\n//   };\n//   var options = {\n//     barStrokeWidth : 1,\n//     // responsive: false,\n//     animation: false,\n//     barShowStroke: false\n//   };\n\n//   var chartObj = new Chart(ctx).Bar(data, options);\n\n// });\n\n	// Script for map - close \n</script>\n<!-- Calendar -->\n<!-- <script type=\"text/javascript\" src = \"adminSource/calendar.js\"></script> -->\n\n<script type=\"text/javascript\" src = \"adminSource/dashboard.js\"></script>\n\n</body>\n<!-- \n\n\n -->\n	<!-- // Script for activity graph - calendar  -->\n\n\n</html>\n\n",
+			"file": "/media/saurav/UUI/dashboard.html",
+			"file_size": 18068,
+			"file_write_time": 130940487280000000,
 			"settings":
 			{
-				"buffer_size": 9148,
+				"buffer_size": 18068,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/home/saurav/Documents/hgbf/NodeJS",
+			"contents": "\n\n<html>\n<br>\n<title>Locations</title>\n\n<head>\n\n  <link rel=\"stylesheet\" href=\"adminSource/calendar.css\" />\n\n<!-- Bootstrap -->\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <link rel=\"stylesheet\" href=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\">\n  <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\"></script>\n  <script src=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js\"></script>\n\n\n  <!-- <link rel=\"stylesheet\" href=\"adminSource/dashboard.css\" /> -->\n  <link rel=\"stylesheet\" href=\"adminSource/locations.css\" />\n\n\n<!-- Leaflet resources -->\n <link rel=\"stylesheet\" href=\"leaflet/leaflet.css\" />\n\n  <script src=\"leaflet/leaflet.js\"></script>\n\n\n\n\n\n<!-- Menu toggle -->\n\n<script type=\"text/javascript\">\n	$(document).ready(function(){\n		$(\"#mapPOI\").click(function(){\n	      $('#actPOI').removeClass('currPoiTab');;\n	      $(this).addClass('currPoiTab');\n\n	      $('#poiMap').fadeIn(1000);\n	      $('#poiActs').fadeOut(500);\n	    });\n\n\n	    $(\"#actPOI\").click(function(){\n	      $('#mapPOI').removeClass('currPoiTab');\n	      $(this).addClass('currPoiTab');\n	      $('#poiMap').fadeOut(500);\n	      $('#poiActs').fadeIn(1000);\n	    });    \n\n    	$('#collapse').click(function(){\n	    	$('#temporaryBar').hide(500);\n	    	$('#expandDiv').show(500);\n\n	    	$('#poiMapContainer').removeClass('col-md-9');\n	    	$('#poiMapContainer').addClass('fullWidth');\n	    });\n\n	    $('#expandBar').click(function(){\n	    	$('#temporaryBar').show(500);\n	    	$('#expandDiv').hide(500);\n	    	$('#poiMapContainer').addClass('col-md-9');\n	    	$('#poiMapContainer').removeClass('fullWidth');\n	    });\n\n\n    	// var clicked = document.getElementsByClassName('hoverRow');\n    	// if(clicked.length != 1){\n    		// $(\"#add_new_act\").children().prop('disabled',true);\n    	// }\n\n    	var currpois = document.getElementsByClassName('currPOI');\n    if(currpois.length != 1){\n    	// var actButt = document.getElementById('actButton');\n    	// $('#actButton').prop('disabled', true);\n    	$('#actPOI').prop('disabled', true);\n\n    	// console.log(activeVehicles.length);\n\n       }\n    \n\n  	});\n\n\n\n\n</script>\n\n<style type=\"text/css\">\n	\n</style>\n\n\n\n<!--  -->\n	<script type=\"text/javascript\" src='socket.io/socket.io.js'></script>\n\n\n <!-- // <script src = \"/lib/websocket.js\"></script> -->\n<!-- // socket.io -->\n  \n\n  <!-- // <script type=\"text/javascript\" src = \"adminSource/dashboard.js\"></script> -->\n\n<!-- Calendar -->\n<link rel=\"stylesheet\" href=\"adminSource/calendar.css\" />\n\n\n\n  <script type=\"text/javascript\">\n\n\n  // Copied from dashboard.js\n\n\n\n/* Check if socket is connected */\n\n\n\n\n	\n\n\n\n// End of copied code from dashboard.js\n\n  </script>\n \n\n\n\n  <link rel=\"stylesheet\" href=\"http://www.w3schools.com/lib/w3.css\">\n  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/icon?family=Material+Icons\">\n\n</head>\n\n<body>\n\n<div>\n\n\n<div class = \"row navbar-fixed-top\" style = \"background-color: #282828; color: #EEEEEE; padding-left: 25px; padding-right: 15px;\">\n		<!-- <div class = \"col-sm-1\"></div> -->\n		<div class = \"col-sm-6\"><h3>Skylight Tradelink Pvt. Ltd.</h3></div>\n		<div class = \"col-sm-3\"></div>\n		<div class = \"col-sm-1\"><a href = \"#\" style = \"text-decoration: none;\"><h4>Apps</h4></a></div>\n		<div class = \"col-sm-1\"><a href = \"#\" style = \"text-decoration: none;\"><h4>Profile</h4></a></div>\n		<div class = \"col-sm-1\"><a href = \"/logout\" style = \"text-decoration: none;\"><h4>Log Out</h4></a></div>\n\n</div>\n\n\n<div class = \"customContainer\">\n	\n	<!-- <span>{{name}}</span> -->\n	<div class = \"row\" style=\"border-bottom:1px solid #CCCCCC;\"><br>\n\n		<div class = \"col-sm-3\">\n			<!-- <a href = \"/map\"><button class = \"btn btn-success btn-lg\"><i class=\"material-icons w3-xxlarge\">local_shipping</i></button></a> -->\n			<div id = \"vehicles_menu\" class = \"col-sm-6\"><h5><a href = \"/dashboard\" style = \"text-decoration: none;\"><span class = \"glyphicon glyphicon-road\"></span> Vehicles</a></h5></div>\n			<div id = \"POI_menu\" class = \"menuItem currMenu col-sm-5\"><h5><a href = \"/locations\" style = \"text-decoration: none;\"><span class = \"glyphicon glyphicon-map-marker\"></span> POI</a></h5></div>\n			<!-- <div id = \"demo\">Hey</div> -->\n\n\n		</div>\n		<div class = \"col-sm-8\">\n			\n		</div>\n\n	</div><br>\n\n	<div class = \"row\">\n		<div id = \"temporaryBar\" style=\"border-right:1px solid #CCCCCC;height:500px\" class = \"col-md-3\">\n			\n			<div class = \"row\">\n				<div class = \"col-md-10\" style = \"border-bottom: 1px solid #CCCCCC;\">\n					<h4>All POIs</h4>\n					<div class = \"row\">\n						\n						<div class = \"col-md-5\">\n						<h4><small>Filter by</small></h4>\n						</div>\n						<div class = \"col-md-7\">\n							<select id = \"sortKey\" style = \"background-color: #F0F0F0; border-radius: 7px; border-color: #909090;\" name=\"orderBy\">\n							  <option style = \"border-radius: 7px; border-color: #909090;\" value=\"Recently Added\">Recently Added</option>\n							  <option style = \"\" value=\"A-Z\" selected>A-Z</option>\n							  <option style = \"\" value=\"Z-A\">Z-A</option>\n							  <option style = \"\" value=\"Most Visited\">Most Visited</option>\n							</select>\n							<!-- <div class=\"dropup\">\n							  <button class=\"btn btn-default dropdown-toggle\" type=\"button\" id=\"dropdownMenu2\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n							    Recently Added\n							    <span class=\"caret\"></span>\n							  </button>\n							  <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu2\">\n							    <li><a href=\"#\">Recently Added</a></li>\n							    <li><a href=\"#\">A-Z</a></li>\n							    <li><a href=\"#\">Z-A</a></li>\n							    <li><a href=\"#\">Most Visited</a></li>\n							  </ul>\n							</div> -->\n						</div>\n						\n					</div>\n					\n\n\n				</div><br>\n\n				<div class = \"row\">\n\n					<div class = \"col-md-10\" style = \"overflow-x: hidden; height: 400px; padding-top: 20px;\">\n						<ul id = \"poiList\"></ul>\n					</div>\n\n					<div class = \"col-md-2\" style= \"float: right; padding-top: 180px; padding-bottom: 150px; padding-right: 0px;\">\n						<span data-toggle=\"tooltip\" data-placement=\"left\" title=\"Hide Sidebar\" id = \"collapse\" style = \"border-style: solid; border-color: #C0C0C0; border-width: 1px; cursor: pointer; color: #C0C0C0; font-size: 20px;\" class = \"glyphicon glyphicon-chevron-left\"></span>\n					</div>\n\n\n\n\n\n				</div>\n			</div>\n			\n			\n		</div>\n\n\n\n		<div id = \"expandDiv\" style= \"display: none; cursor: pointer; position: absolute; left: 5px; top: 360px; right: 5px;\">\n			<span data-toggle=\"tooltip\" data-placement=\"left\" title=\"Show Sidebar\" id = \"expandBar\" class = \"glyphicon glyphicon-chevron-right\" style = \"border-style: solid; border-color: #C0C0C0; border-width: 1px;  color: #C0C0C0; font-size: 20px;\"></span>\n		</div>\n\n\n\n		<div id = \"poiMapContainer\" style = \"padding-left: 5px;\" class = \"col-md-9\">\n			<!-- <div class = \"col-md-1\"></div> -->\n			<div class = \"col-md-9\">\n				\n			</div>\n			<div class = \"btn-group col-md-3\">\n				\n					<button id = \"mapPOI\" class = \"btn btn-default btn-sm currPoiTab\">Map</button><button id = \"actPOI\" class = \"btn btn-default btn-sm\">Activities</button><br><br>\n\n					\n					<!-- <button class = \"btn btn-default btn-sm\" onclick = \"removeLayers()\">Remove</button> -->\n				\n			</div><br>\n\n\n\n		\n		<div>   \n				<!-- Contains both the major blocks; map and activities -->\n				\n\n\n			<div class = \"col-md-12\" id = \"poiMap\" data-toggle=\"modal\" data-target=\"#exampleModal\" data-whatever=\"@mdo\" style = \"height: 450px;\"></div>\n			\n			<div id = \"poiActs\" style = \"display: none;\">\n\n				<div><h4 id = \"poiPageHeader\" style = \"padding-left: 10px;\"></h4></div>\n\n			<!-- <button onclick = \"dataset1()\">Button1</button> -->\n			<!-- <button onclick = \"dataset2()\">Button2</button> -->\n\n\n				<div class = \"row\">\n					<div class = \"col-md-9\"></div>\n					<div class = \"col-md-3\">\n						<div style = \"color: #AAA\" id = \"add_new_act\" data-toggle=\"modal\" ><span class = \"glyphicon glyphicon-plus\"></span>New Activity</div>\n						<!-- data-target=\"#activityModal\" -->\n					</div>\n				</div>\n\n				<!-- Div to show calendar -->\n					<div class = \"row\">\n					<!-- <div class = \"col-md-1\"></div> -->\n						<div class = \"col-md-10\">\n							<div id=\"calDiv\" >\n\n\n\n\n								<table id=\"calendar\" style = \"width: 570px; border-collapse: separate; border-spacing: 1px;\"></table>\n								<!-- style = \"width: 560px;\" -->\n							</div>\n							\n						</div>\n					</div>\n					<div class = \"row\">\n						<div class = \"col-md-7\"></div>\n						<div class = \"col-md-5\">\n							<div>Less <span style = \"background-color: #DDD;\">&nbsp;&nbsp;&nbsp;</span><span style = \"background-color: #FFF;\">&nbsp;</span><span style = \"background-color: #999;\">&nbsp;&nbsp;&nbsp;</span><span style = \"background-color: #FFF;\">&nbsp;</span><span style = \"background-color: #555;\">&nbsp;&nbsp;&nbsp;</span><span style = \"background-color: #FFF;\">&nbsp;</span><span style = \"background-color: #111;\">&nbsp;&nbsp;&nbsp;</span> More</div>\n						</div>\n					</div>\n\n\n\n					\n\n				<!-- Div to show activities  -->\n\n				\n				<div class = \"row\">\n					<!-- <div class = \"col-md-1\"></div> -->\n					<div class = \"col-md-6\" style = \"margin-left: 20px;\">\n						<h2><small id = \"actScrDate\"></small></h2>\n						<h4 id = \"actScrHeader\"></h4>\n					</div>\n					<div class = \"col-md-4\"><br>\n						Activities for vehicle \n						<select id = \"actScrSelect\" class = \"\" style = \"border-style: solid; border-radius: 6px; \n						background-color: #DDD\">\n							<option value = \"notAssigned\">Not Assigned</option>\n							<option value = \"all\" selected>All</option>\n\n						</select>\n					</div>\n				</div>\n					<!-- <div class = \"col-md-1\"></div> -->\n					<div id = \"poi_actlist\" style = \"margin-left: 20px;\" class = \"scrollActs col-md-10\"></div>\n				<!--  -->\n\n\n			</div>\n\n			<div style = \"width: 10px; height: 100px; visibility: hidden;\">Level Up</div>\n\n		</div>\n			\n\n\n\n			\n\n\n\n		</div>\n\n\n	</div>\n	\n	\n</div><br>\n\n\n<br>\n\n\n\n<div class = \"navbar-fixed-bottom\" style = \"background-color: #F0F0F0; margin-bottom:5px; opacity: 0.7; height: 60px; padding-right: 100px;\">\n 	<br><p style = \"float:right;\"><b>Maulik Taranga Pvt. Ltd. </b> <br>Copyright &copy; 2015</p>\n</div>\n\n<script type=\"text/javascript\">\n	var my_latitude = 27.68851;\n	var my_longitude = 85.33557;\n// var office_lat = 27.68139;\n// var office_long = 85.30197;\n\n\nvar popup = L.popup();\n\nvar map = L.map('poiMap',{\n                center: [my_latitude, my_longitude],\n                zoom: 13\n            });  \n\n\n\nmap.on('click', onMapClick);\n\nL.tileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {\n         	attribution: '&copy; <a href=\"#\" title=\"OpenStreetMap\" target=\"_blank\">OpenStreetMap</a> contributors Tiles Courtesy of <a href=\"http://facebook.com/bishes.adhikari\" title=\"MapQuest\" target=\"_blank\">Bishes Adhikari<img src=\"icons/Photo0041.jpg\" width=\"18\" height=\"20\"></a>',\n          //subdomains: []m\n          subdomains: ['otile1','otile2','otile3','otile4']\n}).addTo( map );\n\n// var marker = L.marker([my_latitude, my_longitude]);\n// var marker2 = L.marker([office_lat, office_long]);\n\n \nfunction showMarker(lat, long){\n	var poiMarker = L.marker([lat, long]);\n	map.addLayer(poiMarker);\n	// poiMarker.on('click', 'onMarkerClick');\n}\n\n\n\nfunction onMarkerClick(e) {\n    popup\n        .setLatLng(e.latlng)\n        .setContent(\"Location: \" + e.latlng.toString())\n        .openOn(map);\n}\n\n\n\n// map.on('click', onMapClick);\n\nfunction onMapClick(e){\n	// alert('You clicked at ' + e.latlng + ': ' + e.latlng.lat + ', ' + e.latlng.lng);\n	var clickedLat = e.latlng.lat;\n	var lat = clickedLat.toString();\n	var clat = lat.slice(0,9);\n\n	var clickedLong = e.latlng.lng;\n	var long = clickedLong.toString();\n	clong = long.slice(0,9);\n\n	var savePoi = document.getElementById('savePOI');\n	savePoi.onclick = function(){\n		var poiName = document.getElementById('poi_name');\n		var poiDetails = document.getElementById('poi_details');\n		// console.log(poiName.value);\n		// console.log(poiDetails.value);\n\n\n\n		var addr = {\n			\"lat\": clat,\n			\"long\": clong, \n			\"poi\": poiName.value,\n			\"desc\": poiDetails.value\n		}\n		var jAddr = JSON.stringify(addr);\n		sendPoiPopupData(jAddr); // Works like charm\n	}\n\n	// var saveAct = document.getElementById('saveActivity');\n	// saveAct.onclick = function(){\n	// 	var actID = document.getElementById('act_name');\n\n	// 	var actName = actID.value;\n	// 	// console.log('Activity saved');\n\n	// 	// sendActPopupData(actName); // Works like charm\n	// }\n\n\n\n\n\n\n	var addPoi = document.getElementById('poiAdd');\n	addPoi.innerHTML = clat + ', ' + clong;\n\n	// var prmpt = prompt('Enter the name of POI', 'POI name');\n	// if(prmpt != ''){\n	// 	console.log('You wrote ' + prmpt);\n	// }\n	\n	\n}\n\n\n\n\n\n\n\n\n\n</script>\n\n<!-- Map Popup prompt form start -->\n\n<div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\">\n  <div class=\"modal-dialog\" style = \"margin-left: 550px; margin-right: 100px; margin-top: 200px; margin-bottom: 100px;\">\n    <div class=\"modal-content\" style = \"width: 300px;\">\n      <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\n        \n      </div>\n      <div class=\"modal-body\">\n        <form action = \"/sendRecipient\" method = \"POST\">\n          <div class=\"form-group\">\n            <label for=\"recipient-name\" class=\"control-label\">Add New POI at: </label><p id = \"poiAdd\"></p><br>\n            <input type=\"text\" id=\"poi_name\" class=\"form-control\" name = \"poiName\" placeholder = \"Name of POI\"><br>\n            <input type = \"textarea\" id = \"poi_details\" class=\"form-control\" name = \"poiDetails\" placeholder = \"Details\">\n          </div>\n          \n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel</button>\n        <button type=\"button\" class=\"btn btn-primary\" id = \"savePOI\">Save</button>\n      </div>\n        </form>\n    </div>\n  </div>\n</div>\n</div>\n\n\n\n\n<!-- Popup prompt form end -->\n\n\n<!-- Activities popup form start -->\n\n\n<div class=\"modal fade\" id=\"activityModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"activityModalLabel\">\n  <div class=\"modal-dialog\" style = \"margin-left: 550px; margin-right: 100px; margin-top: 200px; margin-bottom: 100px;\">\n    <div class=\"modal-content\" style = \"width: 300px;\">\n      <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\n        \n      </div>\n      <div class=\"modal-body\">\n        \n          <div class=\"form-group\">\n            <label for=\"recipient-name\" class=\"control-label\">Add New Activity </label><p id = \"actAdd\"></p><br>\n            <input type=\"text\" id=\"act_name\" class=\"form-control\" name = \"activityName\" placeholder = \"Add activity\">\n          </div>\n          \n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel</button>\n        <button type=\"button\" class=\"btn btn-primary\" onclick = \"sendActPopupData()\" id = \"saveActivity\">Save</button>\n      </div>\n        \n    </div>\n  </div>\n</div>\n</div>\n\n<!-- Activities popup form end -->\n\n\n\n<!-- Calendar -->\n<script type=\"text/javascript\" src = \"adminSource/locations.js\"></script>\n<script type=\"text/javascript\" src = \"adminSource/calendar.js\"></script>\n\n\n</body>\n<!-- \n\n\n -->\n	<!-- // Script for activity graph - calendar  -->\n\n\n</html>\n\n",
+			"file": "/media/saurav/UUI/locations.html",
+			"file_size": 15443,
+			"file_write_time": 130940486100000000,
 			"settings":
 			{
-				"buffer_size": 2964,
+				"buffer_size": 15443,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "package.json",
+			"contents": "<!DOCTYPE html>\n<html>\n<head>\n	<title></title>\n	<link rel=\"stylesheet\" href=\"http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css\" />\n  <script src=\"http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js\"></script>\n  <script src=\"http://d3js.org/d3.v3.min.js\" charset=\"utf-8\"></script>\n</head>\n<body>\n<div id = 'map' style = \"width: 840px; height: 480px\"></div>\n\n<button onclick = \"removeBubble()\">Remove Bubble</button>\n\n<script type=\"text/javascript\">\n\n\n  var latlist = [27.691132, 27.691132, 27.691132, 27.691132, 27.691234, 27.691923, 27.691645, 27.691356, 27.693478, 27.713452, 27.713452, 27.713452, 27.713452, 27.717123, 27.717123, 27.717123, 27.717123]; \n  var longlist = [85.330677, 85.330677, 85.330677, 85.330677, 85.330601, 85.330123, 85.330123, 85.332456, 85.334256, 85.338956, 85.351234, 85.351234, 85.351234, 85.357231, 85.357231, 85.357231, 85.357231]; \n\n\n\n\n\n  var latlong = function f(){\n    f.movedLat = 0;\n    f.movedLong = 0;\n\n  }\n\n\n  // latlist = [27.703262, 27.726665, 27.671104, 27.701418, 27.68139]; \n                      // longlist = [85.311824, 85.345727, 85.324563, 85.320382, 85.30197];\n// var line_points = [[27.703262, 85.311824], [27.726665, 85.345727], [27.701418, 85.324563]];\nvar line_points = [];\nfor(var i = 0; i < latlist.length; i++){\n  waypts = [latlist[i], longlist[i]];\n  line_points.push(waypts);\n}\n// polyLines(line_points, polyline_options);\n  var polyline_options = {\n            color: '#000'\n};\n\n\nvar my_latitude = 27.68851;\n        var my_longitude = 85.33557;\nvar map = L.map('map',{\n                center: [my_latitude, my_longitude],\n                zoom: 13\n            });  \nmap.on('click', onMapClick);\n\nL.tileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {\n         	attribution: '&copy; <a href=\"#\" title=\"OpenStreetMap\" target=\"_blank\">OpenStreetMap</a> contributors Tiles Courtesy of <a href=\"#\" title=\"MapQuest\" target=\"_blank\">Saurav Gharti</a> <img src=\"#\" width=\"16\" height=\"16\">',\n          //subdomains: []\n          subdomains: ['otile1','otile2','otile3','otile4']\n}).addTo( map );\n\n// var marker = L.marker([my_latitude, my_longitude]).addTo(map);\n\n// function polyLines(line_points, polyline_options){\n  var polyline = L.polyline(line_points, polyline_options).addTo(map);\n// }\n    var radius = 0;\n\nvar latSlice = [];\nvar longSlice = [];\n\nfor(var i = 0; i < latlist.length; i++){\n  var latStr = latlist[i].toString();\n  var longStr = longlist[i].toString();\n  // var latSlice[i] = latStr.slice(0,6);\n  // var longSlice[i] = longStr.slice(0,6);\n  // var tempLat = latlist[i-1].toString();\n  // var tempSlat = tempLat.slice(0,6);\n\n  // var tempLong = longlist[i-1].toString(); \n  // var tempSlong = tempLong.slice(0,6);\n\n  var oneLat = latStr.slice(0,6);\n  var oneLong = longStr.slice(0,6);\n  latSlice.push(oneLat);\n  longSlice.push(oneLong);\n\n\n  // console.log(tempSlat);\n  \n  // console.log(tempSlong); \n\n  // if((tempSlat == latSlice) && (tempSlong == longSlice)){\n\n  //   radius = radius + 50;\n  //   // console.log(radius);\n  //   // if(latlist.length)\n  //   // stoppage(radius);\n  //   // var movedLat = tempSlat;\n  //   // var movedLong = tempSlong;\n    \n  //   // console.log('This is: ' + this);\n  //   // console.log(latlong.movedLat);\n  //   // console.log(latlong.movedLong);\n\n    \n  //   latlong.movedLat = latSlice;\n  //   latlong.movedLong = longSlice;\n  //   console.log('ABCD: ' + latlong.movedLat + ', ' + latlong.movedLong);\n\n\n\n\n    \n  // }\n  // else {\n  //   // console.log('Not Matched!');\n  //   // addMarker(latSlice, longSlice);\n  // }\n  \n  // if(i == latlist.length - 1){\n  //     // console.log('Moved at ' + movedLat + ', ' + movedLong);\n  //     console.log(radius);\n  //     stoppage(latlong.movedLat, latlong.movedLong, radius);\n  //   }  \n\n  \n  // console.log(latStr + ' ' + longStr); \n}\n\n  console.log(latSlice);\n  console.log(longSlice);\n\n        function foo() {\n            var eachLat = [], count = [], eachLong = [], prevLat, prevLong;\n            \n            // latSlice.sort();\n            // longSlice.sort();\n            for ( var i = 0; i < latSlice.length; i++ ) {\n                \n                ;\n\n                if ( (latSlice[i] == prevLat) && (longSlice[i] == prevLong) ) {\n                    count[count.length-1]++;\n                } \n\n                else {\n\n                    eachLat.push(latSlice[i]);\n                    eachLong.push(longSlice[i]);\n                    count.push(1);\n                    // count[count.length-1]++;\n                }\n                prevLat = latSlice[i];\n                prevLong = longSlice[i]\n                \n            }\n            \n            return [eachLat, eachLong, count];\n        }\n\n        var result = foo();\n\n        var eachLat = result[0];\n        var eachLong = result[1];\n        var occurence = result[2];\n\n\n        for (i = 0; i < eachLat.length; i++){\n          // if(result)\n          document.write('Location: ' + eachLat[i] + ', ' + eachLong[i] + ' occuring ' + occurence[i] + ' times.');\n          if (occurence[i] < 2){\n            // addMarker(eachLat[i], eachLong[i]);\n          }\n          else if (occurence[i] >= 2){\n            var radius = occurence[i] * 75;\n            stoppage(eachLat[i], eachLong[i], radius);\n          }\n\n        }\n\n\n\nvar newmarker; \nfor(i = 0; i < latlist.length; i++){\n  addNewMarkers(latlist[i], longlist[i]);\n  \n}\n\n  function addNewMarkers(lat, long){\n    newmarker = L.marker([lat, long]);\n\n      map.addLayer(newmarker);\n      setTimeout(function(){\n      map.removeLayer(newmarker);\n    }, 600);\n  }\n  // function removeNewMarkers(lat, long){\n  //   map.removeLayer(newmarker);\n  // }\n\n\nfunction removeBubble(){\n  \n  map.removeLayer(newCircle);\n}\n\n\n\n\nfunction addMarker(lat, long){\n  var marker = L.marker([lat, long]).addTo(map);\n}\n\n\n\nfunction stoppage(lat, long, rad){\n  var circle = L.circle([lat, long], rad, {\n      color: 'red',\n      fillColor: '#f03',\n      fillOpacity: 0.5\n  }).addTo(map);  \n}\n\n  \n// circle.bindPopup(\"Circle at: \" + e.latlng);\n// circle.on('click', onCircleClick);\n\n// map.addLayer(circle);\nfunction onMapClick(e) {\n    alert(\"Location \" + e.latlng);\n}\n\n\n</script>\n\n</body>\n</html>",
+			"file": "/media/saurav/UUI/maptest.html",
+			"file_size": 6149,
+			"file_write_time": 130940468060000000,
 			"settings":
 			{
-				"buffer_size": 1042,
+				"buffer_size": 6149,
 				"line_ending": "Unix"
 			}
 		}
@@ -649,18 +685,33 @@
 	"expanded_folders":
 	[
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/css",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/css/poi",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/poi",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/poi",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicle",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicleAdd"
 	],
 	"file_history":
 	[
+		"/home/saurav/Documents/nodejs/fileUPload/index.js",
+		"/media/saurav/UUI/vehicle files/dashboard.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/poi/poi.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/poi/poi.js",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/poi/calendar.js",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/package.json",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/css/poi/poi.css",
+		"/media/saurav/UUI/locations.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/css/poi/calendar.css",
+		"/media/saurav/UUI/locations.js",
+		"/media/saurav/UUI/maptest.html",
+		"/home/saurav/Documents/hgbf/NodeJS",
+		"/media/saurav/UUI/Calendar files/locations.html",
+		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicleAdd/device_id.html",
+		"/media/saurav/UUI/Calendar files/calendar.js",
+		"/media/saurav/UUI/Calendar files/calendar.css",
+		"/home/saurav/Documents/Angular/2_inlineEditor.html",
+		"/home/saurav/Documents/Angular/first.html",
+		"/home/saurav/Documents/Angular/angular_first.js",
+		"/home/saurav/Documents/Taranga/test_proj_express/app.js",
 		"/media/saurav/UUI/files/calendar.js",
 		"/media/saurav/UUI/files/locations.html",
 		"/media/saurav/UUI/files/calendar.css",
@@ -669,7 +720,6 @@
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/vehicle/barchart.js",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/vehicle/jquery_one.js",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/poi/marker.js",
-		"/media/saurav/UUI/locations.js",
 		"/media/saurav/UUI/dashboard.css",
 		"/media/saurav/UUI/dashboard.js",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/recover_account.html",
@@ -697,7 +747,6 @@
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/vehicleAdd/device_pin.js",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/vehicleAdd/device_id.js",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/vehicleAdd/new_vehicle.js",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicleAdd/device_id.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicleAdd/device_pin.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin/signup.html",
 		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/static/js/userLogin/recover_account.js",
@@ -770,22 +819,7 @@
 		"/home/saurav/Documents/Taranga/Smart Taxi/obd_test_db25.py",
 		"/home/saurav/Documents/nodejs/bucky's tuto/multiple_request.js",
 		"/home/saurav/Documents/nodejs/bucky's tuto/reference_to_object.js",
-		"/home/saurav/Documents/nodejs/bucky's tuto/this.js",
-		"/home/saurav/Documents/nodejs/bucky's tuto/prototype.js",
-		"/home/saurav/Documents/nodejs/bucky's tuto/modules.js",
-		"/home/saurav/Documents/nodejs/bucky's tuto/shared_state_module_emily.js",
-		"/home/saurav/Documents/nodejs/bucky's tuto/shared_state_module_bucky.js",
-		"/home/saurav/Documents/nodejs/bucky's tuto/core_modules.js",
-		"/home/saurav/Documents/nodejs/bucky's tuto/simple_http_server.js",
-		"/home/saurav/Documents/nodejs/bucky's tuto/simple_web_file_server.js",
-		"/home/saurav/Documents/nodejs/bucky's tuto/connect.js",
-		"/home/saurav/Documents/nodejs/bucky's tuto/express.js",
-		"/home/saurav/Documents/nodejs/bucky's tuto/videodata.json",
-		"/home/saurav/Documents/nodejs/bucky's tuto/index.html",
-		"/home/saurav/Documents/nodejs/bucky's tuto/module_import.js",
-		"/home/saurav/Documents/nodejs/work/socket_io_chat/index.js",
-		"/home/saurav/Documents/nodejs/bucky's tuto/shared_state_module.js",
-		"/home/saurav/Documents/Taranga/Smart Taxi/obd_test.py"
+		"/home/saurav/Documents/nodejs/bucky's tuto/this.js"
 	],
 	"find":
 	{
@@ -803,6 +837,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"currPoiTab",
+			"$('#')",
+			"modal",
+			"chevron-righ",
+			"waypts",
+			"	waypt",
+			"polyline_options",
 			"socket",
 			"');\n",
 			"poiCla",
@@ -848,19 +889,47 @@
 			[
 				{
 					"buffer": 0,
-					"file": "index.js",
+					"file": "db.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 73522,
+						"buffer_size": 1725,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								37431,
-								37431
+								990,
+								990
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 49264,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
 							]
 						],
 						"settings":
@@ -868,38 +937,8 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 0.0,
-						"translation.y": 3145.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/home/saurav/Documents/Taranga/test_proj_express/app.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1442,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								739,
-								744
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": -0.0,
-						"translation.y": 540.0,
+						"translation.x": 62.0,
+						"translation.y": 13662.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -907,77 +946,19 @@
 				},
 				{
 					"buffer": 2,
-					"file": "static/js/vehicle/vehicle.js",
+					"file": "templates/userLogin/profile_edit.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 14696,
+						"buffer_size": 3507,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5085,
-								5085
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2322.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "static/css/vehicle/vehicle.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3089,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2500,
-								2500
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 2592.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 11,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "templates/vehicle/vehicle.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6348,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4769,
-								4769
+								1753,
+								1753
 							]
 						],
 						"settings":
@@ -985,143 +966,85 @@
 							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 2556.0,
+						"translation.y": 216.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "static/css/poi/poi.css",
+					"buffer": 3,
+					"file": "templates/userLogin/recover_account.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2276,
+						"buffer_size": 1492,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2275,
-								2275
+								857,
+								857
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1512.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 10,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "static/js/poi/poi.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7788,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5088,
-								5088
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 972.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "static/js/poi/calendar.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3523,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								701,
-								701
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 108.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
-					"file": "static/css/poi/calendar.css",
+					"buffer": 4,
+					"file": "templates/userLogin/signup.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 617,
+						"buffer_size": 2748,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								617,
-								617
+								878,
+								878
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
-						"translation.x": -0.0,
-						"translation.y": 357.0,
+						"translation.x": 0.0,
+						"translation.y": 270.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
-					"file": "templates/poi/poi.html",
+					"buffer": 5,
+					"file": "templates/userLogin/newpassword.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9148,
+						"buffer_size": 1838,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8719,
-								8719
+								602,
+								602
 							]
 						],
 						"settings":
@@ -1129,68 +1052,271 @@
 							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 4759.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
-					"file": "/home/saurav/Documents/hgbf/NodeJS",
+					"buffer": 6,
+					"file": "templates/userLogin/user_pin.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2964,
+						"buffer_size": 2324,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2360,
-								2360
+								777,
+								777
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 717.0,
+						"translation.y": 90.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "templates/vehicle/vehicle.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7663,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2558,
+								2558
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1350.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "static/js/vehicle/vehicle.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15595,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4709,
+								4709
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2082.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "static/js/poi/poi.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12942,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3838,
+								3838
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1327.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "/media/saurav/UUI/vehicle files/dashboard.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 22925,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								963,
+								963
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 540.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "static/css/vehicle/vehicle.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3135,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2242,
+								2242
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 3078.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 9,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
-					"file": "package.json",
+					"buffer": 12,
+					"file": "/media/saurav/UUI/dashboard.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1042,
+						"buffer_size": 18068,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								800,
-								800
+								3357,
+								3357
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1766.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "/media/saurav/UUI/locations.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15443,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "/media/saurav/UUI/maptest.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6149,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5941,
+								5941
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 270.0,
+						"translation.y": 3492.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 14,
 					"type": "text"
 				}
 			]
@@ -1198,7 +1324,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 25.0
+		"height": 26.0
 	},
 	"input":
 	{
@@ -1233,13 +1359,13 @@
 	},
 	"output.unsaved_changes":
 	{
-		"height": 29.0
+		"height": 36.0
 	},
 	"pinned_build_system": "",
 	"project": "vehicleTrackingSystem.sublime-project",
 	"replace":
 	{
-		"height": 64.0
+		"height": 48.0
 	},
 	"save_all_on_build": true,
 	"select_file":

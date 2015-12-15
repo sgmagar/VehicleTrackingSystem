@@ -28,6 +28,11 @@ $(document).ready(function(){
 
         $('#poiMapContainer').removeClass('col-md-9');
         $('#poiMapContainer').addClass('fullWidth');
+        $('#poiBtnGroup').attr('style', 'visibility: hidden;');
+            
+        setTimeout(function (){
+            $('#poiBtnGroup').attr('style', 'visibility: visible;');
+        }, 600);
     });
 
     $('#expandBar').click(function(){
@@ -35,6 +40,11 @@ $(document).ready(function(){
         $('#expandDiv').hide(500);
         $('#poiMapContainer').addClass('col-md-9');
         $('#poiMapContainer').removeClass('fullWidth');
+        $('#poiBtnGroup').attr('style', 'visibility: hidden;');
+            
+        setTimeout(function (){
+            $('#poiBtnGroup').attr('style', 'visibility: visible;');
+        }, 600);
     });
 });
 

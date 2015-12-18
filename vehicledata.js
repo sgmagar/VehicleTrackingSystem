@@ -3,7 +3,9 @@ var router = express.Router();
 
 var index = require('./index');
 var db = require('./db');
-
+/** delivers the page for addition of vehicle data
+*@typedef vehicledata
+*/
 router.get('/', function (req, res){
 	if(req.session.user){
 		res.sendFile('/templates/vehicle/vehicle_data.html', {root: __dirname});
@@ -11,7 +13,9 @@ router.get('/', function (req, res){
 		res.redirect('/'); 
 	}
 });
-
+/** deals with the vehicledata request and check validation and if passed then stores in database.
+*@typedef vehicledata
+*/
 router.post('/', index.urlencodedparser, function (req, res){
 	req.assert('deviceid', "deviceid field cannot be empty").notEmpty();
 	req.assert('latitude', "latitude field cannot be empty").notEmpty();

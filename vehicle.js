@@ -3,7 +3,9 @@ var router = express.Router();
 
 var index = require('./index');
 var db = require('./db');
-
+/** Delivers the vehicle page along with vehicle with category and company name and logo
+*@typedef vehicle
+*/
 router.get('/', function (req, res){
 	if(req.session.user){
 		db.select('SELECT vehicle.category_name AS category,array_agg(vehicle.name) AS vehicle '+

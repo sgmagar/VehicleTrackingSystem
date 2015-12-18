@@ -1,3 +1,4 @@
+
 var express =require('express');
 var router = express.Router();
 
@@ -5,17 +6,28 @@ var index = require('./index');
 var db = require('./db');
 
 
-
+/** delivers the Login page
+*@typedef login
+*/
 router.get('/',function (req,res){
 	res.sendFile('/templates/userLogin/login.html', {root: __dirname});	
 });
+/**deals with logout
+*@typedef logout
+*/
 router.get('/logout', function (req, res){
 	req.session.user=null;
 	res.redirect('/');
 });
+/**delivers the signup page
+*@typedef signup
+*/
 router.get('/signup', function (req, res){
 	res.sendFile('/templates/userLogin/signup.html', {root: __dirname});
 });
+/**delivers the profile edition page
+*@typedef profile
+*/
 router.get('/editprofile', function (req, res){
 	if(req.session.user){
 		res.sendFile('/templates/userLogin/profile_edit.html', {root: __dirname});
@@ -24,12 +36,21 @@ router.get('/editprofile', function (req, res){
 	}
 	
 });
+/**delivers the account recovery page
+*@typedef recover_account
+*/
 router.get('/recover-account', function (req, res){
 	res.sendFile('/templates/userLogin/recover_account.html', {root: __dirname});
 });
+/**delivers the page for entering pin
+*@typedef recover_account
+*/
 router.get('/userpin', function (req, res){
 	res.sendFile('/templates/userLogin/user_pin.html', {root: __dirname});
 });
+/**delivers the page for changing password
+*@typedef recover_account
+*/
 router.get('/newpassword', function (req, res){
 	if(req.session.userpin){
 		res.sendFile('/templates/userLogin/newpassword.html', {root: __dirname});
@@ -37,7 +58,9 @@ router.get('/newpassword', function (req, res){
 		res.redirect('/userpin');
 	}
 });
-
+/**Deals with the sign up requests and performs validation.
+*@typedef signup
+*/
 router.post('/signup', index.urlencodedparser, function (req, res){
 	req.assert('username', "Username can't be empty").notEmpty();
 	req.assert('password1', "Password can't be empty").notEmpty();
@@ -93,6 +116,9 @@ router.post('/signup', index.urlencodedparser, function (req, res){
 		});
 	}
 });
+/** Deals with the login request and also does validation
+*@typedef login
+*/
 router.post('/login', index.urlencodedparser, function (req, res){
 	req.assert('username', "Username can't be empty").notEmpty();
 	req.assert('password', "Password can't be empty").notEmpty();
@@ -163,7 +189,9 @@ router.post('/login', index.urlencodedparser, function (req, res){
 	}
 
 });
-
+/** deals with the profile edition request
+*@typedef profile
+*/
 router.post('/editprofile',  index.multer({ dest: 'static/images/company_logo'}).single('logo'), function (req, res){
 	req.assert('email', "Enter the valid email").isEmail();
 	var errors = req.validationErrors();
@@ -241,6 +269,9 @@ router.post('/editprofile',  index.multer({ dest: 'static/images/company_logo'})
 	}
 	
 });
+/**	deals with the account recovery request and does validation and send email containing pin
+*@typedef account_recovery
+*/
 router.post('/recover-account', index.urlencodedparser, function (req, res){
 	req.assert('username', "Please enter the username in the blank field.").notEmpty();
 
@@ -298,7 +329,9 @@ router.post('/recover-account', index.urlencodedparser, function (req, res){
 		});
 	}
 });
-
+/** Deals with the userpin request and check the existance of the user pin also does the validation
+*@typedef account_recovery
+*/
 router.post('/userpin', index.urlencodedparser, function (req, res) {
 	req.assert('username', "Username field can't be empty").notEmpty();
 	req.assert('pinnumber', "Pin Number field can't be empty").notEmpty();
@@ -376,6 +409,9 @@ router.post('/userpin', index.urlencodedparser, function (req, res) {
 		});
 	}
 });
+/** Deals with the new password request and does validation and update the request of user
+*@typedef account_recovery
+*/
 router.post('/newpassword', index.urlencodedparser, function (req, res){
 	req.assert('password1', "Password field cannot be empty").notEmpty();
 	req.assert('password1', "Password length must be 8 to 20").len(8,20);

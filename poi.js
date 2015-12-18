@@ -4,6 +4,10 @@ var router = express.Router();
 var index = require('./index');
 var db = require('./db');
 
+/** Delivers the poi page with the information of the poi list and company name and logo
+*@typedef poi
+*/
+
 router.get('/', function (req, res){
 	if(req.session.user){
 

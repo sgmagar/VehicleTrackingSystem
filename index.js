@@ -1,71 +1,118 @@
+/** This is where we require the express module */
 var express = require('express');
+/** Creation of express server */
 var app = express();
+/** creation of express server over http */
 var http = require('http').createServer(app);
+/** Requiring socket.io */
 var io = require('socket.io')(http);
+/** Requiring path module */
 var path = require('path');
+/**Requiring nodemailer module*/
 var nodemailer = require('nodemailer');
+/** Creating mailing service with gmail using nodemailer */
 var smtpTransport = nodemailer.createTransport({
 	service: 'Gmail',
 	auth: {
 		user: 'elanor2050@gmail.com',
-		pass: 'thelongestride'
+		pass: ''
 	}
 });
 
-
+/** requiring expresss-session module for the sesssion purpose */
 var session = require('express-session');
+/** requiring crypto module for hashing password */
 var crypto = require('crypto');
+/** requiring body-parser module for dealing with post requests */
 var bodyparser = require('body-parser');
+/** requiring express */
 var validator = require('express-validator');
+/** requiring multer for file uploading */
 var multer = require('multer');
+/** using urlencoded function of bodyparser for dealing with post requests */
 var urlencodedparser = bodyparser.urlencoded({extended: false});
-
+/** session middleware for using the session */
 var sessionMiddleware = session({
 	secret: 'hello',
 	cookie: {}
 });
+/** configuring to use session with socket.io */
 io.use(function(socket, next){
 	sessionMiddleware(socket.request, socket.request.res, next);
 });
+/** using session widdleware */
 app.use(sessionMiddleware);
+/** defining static path with express */
 app.use(express.static(path.join(__dirname, 'static')));
+/** using validator */
 app.use(validator());
 //////////User login pages...and request ////////////////////////////////////////
 ////////////////////////module exports//////////////
+/** exporting io object of socket.io module for using in other module */
 module.exports.io=io;
-// module.exports.sessionMiddleware = sessionMiddleware;
+/** exporting crypto object of crypto module for using in other module */
 module.exports.crypto = crypto;
+/**  exporting urlencoded parser object of body parser module for using in other modules */
 module.exports.urlencodedparser=urlencodedparser;
-// module.exports.validator = validator;
+/** exporting multer object of multer module for using in other modules */
 module.exports.multer = multer;
+/** exporting sendMail function to use in other modules for sending mail */
 module.exports.sendMail = sendMail;
 
 
 
 /////////////////module exports end///////////////////
-				
+/** requiring user custom module to deal with the user creation and login and other features */
 var user = require('./user');
+/** requiring vehicleadd custom module to deal with eh vehicle addition and other features regarding it. */
 var vehicleadd = require('./vehicleadd');
+/** requiring vehicledata custom module to deal with the data from the vehicle */
 var vehicledata = require('./vehicledata');
+/** requiringf appAPI module to deal with the data transfer with app */
 var appAPI = require('./appAPI');
+/** requiring vehicle custom module to deal with all the features related with the vehicle */
 var vehicle = require('./vehicle');
+/** requiring poi custom module to deal with all the features related to poi */
 var poi = require('./poi');
-
+/** requiring db custom module to deal with the database  */
 var db = require('./db');
 
+/** routing to user module 
+*@typedef indexPageROuting
+*/
 app.use('/', user);
+/** routing to vehicleadd module 
+*@typedef indexPageROuting
+*/
 app.use('/vehicleadd',vehicleadd);
+/** routing to vehicledata module 
+*@typedef indexPageROuting
+*/
 app.use('/vehicledata',vehicledata);
+/** routing to appAPI module 
+*@typedef indexPageROuting
+*/
 app.use('/api',appAPI);
+/** routing to vehicle module 
+*@typedef indexPageROuting
+*/
 app.use('/vehicle',vehicle);
+/** routing to poi module 
+*@typedef indexPageROuting
+*/
 app.use('/poi', poi);
 
 /////////////////////////////// socket.io parts ///////////////////////////////
-
+/** main socket io part while on connection 
+*@typedef mainConnectionOfSocket
+*/
 io.on('connection', function (socket){
 
 ////////////////////////////////////vehicle/////////////////////////////////////
 	/////////////////////vehicle and map//////////////////////////////
+	/** socket receiver of event 'vehicle' with data of vehicle name 
+	*@typedef vehicle
+	*/
 	socket.on('vehicle', function (data){
 		socket.request.session.vehicle_id='';
 		socket.request.session.company_id_vehicle = '';
@@ -73,7 +120,9 @@ io.on('connection', function (socket){
 		var vehicle = data.vehicle.trim();
 		console.log("The vehicle Clicked: "+vehicle);
 		var username =socket.request.session.user;
-
+		/**getting data related to vehicle on event 'vehicle'
+		*@typedef vehicle
+		*/
 		db.select('SELECT company_detail.id AS company_id,vehicle.id AS '+
 					'vehicle_id,vehicle.device_id FROM company_detail INNER JOIN vehicle ON '+
 					'company_detail.id=vehicle.company_id WHERE company_detail.username=$1 '+
@@ -82,6 +131,9 @@ io.on('connection', function (socket){
 
 						}else{
 							console.log(result);
+							/**Setting socket session on event 'vehicle'
+							*@typedef settingSocketSessionForVehicle
+							*/
 							socket.request.session.vehicle_id= result[0].vehicle_id;
 							socket.request.session.company_id_vehicle = result[0].company_id;
 							socket.request.session.device_id = result[0].device_id;
@@ -89,12 +141,16 @@ io.on('connection', function (socket){
 						}
 		});
 	});
-	
+	/** Socket receiver on event 'vehicle_map'
+	*@typedef vehicle_map
+	*/
 	socket.on('vehicle_map', function(data){
 		if(!socket.request.session.vehicle_id){
 			var username = socket.request.session.user;
 			console.log("vehicle_map without session");
-
+			/** Selecting vehicle name and device id..if vehicle_id not set..in event 'vehicle_map' for finding vehicle locations of all vehicle under company 
+			*@typedef vehicle_map
+			*/
 			db.select('SELECT vehicle.name AS vehicle,vehicle.device_id '+
 						'AS device_id FROM company_detail INNER JOIN vehicle ON '+
 						'company_detail.id=vehicle.company_id  WHERE '+
@@ -145,7 +201,9 @@ io.on('connection', function (socket){
 			var d = new Date();
 			var sdd = d.toISOString();
 			var date = sdd.substring(0,10).replace(/-/gi,'');
-
+			/** Selecting latitude longitude of vehicle..if vehicle_id set.. on vehicle_map
+			*@typedef vehicle_map
+			*/
 			db.select('SELECT latitude, longitude FROM '+
 						'vehicle_data WHERE date=$1 and device_id=$2 ORDER By time', 
 						[date, device_id], function (err, result){
@@ -160,6 +218,9 @@ io.on('connection', function (socket){
 								}
 							}
 			});
+			/** Selecting poi details of unfinished job..if vehicle_id set.. on vehicle_map
+			*@typedef vehicle_map
+			*/
 			db.select('SELECT poi_latitude AS latitude, poi_longitude AS longitude,poi_name as poi,'+
 				' poi_detail AS detail FROM '+
 				'activity WHERE vehicle_id=$1 GROUP BY poi_latitude, poi_longitude,poi_name, poi_detail '+
@@ -176,7 +237,9 @@ io.on('connection', function (socket){
 	
 	////////////////////vehicle and map end///////////////////////////
 	//////////////////////vehicle and activity////////////////////////
-
+	/** socket receiver on event 'vehicle_activity' ->Selects the poi name,date and status for the particular vehicle
+	*@typedef vehicle_activity
+	*/
 	socket.on('vehicle_activity', function(data){
 		if(!socket.request.session.vehicle_id){
 
@@ -185,6 +248,9 @@ io.on('connection', function (socket){
 			var company_id=socket.request.session.company_id_vehicle;
 			var device_id=socket.request.session.device_id;
 			console.log("vehicle_activity with session");
+			/** Selecting poi_name detail and status of poi's related to vehicle on event 'vehicle_activity'
+			*@typedef vehicle_activity
+			*/
 			db.select('SELECT poi_name AS poi,date,bool_and(status) AS status '+
 						'FROM activity '+
 						'WHERE company_id=$1 AND vehicle_id=$2 GROUP BY poi_name,date',
@@ -199,14 +265,19 @@ io.on('connection', function (socket){
 			});
 		}
 	});
-	
+	/** socket receiver on event 'vehicle_activity_poi' ->Select and send number of times visited by vehicle group by month for particular 
+	poi and list of that poi's activities 
+	*@typedef vehicle_activity_poi
+	*/
 	socket.on('vehicle_activity_poi', function (data){
 		socket.request.session.vehicle_activity_poi_id=''
 		var poi = data.poi;
 		var vehicle_id=socket.request.session.vehicle_id;
 		var company_id=socket.request.session.company_id_vehicle;
 		var device_id=socket.request.session.device_id;
-
+		/** Selecting count of visit for specific poi of specific vehicle on event 'vehicle_activity_poi' 
+		*@typedef vehicle_activity_poi
+		*/
 		db.select('SELECT substring(date from 1 for 6) AS date,'+
 					'count(DISTINCT CONCAT(poi_name,date)) FROM activity WHERE company_id=$1 AND vehicle_id=$2 AND '+
 					'poi_name=$3 GROUP BY substring(date from 1 for 6)',
@@ -218,6 +289,10 @@ io.on('connection', function (socket){
 							console.log(result);
 						}
 		});
+
+		/** Selecting activity and status of specific poi of specific vehicle on event 'vehicle_activity_poi' 
+		*@typedef vehicle_activity_poi
+		*/
 		db.select('SELECT poi_id,activity,status FROM activity '+
 					'WHERE company_id=$1 AND vehicle_id=$2 AND poi_name=$3 ORDER BY status'
 					, [company_id,vehicle_id,poi], function (err,result){
@@ -235,7 +310,9 @@ io.on('connection', function (socket){
 						}
 		});				
 	});
-
+	/** Socket listener on event 'vehicle_activity_poi_newactivity' ->Add the new activity to the dedicated vehicle and poi
+	*@typedef vehicle_activity_poi_newactivity
+	*/
 	socket.on('vehicle_activity_poi_newactivity', function (data){
 		if(socket.request.session.vehicle_id && socket.request.session.vehicle_activity_poi_id){
 			var vehicle_id=socket.request.session.vehicle_id;
@@ -247,6 +324,9 @@ io.on('connection', function (socket){
 			var d = new Date();
 			var sdd = d.toISOString();
 			var date = sdd.substring(0,10).replace(/-/gi,'');
+			/** Selecting poi detatil for inserting the new activity to activity table. 
+			*@typedef vehicle_activity_poi_newactivity
+			*/
 			db.select('SELECT name,detail,latitude,'+
 						'longitude FROM poi WHERE id=$1'
 						,[poi_id], function (err, result){
@@ -273,6 +353,9 @@ io.on('connection', function (socket){
 	/////////////////////vehicle and activity end/////////////////////
 
 	////////////////////vehicle and dashboard/////////////////////////
+	/** Socket listener on event 'vehicle_dashboard' -> sends fuel, speed data to the client based on request
+	*@typedef vehicle_dashboard
+	*/
 	socket.on('vehicle_dasboard', function (data){
 		if(!socket.request.session.vehicle_id){
 
@@ -447,6 +530,9 @@ io.on('connection', function (socket){
 	
 ///////////////////////////////poi///////////////////////////////////////////////
 	/////////////////////////poi and map//////////////////////////////
+	/** Socket listener on event 'poi_map_filter' ->filter the pois by using different filters.
+	*@typedef poi_map_filter
+	*/
 	socket.on('poi_map_filter',function(data){
 		var filter = data.filter.trim();
 		var username = socket.request.session.user;
@@ -507,6 +593,10 @@ io.on('connection', function (socket){
 			});
 		}	
 	});
+	
+	/** Socket listener on event 'poi'->sets the session for the poi
+	*@typedef poi
+	*/
 	socket.on('poi', function (data){
 		socket.request.session.poi_id_map='';
 		socket.request.session.poi_name = ''
@@ -526,6 +616,9 @@ io.on('connection', function (socket){
 						}
 		});
 	});
+	/** Socket listener on event 'poi_map_detail' -> Send poi details to client
+	*@typedef poi_map_detail
+	*/
 	socket.on('poi_map_detail', function (data){
 		var poi_id = socket.request.session.poi_id_map;
 		var username = socket.request.session.user;
@@ -553,7 +646,9 @@ io.on('connection', function (socket){
 		}
 		
 	});
-
+	/** Socket listener on event 'poi_map_add' ->adds the poi
+	*@typedef poi_map_add
+	*/
 	socket.on('poi_map_add', function (data){
 		var poi_name = data.poi_name;
 		console.log(poi_name);
@@ -584,7 +679,9 @@ io.on('connection', function (socket){
 	///////////////////////poi and map ends////////////////////////////
 
 	/////////////////////poi and activity///////////////////////////
-	
+	/** Socket listener on event 'poi_activity_detail', ->select the numver of activities grouped by date of the selected poi. 
+	*@typedef poi_activity_detail
+	*/
 	socket.on('poi_activity_detail', function (data){
 		var poi_id = socket.request.session.poi_id_map;
 		var username = socket.request.session.user;
@@ -606,7 +703,9 @@ io.on('connection', function (socket){
 				}
 		});
 	});
-	
+	/** Socket listener on event 'poi_activity_detail_activity'->Display the activity of the selected poi of the selected date 
+	*@typedef poi_activity_detail_activity
+	*/
 	socket.on('poi_activity_detail_activity', function (data){
 		socket.request.session.poi_activity_date='';
 		var date = data.date;
@@ -628,7 +727,9 @@ io.on('connection', function (socket){
 						}
 		});
 	});
-
+	/** Socket listener on event 'poi_activity_detail_filter'->filter the activity of the selected poi of the selected date.
+	*@typedef poi_activity_detail_filter
+	*/
 	socket.on('poi_activity_detail_filter', function (data){
 		var filter = data.filter.trim();
 		console.log(filter);
@@ -670,7 +771,9 @@ io.on('connection', function (socket){
 			});
 		}
 	});
-
+	/** Socket listener on event 'assign_activity_vehicle'->assign activity to particular vehicle
+	*@typedef assign_activity_vehicle
+	*/
 	socket.on('assign_activity_vehicle', function (data){
 		var activity = data.activity;
 		var vehicle = data.vehicle.trim();
@@ -694,7 +797,9 @@ io.on('connection', function (socket){
 			});
 		}
 	});
-	
+	/** Socket listener on event 'add_activity' ->adds new activity for the dedicated poi at th selected date.
+	*@typedef add_activity
+	*/
 	socket.on('add_activity', function (data){
 		if(socket.request.session.poi_id_map && socket.request.session.poi_activity_date){
 			var activity = data.activity;
@@ -728,7 +833,9 @@ io.on('connection', function (socket){
 	});
 	/////////////////////poi and activity ends///////////////////////
 ///////////////////////////poi ends///////////////////////////////////////////////
-
+	/** Socket listener on event 'disconnect'-> clear all the socket session 
+	*@typedef disconnect
+	*/
 	socket.on('disconnect', function(){
 		socket.request.session.vehicle_id='';
 		socket.request.session.company_id_vehicle = '';
@@ -751,11 +858,18 @@ http.listen(3000, function(){
 //////////////////// Functions below this line //////////////////////////////////
 
 setInterval(pinExpiry, 120000);
+/** Deletes the record from user_pin, device_pin older than 1 hour 
+*/
 function pinExpiry(){
 	db.delet("DELETE FROM user_pin WHERE timestamp<NOW()-INTERVAL '1 hour'");
 	db.delet("DELETE FROM device_pin WHERE timestamp<NOW()-INTERVAL '1 hour'");
 }
 
+/** It sends the mail to theemail provided
+*@param {string} email - The email of the receiver
+*@param {string} subjects - The subjects of the of the email
+*@param {string} htmls - The format of the email
+*/
 function sendMail(email, subjects, htmls){
 	var mailOptions = {
 	    from: 'Maulik Taranga<sender@mail.com>',

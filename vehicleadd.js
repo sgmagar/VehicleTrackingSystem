@@ -4,6 +4,9 @@ var router = express.Router();
 var index = require('./index');
 var db = require('./db');
 
+/** Delivers the page for entering device name
+*@typedef device_id 
+*/
 router.get('/device', function (req, res){
 	if(req.session.user){
 		res.sendFile('/templates/vehicleAdd/device_id.html', {root: __dirname});
@@ -12,6 +15,9 @@ router.get('/device', function (req, res){
 	}
 	
 });
+/**Delivers the page for entering device pin and device_id
+*@typedef device_id
+*/
 router.get('/devicepin', function (req, res){
 	if(req.session.user){
 		res.sendFile('/templates/vehicleAdd/device_pin.html', {root: __dirname});
@@ -20,6 +26,9 @@ router.get('/devicepin', function (req, res){
 	}
 	
 });
+/**Delivers the page for addition of new vehicle
+*@typedef vehicle_addition
+*/
 router.get('/newvehicle', function (req, res){
 	if(req.session.user && req.session.device_id){
 		console.log(req.session.device_id);
@@ -57,6 +66,9 @@ router.get('/newvehicle', function (req, res){
 
 
 //////////////////////////////////post/////////////////////////////////////////////////////////////
+/** Deals with the device request and does validation and send email containinf the device pin
+*@typedef device_id
+*/
 router.post('/device', index.urlencodedparser, function (req, res){
 	req.assert('deviceid', "Device Id can't be empty").notEmpty();
 
@@ -140,6 +152,9 @@ router.post('/device', index.urlencodedparser, function (req, res){
 
 	}
 });
+/** Deals with the devicepin request and check the pin provided 
+*@typedef device_id
+*/
 router.post('/devicepin', index.urlencodedparser, function (req, res){
 	req.assert('deviceid', "Device Id field cannot be empty").notEmpty();
 	req.assert('pinnumber', "Pin Number cannot be empty").notEmpty();
@@ -205,7 +220,9 @@ router.post('/devicepin', index.urlencodedparser, function (req, res){
 		});
 	}
 });
-
+/** Deals with the resendpin request and check if the pin exists and if pin doesnot exists then send the email conteining new pin
+*@typedef device_id 
+*/
 router.post('/resendpin', index.urlencodedparser, function (req, res){
 	var device_id = parseInt(req.body.deviceid);
 
@@ -249,7 +266,9 @@ router.post('/resendpin', index.urlencodedparser, function (req, res){
 	});	
 
 });
-
+/** Deals with the addcategory request and add the vehicle category
+*@typedef category
+*/
 router.post('/addcategory', index.urlencodedparser, function (req, res){
 	var category = req.body.category;
 	if(!category){
@@ -286,6 +305,9 @@ router.post('/addcategory', index.urlencodedparser, function (req, res){
 	}
 	
 });
+/**Deals with new vehicle request and adds the vehicle
+*@typedef vehicle
+*/
 router.post('/newvehicle', index.urlencodedparser, function (req, res){
 	req.assert('vehicle', "Vehicle Name field cannot be empty").notEmpty();
 	req.assert('category', "Select at least one category").notEmpty();

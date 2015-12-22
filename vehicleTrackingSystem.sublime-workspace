@@ -531,7 +531,63 @@
 			"file": "index.js",
 			"settings":
 			{
-				"buffer_size": 49264,
+				"buffer_size": 32979,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "appAPI.js",
+			"settings":
+			{
+				"buffer_size": 862,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "test/test.js",
+			"settings":
+			{
+				"buffer_size": 759,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "poi.js",
+			"settings":
+			{
+				"buffer_size": 1157,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "user.js",
+			"settings":
+			{
+				"buffer_size": 12795,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "vehicleadd.js",
+			"settings":
+			{
+				"buffer_size": 10713,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "vehicle.js",
+			"settings":
+			{
+				"buffer_size": 1257,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "vehicledata.js",
+			"settings":
+			{
+				"buffer_size": 2019,
 				"line_ending": "Unix"
 			}
 		},
@@ -579,7 +635,7 @@
 			"file": "templates/vehicle/vehicle.html",
 			"settings":
 			{
-				"buffer_size": 7663,
+				"buffer_size": 10008,
 				"line_ending": "Unix"
 			}
 		},
@@ -587,7 +643,7 @@
 			"file": "static/js/vehicle/vehicle.js",
 			"settings":
 			{
-				"buffer_size": 15595,
+				"buffer_size": 16306,
 				"line_ending": "Unix"
 			}
 		},
@@ -595,7 +651,7 @@
 			"file": "static/js/poi/poi.js",
 			"settings":
 			{
-				"buffer_size": 12942,
+				"buffer_size": 13332,
 				"line_ending": "Unix"
 			}
 		},
@@ -607,6 +663,14 @@
 			"settings":
 			{
 				"buffer_size": 22925,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "node_modules/request/node_modules/http-signature/node_modules/sshpk/node_modules/jsbn/index.js",
+			"settings":
+			{
+				"buffer_size": 41810,
 				"line_ending": "Unix"
 			}
 		},
@@ -684,11 +748,9 @@
 	},
 	"expanded_folders":
 	[
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/userLogin",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicle",
-		"/home/saurav/Documents/Taranga/deliveryVan/VehicleTrackingSystem/templates/vehicleAdd"
+		"/home/saurav/Documents/Taranga/Taranga/deliveryVan/VehicleTrackingSystem",
+		"/home/saurav/Documents/Taranga/Taranga/deliveryVan/VehicleTrackingSystem/node_modules",
+		"/home/saurav/Documents/Taranga/Taranga/deliveryVan/VehicleTrackingSystem/test"
 	],
 	"file_history":
 	[
@@ -827,7 +889,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
 		]
@@ -837,6 +899,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"http",
+			"events",
+			"urlencodedparser",
+			"console",
+			"bodyparser",
+			"urlencodedparser",
 			"currPoiTab",
 			"$('#')",
 			"modal",
@@ -868,6 +936,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			"urlEncodedParser",
+			"bodyParser",
+			"urlEncodedParser",
 			"company",
 			"commpany_id",
 			"new_vehicle_error",
@@ -912,7 +983,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -921,7 +992,36 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 49264,
+						"buffer_size": 32979,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7201,
+								7201
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2827.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "appAPI.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 862,
 						"regions":
 						{
 						},
@@ -937,15 +1037,189 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 62.0,
-						"translation.y": 13662.0,
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
+					"file": "test/test.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 759,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								750,
+								750
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "poi.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1157,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								17,
+								17
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "user.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12795,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3346,
+								3346
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1519.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "vehicleadd.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10713,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1900,
+								1900
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 769.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "vehicle.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1257,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "vehicledata.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2019,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1218,
+								1218
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 716.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
 					"file": "templates/userLogin/profile_edit.html",
 					"semi_transient": false,
 					"settings":
@@ -966,14 +1240,14 @@
 							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 216.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 10,
 					"file": "templates/userLogin/recover_account.html",
 					"semi_transient": false,
 					"settings":
@@ -997,11 +1271,11 @@
 						"translation.y": 108.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 11,
 					"file": "templates/userLogin/signup.html",
 					"semi_transient": false,
 					"settings":
@@ -1027,11 +1301,11 @@
 						"translation.y": 270.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 12,
 					"file": "templates/userLogin/newpassword.html",
 					"semi_transient": false,
 					"settings":
@@ -1055,11 +1329,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 16,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 13,
 					"file": "templates/userLogin/user_pin.html",
 					"semi_transient": false,
 					"settings":
@@ -1084,24 +1358,24 @@
 						"translation.y": 90.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 17,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 14,
 					"file": "templates/vehicle/vehicle.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7663,
+						"buffer_size": 10008,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2558,
-								2558
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1109,27 +1383,27 @@
 							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1350.0,
+						"translation.y": 360.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 15,
 					"file": "static/js/vehicle/vehicle.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 15595,
+						"buffer_size": 16306,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4709,
-								4709
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1142,24 +1416,24 @@
 						"translation.y": 2082.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 20,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 16,
 					"file": "static/js/poi/poi.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 12942,
+						"buffer_size": 13332,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3838,
-								3838
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1172,11 +1446,11 @@
 						"translation.y": 1327.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 19,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 17,
 					"file": "/media/saurav/UUI/vehicle files/dashboard.js",
 					"semi_transient": false,
 					"settings":
@@ -1188,8 +1462,8 @@
 						"selection":
 						[
 							[
-								963,
-								963
+								786,
+								786
 							]
 						],
 						"settings":
@@ -1202,11 +1476,41 @@
 						"translation.y": 540.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 18,
+					"file": "node_modules/request/node_modules/http-signature/node_modules/sshpk/node_modules/jsbn/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 41810,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								40727,
+								40727
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 19368.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 19,
 					"file": "static/css/vehicle/vehicle.css",
 					"semi_transient": false,
 					"settings":
@@ -1230,11 +1534,11 @@
 						"translation.y": 3078.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 18,
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 20,
 					"file": "/media/saurav/UUI/dashboard.html",
 					"semi_transient": false,
 					"settings":
@@ -1258,11 +1562,11 @@
 						"translation.y": 1766.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 21,
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 21,
 					"file": "/media/saurav/UUI/locations.html",
 					"semi_transient": false,
 					"settings":
@@ -1286,11 +1590,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 22,
 					"file": "/media/saurav/UUI/maptest.html",
 					"semi_transient": false,
 					"settings":
@@ -1316,7 +1620,7 @@
 						"translation.y": 3492.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 22,
 					"type": "text"
 				}
 			]
@@ -1365,7 +1669,7 @@
 	"project": "vehicleTrackingSystem.sublime-project",
 	"replace":
 	{
-		"height": 48.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1388,10 +1692,14 @@
 	},
 	"select_symbol":
 	{
-		"height": 54.0,
-		"last_filter": "recover",
+		"height": 392.0,
+		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"",
+				"ARC4init"
+			],
 			[
 				"recover",
 				"removes from available objects on validation failure"

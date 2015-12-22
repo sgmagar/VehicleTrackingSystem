@@ -360,167 +360,167 @@ io.on('connection', function (socket){
 		if(!socket.request.session.vehicle_id){
 
 		}else{
-			console.log("vehicle dash_board with session");
-			var from_date = data.from_date;
-			var to_date = data.to_date;
-			var type = data.type;
-			var vehicle_id=socket.request.session.vehicle_id;
-			var company_id=socket.request.session.company_id_vehicle;
-			var device_id=socket.request.session.device_id;
-			
-			var d = new Date();
-			var sdd = d.toISOString();
-			var date = sdd.substring(0,10).replace(/-/gi,'');
-			var year = date.substring(0,4);
-			var month = date.substring(4,6);
-			var day = date.substring(6);
-			var previous_month;
-			if(month==1){
-				year=year-1;
-				previous_month=12;
-			}else{
-				previous_month=month-1;
-			}
-			if(!from_date){
-				from_date=year+previous_month+day;
-			}
-			if(!to_date){
-				to_date=date;
-			}
-			console.log(from_date);
-			console.log(to_date);
-			if(type=="speed"){
-				db.select('SELECT date,array_agg(time) AS time,'+
-							'array_agg(speed) AS speed,array_agg(latitude) AS latitude,'+
-							'array_agg(longitude) AS longitude '+
-							'FROM vehicle_data WHERE device_id=$1 AND date BETWEEN '+
-							'$2 AND $3 GROUP BY date ORDER BY date',
-							[device_id,from_date,to_date], function (err,result){
-								if(err){
+				console.log("vehicle dash_board with session");
+				var from_date = data.from_date;
+				var to_date = data.to_date;
+				var type = data.type;
+				var vehicle_id=socket.request.session.vehicle_id;
+				var company_id=socket.request.session.company_id_vehicle;
+				var device_id=socket.request.session.device_id;
 
-								}else{
-									//socket.emit('vehicle_dashboard_speed', result);
-									console.log(result);
-									if(result.length!=0){
-										var i=0;
-										(function sendSpeed(){
-											if(i<result.length){
-												var speed=[];
-												var time=[];
-												var latitude=[];
-												var longitude=[];
-												for(var j=0;j<result[i].speed.length;j++){
-													if((j%(result.length*4))==0){
-														speed.push(result[i].speed[j]);
-														time.push(result[i].time[j]);
-														latitude.push(result[i].latitude[j]);
-														longitude.push(result[i].longitude[j]);
+				var d = new Date();
+				var sdd = d.toISOString();
+				var date = sdd.substring(0,10).replace(/-/gi,'');
+				var year = date.substring(0,4);
+				var month = date.substring(4,6);
+				var day = date.substring(6);
+				var previous_month;
+				if(month==1){
+					year=year-1;
+					previous_month=12;
+				}else{
+					previous_month=month-1;
+				}
+				if(!from_date){
+					from_date=year+previous_month+day;
+				}
+				if(!to_date){
+					to_date=date;
+				}
+				console.log(from_date);
+				console.log(to_date);
+				if(type=="speed"){
+					db.select('SELECT date,array_agg(time) AS time,'+
+								'array_agg(speed) AS speed,array_agg(latitude) AS latitude,'+
+								'array_agg(longitude) AS longitude '+
+								'FROM vehicle_data WHERE device_id=$1 AND date BETWEEN '+
+								'$2 AND $3 GROUP BY date ORDER BY date',
+								[device_id,from_date,to_date], function (err,result){
+									if(err){
+
+									}else{
+										//socket.emit('vehicle_dashboard_speed', result);
+										console.log(result);
+										if(result.length!=0){
+											var i=0;
+											(function sendSpeed(){
+												if(i<result.length){
+													var speed=[];
+													var time=[];
+													var latitude=[];
+													var longitude=[];
+													for(var j=0;j<result[i].speed.length;j++){
+														if((j%(result.length*4))==0){
+															speed.push(result[i].speed[j]);
+															time.push(result[i].time[j]);
+															latitude.push(result[i].latitude[j]);
+															longitude.push(result[i].longitude[j]);
+														}
 													}
+													result[i].time=time;
+													result[i].speed=speed;
+													result[i].latitude=latitude;
+													result[i].longitude=longitude;
+													i++;
+													sendSpeed();
+												}else{
+													console.log(result);
+													socket.emit('vehicle_dashboard_speed',result);
 												}
-												result[i].time=time;
-												result[i].speed=speed;
-												result[i].latitude=latitude;
-												result[i].longitude=longitude;
-												i++;
-												sendSpeed();
-											}else{
-												console.log(result);
-												socket.emit('vehicle_dashboard_speed',result);
-											}
-										})();
+											})();
+										}
+
 									}
+					});
 
-								}
-			});
+				}else if(type="fuel"){
+					db.select('SELECT date,array_agg(time) AS time,'+
+								'array_agg(fuel) AS fuel,array_agg(latitude) AS latitude,'+
+								'array_agg(longitude) AS longitude '+
+								'FROM vehicle_data WHERE device_id=$1 AND date BETWEEN '+
+								'$2 AND $3 GROUP BY date ORDER BY date',
+								[device_id,from_date,to_date], function (err,result){
+									if(err){
 
-			}else if(type="fuel"){
-				db.select('SELECT date,array_agg(time) AS time,'+
-							'array_agg(fuel) AS fuel,array_agg(latitude) AS latitude,'+
-							'array_agg(longitude) AS longitude '+
-							'FROM vehicle_data WHERE device_id=$1 AND date BETWEEN '+
-							'$2 AND $3 GROUP BY date ORDER BY date',
-							[device_id,from_date,to_date], function (err,result){
-								if(err){
-
-								}else{
-									//socket.emit('vehicle_dashboard_fuel', result);
-									console.log(result);
-									if(result.length!=0){
-										var i=0;
-										(function sendFuel(){
-											if(i<result.length){
-												var fuel=[];
-												var time=[];
-												var latitude=[];
-												var longitude=[];
-												for(var j=0;j<result[i].fuel.length;j++){
-													if((j%(result.length*4))==0){
-														fuel.push(result[i].fuel[j]);
-														time.push(result[i].time[j]);
-														latitude.push(result[i].latitude[j]);
-														longitude.push(result[i].longitude[j]);
+									}else{
+										//socket.emit('vehicle_dashboard_fuel', result);
+										console.log(result);
+										if(result.length!=0){
+											var i=0;
+											(function sendFuel(){
+												if(i<result.length){
+													var fuel=[];
+													var time=[];
+													var latitude=[];
+													var longitude=[];
+													for(var j=0;j<result[i].fuel.length;j++){
+														if((j%(result.length*4))==0){
+															fuel.push(result[i].fuel[j]);
+															time.push(result[i].time[j]);
+															latitude.push(result[i].latitude[j]);
+															longitude.push(result[i].longitude[j]);
+														}
 													}
+													result[i].time=time;
+													result[i].fuel=fuel;
+													result[i].latitude=latitude;
+													result[i].longitude=longitude;
+													i++;
+													sendFuel();
+												}else{
+													console.log(result);
+													socket.emit('vehicle_dashboard_fuel',result);
 												}
-												result[i].time=time;
-												result[i].fuel=fuel;
-												result[i].latitude=latitude;
-												result[i].longitude=longitude;
-												i++;
-												sendFuel();
-											}else{
-												console.log(result);
-												socket.emit('vehicle_dashboard_fuel',result);
-											}
-										})();
-									}	
-								}
-				});
-			}else{
-				db.select('SELECT date,array_agg(time) AS time,'+
-							'array_agg(speed) AS speed,array_agg(fuel) AS fuel,array_agg(latitude)'+
-							' AS latitude,array_agg(longitude) AS longitude '+
-							'FROM vehicle_data WHERE device_id=$1 AND date BETWEEN '+
-							'$2 AND $3 GROUP BY date ORDER BY date',
-							[device_id,from_date,to_date], function (err,result){
-								if(err){
+											})();
+										}	
+									}
+					});
+				}else{
+					db.select('SELECT date,array_agg(time) AS time,'+
+								'array_agg(speed) AS speed,array_agg(fuel) AS fuel,array_agg(latitude)'+
+								' AS latitude,array_agg(longitude) AS longitude '+
+								'FROM vehicle_data WHERE device_id=$1 AND date BETWEEN '+
+								'$2 AND $3 GROUP BY date ORDER BY date',
+								[device_id,from_date,to_date], function (err,result){
+									if(err){
 
-								}else{
-									//socket.emit('vehicle_dashboard', result);
-									console.log(result);
-									if(result.length!=0){
-										var i=0;
-										(function sendAll(){
-											if(i<result.length){
-												var speed=[];
-												var fuel=[];
-												var time=[];
-												var latitude=[];
-												var longitude=[];
-												for(var j=0;j<result[i].fuel.length;j++){
-													if((j%(result.length*4))==0){
-														speed.push(result[i].speed[j]);
-														fuel.push(result[i].fuel[j]);
-														time.push(result[i].time[j]);
-														latitude.push(result[i].latitude[j]);
-														longitude.push(result[i].longitude[j]);
+									}else{
+										//socket.emit('vehicle_dashboard', result);
+										console.log(result);
+										if(result.length!=0){
+											var i=0;
+											(function sendAll(){
+												if(i<result.length){
+													var speed=[];
+													var fuel=[];
+													var time=[];
+													var latitude=[];
+													var longitude=[];
+													for(var j=0;j<result[i].fuel.length;j++){
+														if((j%(result.length*4))==0){
+															speed.push(result[i].speed[j]);
+															fuel.push(result[i].fuel[j]);
+															time.push(result[i].time[j]);
+															latitude.push(result[i].latitude[j]);
+															longitude.push(result[i].longitude[j]);
+														}
 													}
+													result[i].time=time;
+													result[i].speed=speed;
+													result[i].fuel=fuel;
+													result[i].latitude=latitude;
+													result[i].longitude=longitude;
+													i++;
+													sendAll();
+												}else{
+													console.log(result);
+													socket.emit('vehicle_dashboard_all',result);
 												}
-												result[i].time=time;
-												result[i].speed=speed;
-												result[i].fuel=fuel;
-												result[i].latitude=latitude;
-												result[i].longitude=longitude;
-												i++;
-												sendAll();
-											}else{
-												console.log(result);
-												socket.emit('vehicle_dashboard_all',result);
-											}
-										})();
-									}	
-								}
-				});
-			}		
+											})();
+										}	
+									}
+					});
+				}		
 		}
 	});
 

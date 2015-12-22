@@ -21,3 +21,9 @@ describe("user get request", function(){
 		});
 	});
 });
+
+describe("check string content", function(){
+	describe("return 1 on string content", function(done){
+		assert.contains("hello","ell");
+	});
+});
